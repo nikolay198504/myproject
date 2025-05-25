@@ -1,0 +1,450 @@
+/* ===============================
+   1. Стили для стрелок и текста
+=============================== */
+
+.arrow-container {
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  width: 150px;
+  height: 150px;
+  position: relative; /* Стрелка будет двигаться отдельно от текста */
+}
+
+.arrow {
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.arrow-up {
+  margin-bottom: 10px;
+  position: absolute;
+  top: 65px !important;
+  left: -215px; /* Расположим стрелку влево */
+}
+
+.arrow-down {
+  margin-top: 0px;
+  position: absolute;
+  bottom: 75px;
+  left: 265px;  /* Расположение стрелки вправо */
+  transform: rotate(180deg) scaleX(-1);
+}
+
+/* Текстовые блоки около стрелок */
+.text-block {
+  position: relative;
+  text-align: center;
+}
+
+/* Общие стили для текста */
+.text-arrow {
+  font-style: italic;
+  font-size: 2rem;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* Позиционирование текста "MATRIZ PERSONAL" */
+.text-matriz-personal {
+  top: 0;
+  left: -240px;
+}
+
+/* Позиционирование текста "MATRIZ DE COMPATIBILIDAD" */
+.text-matriz-compatibilidad {
+  top: -25px;
+  left: 250px;
+}
+
+/* ===============================
+   2. Базовые стили для всего тела, таблиц и футера
+=============================== */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  background-color: #000;
+  color: #fff;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Футер (общие стили) */
+.footer_section {
+  flex-shrink: 0;
+  margin-top: 500px !important;
+  background-color: #000;
+  color: #fff;
+  padding: 70px 0;
+}
+
+/* Заголовки в футере */
+h1, h2 {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Таблицы */
+table {
+  width: 100%;
+  padding: 10px;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+  table-layout: fixed;
+}
+
+table th {
+  text-align: center;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+table > tbody > tr > td,
+table > tbody > tr > th,
+table > tfoot > tr > td,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > thead > tr > th {
+  border: 2px solid #f8f8f8;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.cell_gray {
+  background-color: #E0E0E0 !important;
+  color: #000 !important;
+}
+
+.cell_sahasrara    { background-color: #664074 !important; color: white; }
+.cell_ajna         { background-color: #155493 !important; color: white; }
+.cell_vishuddha    { background-color: #009ED1 !important; color: white; }
+.cell_anahata      { background-color: #009E52 !important; color: white; }
+.cell_manipura     { background-color: #EFBE3D !important; color: white; }
+.cell_svadhisthana { background-color: #F28D3B !important; color: white; }
+.cell_muladhara    { background-color: #E54144 !important; color: white; }
+.cell_total        { background-color: #bcb395 !important; color: white; }
+
+/* ===============================
+   3. Стили для футера (логотип, соц.сети)
+=============================== */
+
+/* CSS-переменные */
+:root {
+  --footer-h4-size: 32px;
+  --footer-logo-size: 40px;
+  --footer-p-size: 30px;
+  --floating-btn-size: 100px;
+}
+
+.footer_section {
+  background-color: #222831;
+  color: #fff;
+  padding: 75px 0 40px 0;
+  text-align: center;
+}
+
+.footer_section h4 {
+  font-size: var(--footer-h4-size);
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: 'Dancing Script', cursive;
+}
+
+.footer_section .footer-logo {
+  display: block;
+  font-weight: bold;
+  font-size: 36px !important;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 20px;
+  font-family: 'Dancing Script', cursive;
+  text-decoration: none !important;
+}
+
+.footer_section p {
+  color: #dbdbdb;
+  font-size: var(--footer-p-size);
+}
+
+.footer_section .footer-col {
+  margin-bottom: 36px;
+}
+
+/* Контейнер контактов */
+.footer_section .footer_contact .contact_link_box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.footer_section .footer_contact .contact_link_box a {
+  margin: 5px 0;
+  color: #fff;
+}
+.footer_section .footer_contact .contact_link_box a:hover {
+  color: #ffbe33;
+}
+
+/* Класс для увеличения размера Email */
+.big-email {
+  font-size: 1.7rem !important;
+}
+
+/* Социальные иконки */
+.footer_section .footer_social {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+.footer_section .footer_social a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #222831;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #fff;
+  margin: 0 2.5px;
+  font-size: 18px;
+  text-decoration: none;
+}
+.footer_section .footer_social a:hover {
+  color: #ffbe33;
+}
+
+/* Фиксированный размер для соц.иконок (картинок) */
+.social-icons a img {
+  width: 40px;
+  height: 40px;
+  transition: opacity 0.3s ease;
+}
+.social-icons a img:hover {
+  opacity: 0.8;
+}
+
+.footer_section .footer-info {
+  text-align: center;
+  margin-top: 25px;
+}
+.footer_section .footer-info p {
+  color: #fff;
+  margin: 0;
+}
+
+.footer_section .row {
+  display: flex;
+  align-items: stretch;
+}
+.footer_section .footer-col {
+  margin-bottom: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer_section .footer-col > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===============================
+   4. Стили плавающей кнопки (чат) и окна чата
+=============================== */
+
+.floating-button {
+  position: fixed;
+  bottom: 160px;
+  right: 150px;
+  width: var(--floating-btn-size);
+  height: var(--floating-btn-size);
+  border-radius: 50%;
+  background: url("/static/calculator/images/push.gif") no-repeat center center;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.floating-button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.chat-floating-window {
+  display: none;
+  position: fixed;
+  top: 70px;
+  bottom: 70px;
+  right: 100px;
+  width: 550px;
+  background-color: #000;
+  border-radius: 40px;
+  box-shadow:
+    0 0 0 8px silver,
+    0 0 0 12px #ccc,
+    0 6px 20px rgba(0,0,0,0.5);
+  z-index: 2000;
+  overflow-y: auto;
+  font-size: 28px;
+  color: #fff;
+}
+
+.chat-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2100;
+  display: flex;
+  gap: 10px;
+}
+.chat-minimize,
+.chat-close {
+  cursor: pointer;
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.chat-floating-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
+.chat-floating-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 10px;
+  border: 1px solid #fff;
+  border-radius: 35px;
+  margin-top: 50px;
+}
+.chat-floating-header::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: 30%;
+  right: 30%;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 20px;
+}
+.chat-floating-header h2 {
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+}
+.chatbot-logo {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chat-subtitle {
+  text-align: center;
+  margin: 25px 0;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 40px;
+  padding: 5px 10px;
+}
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  margin: 10px 0;
+  padding: 10px;
+  color: #fff;
+}
+
+.chat-footer {
+  text-align: center;
+  margin: 10px 0;
+}
+.chat-footer button {
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+.input-area input {
+  border-radius: 40px;
+  padding: 8px;
+  border: 1px solid #fff;
+  background-color: #000;
+  color: #fff;
+}
+.input-area button {
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #000000;
+  border-radius: 40px;
+  color: #fff;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+.user-message {
+  background-color: #000000;
+  text-align: right;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+.bot-message {
+  background-color: #020202;
+  text-align: left;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+#startNewChat,
+.input-area input,
+#sendBtn {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  font-weight: bold;
+}
+#startNewChat,
+#sendBtn {
+  border-radius: 40px;
+}

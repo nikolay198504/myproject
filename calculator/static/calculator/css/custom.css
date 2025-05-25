@@ -1,0 +1,273 @@
+/* ===================================================================
+   1. Подключаем шрифты (Montserrat, Open Sans)
+=================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap");
+
+/* ===================================================================
+   2. Базовые стили для html, body и общий фон/цвет
+=================================================================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  background-color: #000; /* Чёрный фон */
+  color: #fff;            /* Белый текст */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* ===================================================================
+   3. Стили для футера
+=================================================================== */
+.footer_section {
+  flex-shrink: 0;
+  margin-top: 150px;
+  background-color: #000;
+  color: #fff;
+  padding: 70px 0;
+}
+
+/* ===================================================================
+   4. Базовые стили для таблиц
+=================================================================== */
+table {
+  width: 100%;
+  padding: 10px;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+  table-layout: fixed;
+}
+
+table th {
+  text-align: center;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+table > tbody > tr > td,
+table > tbody > tr > th,
+table > tfoot > tr > td,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > thead > tr > th {
+  border: 2px solid #f8f8f8;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.cell_gray {
+  background-color: #E0E0E0 !important;
+  color: #000 !important;
+}
+
+.cell_sahasrara    { background-color: #664074 !important; color: white !important; }
+.cell_ajna         { background-color: #155493 !important; color: white !important; }
+.cell_vishuddha    { background-color: #009ED1 !important; color: white !important; }
+.cell_anahata      { background-color: #009E52 !important; color: white !important; }
+.cell_manipura     { background-color: #EFBE3D !important; color: white !important; }
+.cell_svadhisthana { background-color: #F28D3B !important; color: white !important; }
+.cell_muladhara    { background-color: #E54144 !important; color: white !important; }
+.cell_total        { background-color: #bcb395 !important; color: white !important; }
+
+/* ===================================================================
+   5. Адаптивные стили (медиа-запросы)
+=================================================================== */
+
+/* 5.1. До 1200px (большие планшеты / маленькие десктопы) */
+@media (max-width: 1200px) {
+  .footer_section {
+    margin-top: 120px;
+  }
+  body {
+    font-size: 0.95em;
+  }
+}
+
+/* ===================================================================
+   7. Адаптивные стили (breakpoints)
+=================================================================== */
+
+/* 7.1. До 1200px (крупные планшеты / маленькие десктопы) */
+@media (max-width: 1200px) {
+  :root {
+    --footer-h4-size: 30px;
+    --footer-logo-size: 36px;
+    --footer-p-size: 28px;
+  }
+}
+
+/* 7.2. До 992px (планшет, Bootstrap "md") */
+@media (max-width: 992px) {
+  header.text-left.text-white {
+    min-height: 600px;
+  }
+  header.text-left.text-white h1 {
+    margin-top: -50px;
+    margin-left: -40px;
+    margin-bottom: 100px;
+    font-size: 2rem;
+  }
+  .input-group.input-group-lg {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .footer_section {
+    margin-top: 100px;
+    padding: 50px 0;
+  }
+  table {
+    table-layout: auto;
+    display: block;
+    overflow-x: auto;
+  }
+  table th, table td {
+    white-space: nowrap;
+  }
+  .chat-floating-window {
+    width: 80%;
+    right: 10%;
+    left: auto;
+    bottom: calc(100px + var(--floating-btn-size));
+    font-size: 24px;
+  }
+  .floating-button {
+    bottom: 100px;
+    right: 50px;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* 7.3. До 768px (портретная ориентация планшета / большие смартфоны) */
+@media (max-width: 768px) {
+  header.text-left.text-white {
+    min-height: 500px;
+  }
+  header.text-left.text-white h1 {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 50px;
+    font-size: 1.6rem;
+    white-space: normal;
+    text-align: center;
+  }
+  .arrow-container img.arrow {
+    display: none;
+  }
+  .input-group.input-group-lg {
+    max-width: 100%;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .btn.btn-custom {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  body {
+    font-size: 0.9em;
+  }
+  .footer_section {
+    margin-top: 100px !important;
+    padding: 40px 0;
+  }
+  .chat-floating-window {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    bottom: calc(80px + 60px + 10px);
+    font-size: 20px;
+  }
+  .floating-button {
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    table-layout: auto;
+  }
+  table th, table td {
+    padding: 3px;
+    white-space: nowrap;
+  }
+}
+
+/* 7.4. До 576px (смартфоны, Bootstrap "xs") */
+@media (max-width: 576px) {
+  body {
+    font-size: 0.85em;
+  }
+  .footer_section {
+    margin-top: 50px !important;
+    padding: 20px 0;
+  }
+  table th, table td {
+    padding: 3px;
+  }
+  /* Корректируем окно чата для смартфонов */
+  .chat-floating-window {
+    top: 10px;
+    bottom: 10px;
+    width: 95%;
+    left: 2.5%;
+    right: 2.5%;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 5px;
+    overflow-y: auto;
+  }
+}
+
+/* 7.5. До 430px (iPhone 14 Pro Max в портретном режиме) */
+@media (max-width: 430px) {
+  .chat-floating-window {
+    font-size: 16px;
+    top: 5px;
+    bottom: 5px;
+    width: 98%;
+    left: 1%;
+    right: 1%;
+    border-radius: 8px;
+    padding: 5px;
+  }
+  .floating-button {
+    bottom: 60px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* 7.6. До 375px (iPhone 12 mini / SE и т.п.) */
+@media (max-width: 375px) {
+  body {
+    font-size: 0.75em;
+  }
+  .chat-floating-window {
+    top: 5px;
+    bottom: 5px;
+    width: 98%;
+    left: 1%;
+    right: 1%;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 3px;
+  }
+  .floating-button {
+    bottom: 50px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+  }
+}
