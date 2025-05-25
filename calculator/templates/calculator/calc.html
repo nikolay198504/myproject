@@ -1,0 +1,473 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+
+<html>
+<head>
+	<!-- Basic -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<title>«TU MATRIZ PERSONALIZADA»</title>
+	<link rel="icon" type="image/png" href="{% static 'calculator/images/new_favicon.png' %}">
+
+
+
+
+	<!-- CSS -->
+    <link href="{% static 'calculator/bootstrap-5.0.2/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'calculator/fa-5.15.4/css/all.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'calculator/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'calculator/css/custom.css' %}" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+
+
+<header class="text-left text-white" style="
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1)),
+              url('{% static 'calculator/images/watch2.jpg' %}') no-repeat center center;
+  background-size: cover;
+  min-height: 900px; /* или больше, например 600px */
+">
+  <div class="d-flex p-4">
+    <h1 style="margin: 50px 96px; font-size:40px; white-space: nowrap;">
+      TU MATRIZ PERSONALIZADA
+    </h1>
+  </div>
+</header>
+
+
+
+  
+
+<!-- Контейнер с нижним отступом 80px -->
+<div class="container" style="margin-bottom: 40px;">
+	<!-- Центральный заголовок с inline-стилями.
+         Пояснения к стилям:
+         - font-size: 2.7rem;  --> 
+    <!--   размер шрифта равен 2.7 раза базовому размеру (например, если базовый 16px, то получится около 43px) -->
+    <!-- - font-weight: 900;  --> 
+    <!--   максимально жирный шрифт -->
+    <!-- - margin-top: -100px;  --> 
+    <!--   сдвигает заголовок вверх на 100px -->
+    <!-- - margin-bottom: 130px;  --> 
+    <!--   добавляет 130px пространства под заголовком -->
+    <!-- - white-space: nowrap;  --> 
+    <!--   предотвращает перенос текста на новую строку -->
+    <!-- - text-align: left;  --> 
+    <!--   выравнивание текста по левому краю -->
+    <!-- - margin-left: -80px;  --> 
+    <!--   сдвигает заголовок влево на 80px -->
+    <!-- - text-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);  -->
+    <!--   добавляет тень текста: 0px по горизонтали, 10px по вертикали, 30px радиус размытия, полупрозрачный белый цвет -->
+	<main>
+	  <!-- Единый центральный заголовок -->
+	  <h1 class="text-center" style="font-size: 2.7rem; font-weight: 900; margin-top: -100px; margin-bottom: 160px; white-space: nowrap; text-align: left; margin-left: -80px; text-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);">
+		Para el análisis de la matriz, por favor introduce tu fecha de nacimiento
+	</h1>
+	
+	
+	
+	
+	<div class="row justify-content-center g-5">
+		<!-- MATRIZ PERSONAL -->
+		<div class="col-md-4 d-flex flex-column align-items-center">
+		  <!-- Текстовый блок для MATRIZ PERSONAL -->
+		  <div class="text-block text-matriz-personal">
+			<p class="text-arrow">MATRIZ PERSONAL</p>
+			<p class="text-arrow">introduce sólo en la primera casilla tu fecha de nacimiento</p>
+		  </div>
+		  <!-- Контейнер для стрелки вверх -->
+		  <div class="arrow-container">
+			<img src="{% static 'calculator/images/стрелка вверх.png' %}" alt="Arrow Up" class="arrow arrow-up">
+		  </div>
+		  <!-- Поле ввода -->
+		  <div class="input-group input-group-lg mb-3" style="max-width: 300px; margin: 0 auto;">
+			<input type="text" maxlength="10" class="form-control input-gold" pattern="[0-9.]" id="inputDate1" placeholder="dd.mm.yyyy" aria-label="dd.mm.yyyy" onkeydown="handleEnter(event, calc_1);">
+		  </div>
+		  <!-- Кнопка -->
+		  <button class="btn btn-custom mb-3" type="button" id="button-addon3" title="Calcular" onclick="calc_1();">
+			Calcular
+		  </button>
+		</div>
+	  
+		<!-- MATRIZ DE COMPATIBILIDAD -->
+		<div class="col-md-4 d-flex flex-column align-items-center">
+		  <!-- Текстовый блок для MATRIZ DE COMPATIBILIDAD -->
+		  <div class="text-block text-matriz-compatibilidad">
+			<p class="text-arrow">MATRIZ DE COMPATIBILIDAD</p>
+			<p class="text-arrow">introduce tu fecha de nacimiento en la primera casilla y en la segunda la de tu pareja</p>
+		  </div>
+		  <!-- Контейнер для стрелки вниз -->
+		  <div class="arrow-container">
+			<img src="{% static 'calculator/images/стрелка вниз.png' %}" alt="Arrow Down" class="arrow arrow-down">
+		  </div>
+		  <!-- Поле ввода -->
+		  <div class="input-group input-group-lg mb-3" style="max-width: 300px; margin: -96px auto 0;">
+
+			<input type="text" maxlength="10" class="form-control input-gold" id="inputDate2" placeholder="dd.mm.yyyy" aria-label="dd.mm.yyyy" onkeydown="handleEnter(event, calc_2);">
+		  </div>
+		  <!-- Кнопка -->
+		  <button class="btn btn-custom mb-3" type="button" id="button-addon4" title="Calcular" onclick="calc_2();">
+			Calcular
+		  </button>
+		</div>
+	  </div>
+	  
+	
+	
+	
+  
+  <style>
+	/* Лёгкий золотистый фон у полей ввода */
+	.input-gold {
+	  background-color: #fff9e6; /* Очень светлый золотистый оттенок */
+	  border: 1px solid #FFD700; /* Золотая рамка */
+	  color: #000;               /* Черный текст */
+	}
+  
+	/* Большая золотая кнопка Calcular */
+	.btn-custom {
+	  background-color: #FFD700; /* Золотой цвет */
+	  color: #000;               /* Черный текст */
+	  border: none;
+	  padding: 15px 20px;
+	  font-size: 18px;
+	  border-radius: 8px;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease, transform 0.2s ease;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+	.btn-custom:hover {
+	  background-color: #ffdf3f; /* чуть светлее золота */
+	  transform: scale(1.05);
+	}
+	.btn-custom:active {
+	  background-color: #ffdf3f;
+	  transform: scale(0.95);
+	}
+  </style>
+  
+  
+  
+
+	<div id="panel0" style="text-align: justify; color: #000000;">
+		
+	</div>
+
+	<div id="panelX" style="display:none;">
+		<div class="container mt-5">
+			<h2 class="row justify-content-center">Matriz de compatibilidad</h2>
+		</div>
+		<svg id="svg_x" version="1.1" viewBox="0 0 254 254" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <metadata> <rdf:RDF> <cc:Work rdf:about=""> <dc:format>image/svg+xml</dc:format> <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/> <dc:title/> </cc:Work> </rdf:RDF> </metadata> <g class="layer1" stroke="#bcb395" stroke-width=".24"> <rect x="63.360390" y="63.360390" width="127" height="127" fill="none" opacity=".999" /> <line x1="127" y1="37" x2="127" y2="217" /> <line x1="37" y1="127" x2="217" y2="127" /> <line x1="37" y1="127" x2="127" y2="37" /> <line x1="37" y1="127" x2="127" y2="217" /> <line x1="127" y1="37" x2="217" y2="127" /> <line x1="127" y1="217" x2="217" y2="127" /> <line x1="127" y1="190" x2="190" y2="127" /> <line x1="127" y1="203" x2="203" y2="127" /> <line x1="63.360390" y1="63.360390" x2="190.639610" y2="190.639610" style="stroke:#bcb395;stroke-width:0.24;stroke-miterlimit:4;stroke-dasharray:0.96000001,1.92000001;stroke-dashoffset:0" /> <line x1="63.360390" y1="190.639610" x2="190.639610" y2="63.360390" style="stroke:#bcb395;stroke-width:0.24;stroke-miterlimit:4;stroke-dasharray:0.96000001,1.92000001;stroke-dashoffset:0" /> <text x="-52.400311" y="177.58769" transform="rotate(-45)" style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;fill:#bcb395;fill-opacity:1;stroke:none;stroke-width:0.264583"> Línea materna </text> <text x="193.83521" y="-1.8544561" transform="rotate(45)" style="font-style:normal;font-weight:normal;font-size:3.52777px;line-height:1.25;font-family:sans-serif;fill:#bcb395;fill-opacity:1;stroke:none;stroke-width:0.264583"> Línea paterna </text> </g> <g class="layer2" stroke-width=".45"> <circle class="circle5-3" cx="200.5" cy="127" r="6.2" fill="#F28D3B" stroke="#F28D3B" /> <circle class="circle5-4" cx="187.5" cy="127" r="6.2" fill="#EFBE3D" stroke="#EFBE3D" /> <circle class="circle5-7" cx="127" cy="200.5" r="6.2" fill="#F28D3B" stroke="#F28D3B" /> <circle class="circle5-8" cx="127" cy="187.5" r="6.2" fill="#EFBE3D" stroke="#EFBE3D" /> <!-- --> <circle class="circle4-4" cx="158.5" cy="158.5" r="4.2" fill="#EFBE3D" stroke="#EFBE3D" /> <circle class="circle4-5" cx="172" cy="172" r="4.2" fill="#E54144" stroke="#E54144" /> <circle class="circle4-6" cx="165" cy="165" r="4.2" fill="#F28D3B" stroke="#F28D3B" /> </g> <g class="layer3"> <circle class="circle-c" cx="127" cy="127" r="10" fill="#009E52" stroke="#009E52" stroke-width="0.45" /> <!-- --> <circle class="circle-0" cx="37" cy="127" r="9.34" fill="#664074" stroke="#664074" stroke-width="0.45" /> <circle class="circle-10" cx="63.360390" cy="63.360390" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /> <circle class="circle-20" cx="127" cy="37" r="9.34" fill="#664074" stroke="#664074" stroke-width="0.45" /> <circle class="circle-30" cx="190.639610" cy="63.360390" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /> <circle class="circle-40" cx="217" cy="127" r="9.34" fill="#E54144" stroke="#E54144" stroke-width="0.45" /> <circle class="circle-50" cx="190.639610" cy="190.639610" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /> <circle class="circle-60" cx="127" cy="217" r="9.34" fill="#E54144" stroke="#E54144" stroke-width="0.45" /> <circle class="circle-70" cx="63.360390" cy="190.639610" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /> </g> <g id="textos"> </g> </svg>
+	</div>
+
+	<div id="panel1" style="display:none;">
+
+		<div class="container mt-5">
+			<h2 class="row justify-content-center" id="age_0">Matriz 1</h2>
+		</div>
+
+		<svg id="svg_0" version="1.1" viewBox="0 0 254 254" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g class="layer1" stroke="#bcb395" stroke-width=".24"><circle cx="127" cy="127" r="90" fill="none" opacity=".999" /><rect x="63.360390" y="63.360390" width="127" height="127" fill="none" opacity=".999" /><line x1="127" y1="37" x2="127" y2="217" /><line x1="37" y1="127" x2="217" y2="127" /><line x1="37" y1="127" x2="127" y2="37" /><line x1="37" y1="127" x2="127" y2="217" /><line x1="127" y1="37" x2="217" y2="127" /><line x1="127" y1="217" x2="217" y2="127" /><line x1="51" y1="127" x2="127" y2="51" /><line x1="64" y1="127" x2="127" y2="64" /><line x1="127" y1="190" x2="190" y2="127" /><line x1="127" y1="203" x2="203" y2="127" /><line x1="63.360390" y1="63.360390" x2="190.639610" y2="190.639610" style="stroke:#bcb395;stroke-width:0.24;stroke-miterlimit:4;stroke-dasharray:0.96000001,1.92000001;stroke-dashoffset:0" /><line x1="63.360390" y1="190.639610" x2="190.639610" y2="63.360390" style="stroke:#bcb395;stroke-width:0.24;stroke-miterlimit:4;stroke-dasharray:0.96000001,1.92000001;stroke-dashoffset:0" /><text x="-52.400311" y="177.58769" transform="rotate(-45)"style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;fill:#bcb395;fill-opacity:1;stroke:none;stroke-width:0.264583">Línea materna</text><text x="193.83521" y="-1.8544561" transform="rotate(45)"style="font-style:normal;font-weight:normal;font-size:3.52777px;line-height:1.25;font-family:sans-serif;fill:#bcb395;fill-opacity:1;stroke:none;stroke-width:0.264583">Línea paterna</text></g><g class="layer2" stroke-width=".45"><circle class="circle5-1" cx="53.5" cy="127" r="6.2" fill="#155493" stroke="#155493" /><circle class="circle5-2" cx="66.5" cy="127" r="6.2" fill="#009ED1" stroke="#009ED1" /><circle class="circle5-3" cx="200.5" cy="127" r="6.2" fill="#F28D3B" stroke="#F28D3B" /><circle class="circle5-4" cx="187.5" cy="127" r="6.2" fill="#EFBE3D" stroke="#EFBE3D" /><circle class="circle5-5" cx="127" cy="53.5" r="6.2" fill="#155493" stroke="#155493" /><circle class="circle5-6" cx="127" cy="66.5" r="6.2" fill="#009ED1" stroke="#009ED1" /><circle class="circle5-7" cx="127" cy="200.5" r="6.2" fill="#F28D3B" stroke="#F28D3B" /><circle class="circle5-8" cx="127" cy="187.5" r="6.2" fill="#EFBE3D" stroke="#EFBE3D" /><!-- --><circle class="circle4-1" cx="82" cy="82" r="4.2" fill="#664074" stroke="#664074" /><circle class="circle4-2" cx="89" cy="89" r="4.2" fill="#155493" stroke="#155493" /><circle class="circle4-3" cx="95.5" cy="95.5" r="4.2" fill="#009ED1" stroke="#009ED1" /><circle class="circle4-4" cx="158.5" cy="158.5" r="4.2" fill="#EFBE3D" stroke="#EFBE3D" /><circle class="circle4-5" cx="172" cy="172" r="4.2" fill="#E54144" stroke="#E54144" /><circle class="circle4-6" cx="165" cy="165" r="4.2" fill="#F28D3B" stroke="#F28D3B" /><!-- --><circle class="circleC-1" cx="144" cy="127" r="6.2" fill="#A59E84" stroke="#A59E84" /><circle class="circleC-2" cx="155" cy="127" r="4.2" fill="#A59E84" stroke="#A59E84" /></g><g class="layer3"><circle class="circle-c" cx="127" cy="127" r="10" fill="#009E52" stroke="#009E52" stroke-width="0.45" /><!-- --><circle class="circle-0" cx="37" cy="127" r="9.34" fill="#664074" stroke="#664074" stroke-width="0.45" /><circle class="circle-10" cx="63.360390" cy="63.360390" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-20" cx="127" cy="37" r="9.34" fill="#664074" stroke="#664074" stroke-width="0.45" /><circle class="circle-30" cx="190.639610" cy="63.360390" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-40" cx="217" cy="127" r="9.34" fill="#E54144" stroke="#E54144" stroke-width="0.45" /><circle class="circle-50" cx="190.639610" cy="190.639610" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-60" cx="127" cy="217" r="9.34" fill="#E54144" stroke="#E54144" stroke-width="0.45" /><circle class="circle-70" cx="63.360390" cy="190.639610" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><!-- --><circle class="circle-2" cx="38.108049" cy="112.920898" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-3" cx="39.486707" cy="105.989917" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-4" cx="41.404914" cy="99.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-5" cx="43.850842" cy="92.558491" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-6" cx="46.809413" cy="86.140855" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-7" cx="50.262385" cy="79.975129" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-8" cx="54.188471" cy="74.099327" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-12" cx="74.099327" cy="54.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-13" cx="79.975129" cy="50.262385" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-14" cx="86.140855" cy="46.809413" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-15" cx="92.558491" cy="43.850842" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-16" cx="99.188471" cy="41.404914" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-17" cx="105.989917" cy="39.486707" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-18" cx="112.920898" cy="38.108049" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-22" cx="141.079102" cy="38.108049" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-23" cx="148.010083" cy="39.486707" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-24" cx="154.811529" cy="41.404914" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-25" cx="161.441509" cy="43.850842" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-26" cx="167.859145" cy="46.809413" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-27" cx="174.024871" cy="50.262385" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-28" cx="179.900673" cy="54.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-32" cx="199.811529" cy="74.099327" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-33" cx="203.737615" cy="79.975129" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-34" cx="207.190587" cy="86.140855" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-35" cx="210.149158" cy="92.558491" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-36" cx="212.595086" cy="99.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-37" cx="214.513293" cy="105.989917" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-38" cx="215.891951" cy="112.920898" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-42" cx="215.891951" cy="141.079102" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-43" cx="214.513293" cy="148.010083" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-44" cx="212.595086" cy="154.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-45" cx="210.149158" cy="161.441509" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-46" cx="207.190587" cy="167.859145" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-47" cx="203.737615" cy="174.024871" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-48" cx="199.811529" cy="179.900673" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-52" cx="179.900673" cy="199.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-53" cx="174.024871" cy="203.737615" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-54" cx="167.859145" cy="207.190587" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-55" cx="161.441509" cy="210.149158" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-56" cx="154.811529" cy="212.595086" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-57" cx="148.010083" cy="214.513293" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-58" cx="141.079102" cy="215.891951" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-62" cx="112.920898" cy="215.891951" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-63" cx="105.989917" cy="214.513293" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-64" cx="99.188471" cy="212.595086" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-65" cx="92.558491" cy="210.149158" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-66" cx="86.140855" cy="207.190587" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-67" cx="79.975129" cy="203.737615" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-68" cx="74.099327" cy="199.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-72" cx="54.188471" cy="179.900673" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-73" cx="50.262385" cy="174.024871" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-74" cx="46.809413" cy="167.859145" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-75" cx="43.850842" cy="161.441509" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-76" cx="41.404914" cy="154.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-77" cx="39.486707" cy="148.010083" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-78" cx="38.108049" cy="141.079102" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /></g><g class="layer4" font-family="Verdana" font-size="2.8" fill="#bcb395"><text class="label-0" x="21" y="119">0 años</text><text class="label-10" x="53" y="52">10 años</text><text class="label-20" x="125" y="25.5">20 años</text><text class="label-30" x="190" y="52">30 años</text><text class="label-40" x="223" y="119">40 años</text><text class="label-50" x="190" y="204">50 años</text><text class="label-60" x="125" y="230.5">60 años</text><text class="label-70" x="53" y="204">70 años</text></g><g class="layer4" font-family="Verdana" font-size="2.8" fill="#bcb395" alignment-baseline="middle" text-anchor="middle"><text x="42.101894" y="114.999115">2</text><text x="43.472892" y="108.106640">3</text><text x="45.380442" y="101.342979">4</text><text x="47.812782" y="94.749833">5</text><text x="50.754916" y="88.367850">6</text><text x="54.188705" y="82.236378">7</text><text x="58.092979" y="76.393220">8</text><text x="75.893220" y="59.592979">12</text><text x="81.736378" y="55.688705">13</text><text x="87.867850" y="52.254916">14</text><text x="94.249833" y="49.312782">15</text><text x="100.842979" y="46.880442">16</text><text x="107.606640" y="44.972892">17</text><text x="114.499115" y="43.601894">18</text><text x="139.500885" y="43.601894">22</text><text x="146.393360" y="44.972892">23</text><text x="153.157021" y="46.880442">24</text><text x="159.750167" y="49.312782">25</text><text x="166.132150" y="52.254916">26</text><text x="172.263622" y="55.688705">27</text><text x="178.106780" y="59.592979">28</text><text x="194.907021" y="76.393220">32</text><text x="198.811295" y="82.236378">33</text><text x="202.245084" y="88.367850">34</text><text x="205.187218" y="94.749833">35</text><text x="207.619558" y="101.342979">36</text><text x="209.527108" y="108.106640">37</text><text x="210.898106" y="114.999115">38</text><text x="210.898106" y="141.000885">42</text><text x="209.527108" y="147.893360">43</text><text x="207.619558" y="154.657021">44</text><text x="205.187218" y="161.250167">45</text><text x="202.245084" y="167.632150">46</text><text x="198.811295" y="173.763622">47</text><text x="194.907021" y="179.606780">48</text><text x="178.106780" y="196.407021">52</text><text x="172.263622" y="200.311295">53</text><text x="166.132150" y="203.745084">54</text><text x="159.750167" y="206.687218">55</text><text x="153.157021" y="209.119558">56</text><text x="146.393360" y="211.027108">57</text><text x="139.500885" y="212.398106">58</text><text x="114.499115" y="212.398106">62</text><text x="107.606640" y="211.027108">63</text><text x="100.842979" y="209.119558">64</text><text x="94.249833" y="206.687218">65</text><text x="87.867850" y="203.745084">66</text><text x="81.736378" y="200.311295">67</text><text x="75.893220" y="196.407021">68</text><text x="58.092979" y="179.606780">72</text><text x="54.188705" y="173.763622">73</text><text x="50.754916" y="167.632150">74</text><text x="47.812782" y="161.250167">75</text><text x="45.380442" y="154.657021">76</text><text x="43.472892" y="147.893360">77</text><text x="42.101894" y="141.000885">78</text></g></svg>
+		
+		<div class="mx-auto w-60 p-3">
+			<table>
+				<tr>
+					<th >Línea paterna</th>
+					<td id="pat1_0" class="cell_white">xx</td>
+					<td id="pat2_0" class="cell_white">xx</td>
+					<td id="pat3_0" class="cell_white">xx</td>
+				</tr>
+				<tr>
+					<th >Línea materna</th>
+					<td id="mat1_0" class="cell_white">xx</td>
+					<td id="mat2_0" class="cell_white">xx</td>
+					<td id="mat3_0" class="cell_white">xx</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="container mt-2">
+			<h2 class="row justify-content-center">Mapa de salud</h2>
+		</div>
+		
+		<div class="mx-auto w-100 p-3">
+			<table>
+				<tr>
+					<th style="width:40%">Chakra</th>
+					<th>Física</th>
+					<th>Energía</th>
+					<th>Emociones</th>
+				</tr>
+				<tr>
+					<td class="cell_sahasrara">Sahasrara</td>
+					<td id="cell_a1_0" class="cell_sahasrara">xx</td>
+					<td id="cell_a2_0" class="cell_sahasrara">xx</td>
+					<td id="cell_a3_0" class="cell_sahasrara">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_ajna">Ajna</td>
+					<td id="cell_b1_0" class="cell_ajna">xx</td>
+					<td id="cell_b2_0" class="cell_ajna">xx</td>
+					<td id="cell_b3_0" class="cell_ajna">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_vishuddha">Vishuddha</td>
+					<td id="cell_c1_0" class="cell_vishuddha">xx</td>
+					<td id="cell_c2_0" class="cell_vishuddha">xx</td>
+					<td id="cell_c3_0" class="cell_vishuddha">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_anahata">Anahata</td>
+					<td id="cell_d1_0" class="cell_anahata">xx</td>
+					<td id="cell_d2_0" class="cell_anahata">xx</td>
+					<td id="cell_d3_0" class="cell_anahata">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_manipura">Manipura</td>
+					<td id="cell_e1_0" class="cell_manipura">xx</td>
+					<td id="cell_e2_0" class="cell_manipura">xx</td>
+					<td id="cell_e3_0" class="cell_manipura">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_svadhisthana">Svadhisthana</td>
+					<td id="cell_f1_0" class="cell_svadhisthana">xx</td>
+					<td id="cell_f2_0" class="cell_svadhisthana">xx</td>
+					<td id="cell_f3_0" class="cell_svadhisthana">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_muladhara">Muladhara</td>
+					<td id="cell_g1_0" class="cell_muladhara">xx</td>
+					<td id="cell_g2_0" class="cell_muladhara">xx</td>
+					<td id="cell_g3_0" class="cell_muladhara">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_total">Total</td>
+					<td id="cell_h1_0" class="cell_total">xx</td>
+					<td id="cell_h2_0" class="cell_total">xx</td>
+					<td id="cell_h3_0" class="cell_total">xx</td>
+				</tr>
+			</table>
+
+		</div>
+		
+	</div>
+
+	<div id="panel2" style="display:none;">
+		
+		<div class="container mt-5">
+			<h2 class="row justify-content-center" id="age_1">Matriz 2</h2>
+		</div>
+
+		<svg id="svg_1" version="1.1" viewBox="0 0 254 254" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g class="layer1" stroke="#bcb395" stroke-width=".24"><circle cx="127" cy="127" r="90" fill="none" opacity=".999" /><rect x="63.360390" y="63.360390" width="127" height="127" fill="none" opacity=".999" /><line x1="127" y1="37" x2="127" y2="217" /><line x1="37" y1="127" x2="217" y2="127" /><line x1="37" y1="127" x2="127" y2="37" /><line x1="37" y1="127" x2="127" y2="217" /><line x1="127" y1="37" x2="217" y2="127" /><line x1="127" y1="217" x2="217" y2="127" /><line x1="51" y1="127" x2="127" y2="51" /><line x1="64" y1="127" x2="127" y2="64" /><line x1="127" y1="190" x2="190" y2="127" /><line x1="127" y1="203" x2="203" y2="127" /><line x1="63.360390" y1="63.360390" x2="190.639610" y2="190.639610" style="stroke:#bcb395;stroke-width:0.24;stroke-miterlimit:4;stroke-dasharray:0.96000001,1.92000001;stroke-dashoffset:0" /><line x1="63.360390" y1="190.639610" x2="190.639610" y2="63.360390" style="stroke:#bcb395;stroke-width:0.24;stroke-miterlimit:4;stroke-dasharray:0.96000001,1.92000001;stroke-dashoffset:0" /><text x="-52.400311" y="177.58769" transform="rotate(-45)"style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;fill:#bcb395;fill-opacity:1;stroke:none;stroke-width:0.264583">Línea materna</text><text x="193.83521" y="-1.8544561" transform="rotate(45)"style="font-style:normal;font-weight:normal;font-size:3.52777px;line-height:1.25;font-family:sans-serif;fill:#bcb395;fill-opacity:1;stroke:none;stroke-width:0.264583">Línea paterna</text></g><g class="layer2" stroke-width=".45"><circle class="circle5-1" cx="53.5" cy="127" r="6.2" fill="#155493" stroke="#155493" /><circle class="circle5-2" cx="66.5" cy="127" r="6.2" fill="#009ED1" stroke="#009ED1" /><circle class="circle5-3" cx="200.5" cy="127" r="6.2" fill="#F28D3B" stroke="#F28D3B" /><circle class="circle5-4" cx="187.5" cy="127" r="6.2" fill="#EFBE3D" stroke="#EFBE3D" /><circle class="circle5-5" cx="127" cy="53.5" r="6.2" fill="#155493" stroke="#155493" /><circle class="circle5-6" cx="127" cy="66.5" r="6.2" fill="#009ED1" stroke="#009ED1" /><circle class="circle5-7" cx="127" cy="200.5" r="6.2" fill="#F28D3B" stroke="#F28D3B" /><circle class="circle5-8" cx="127" cy="187.5" r="6.2" fill="#EFBE3D" stroke="#EFBE3D" /><!-- --><circle class="circle4-1" cx="82" cy="82" r="4.2" fill="#664074" stroke="#664074" /><circle class="circle4-2" cx="89" cy="89" r="4.2" fill="#155493" stroke="#155493" /><circle class="circle4-3" cx="95.5" cy="95.5" r="4.2" fill="#009ED1" stroke="#009ED1" /><circle class="circle4-4" cx="158.5" cy="158.5" r="4.2" fill="#EFBE3D" stroke="#EFBE3D" /><circle class="circle4-5" cx="172" cy="172" r="4.2" fill="#E54144" stroke="#E54144" /><circle class="circle4-6" cx="165" cy="165" r="4.2" fill="#F28D3B" stroke="#F28D3B" /><!-- --><circle class="circleC-1" cx="144" cy="127" r="6.2" fill="#A59E84" stroke="#A59E84" /><circle class="circleC-2" cx="155" cy="127" r="4.2" fill="#A59E84" stroke="#A59E84" /></g><g class="layer3"><circle class="circle-c" cx="127" cy="127" r="10" fill="#009E52" stroke="#009E52" stroke-width="0.45" /><!-- --><circle class="circle-0" cx="37" cy="127" r="9.34" fill="#664074" stroke="#664074" stroke-width="0.45" /><circle class="circle-10" cx="63.360390" cy="63.360390" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-20" cx="127" cy="37" r="9.34" fill="#664074" stroke="#664074" stroke-width="0.45" /><circle class="circle-30" cx="190.639610" cy="63.360390" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-40" cx="217" cy="127" r="9.34" fill="#E54144" stroke="#E54144" stroke-width="0.45" /><circle class="circle-50" cx="190.639610" cy="190.639610" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-60" cx="127" cy="217" r="9.34" fill="#E54144" stroke="#E54144" stroke-width="0.45" /><circle class="circle-70" cx="63.360390" cy="190.639610" r="9.34" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><!-- --><circle class="circle-2" cx="38.108049" cy="112.920898" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-3" cx="39.486707" cy="105.989917" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-4" cx="41.404914" cy="99.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-5" cx="43.850842" cy="92.558491" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-6" cx="46.809413" cy="86.140855" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-7" cx="50.262385" cy="79.975129" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-8" cx="54.188471" cy="74.099327" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-12" cx="74.099327" cy="54.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-13" cx="79.975129" cy="50.262385" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-14" cx="86.140855" cy="46.809413" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-15" cx="92.558491" cy="43.850842" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-16" cx="99.188471" cy="41.404914" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-17" cx="105.989917" cy="39.486707" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-18" cx="112.920898" cy="38.108049" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-22" cx="141.079102" cy="38.108049" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-23" cx="148.010083" cy="39.486707" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-24" cx="154.811529" cy="41.404914" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-25" cx="161.441509" cy="43.850842" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-26" cx="167.859145" cy="46.809413" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-27" cx="174.024871" cy="50.262385" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-28" cx="179.900673" cy="54.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-32" cx="199.811529" cy="74.099327" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-33" cx="203.737615" cy="79.975129" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-34" cx="207.190587" cy="86.140855" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-35" cx="210.149158" cy="92.558491" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-36" cx="212.595086" cy="99.188471" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-37" cx="214.513293" cy="105.989917" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-38" cx="215.891951" cy="112.920898" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-42" cx="215.891951" cy="141.079102" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-43" cx="214.513293" cy="148.010083" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-44" cx="212.595086" cy="154.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-45" cx="210.149158" cy="161.441509" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-46" cx="207.190587" cy="167.859145" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-47" cx="203.737615" cy="174.024871" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-48" cx="199.811529" cy="179.900673" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-52" cx="179.900673" cy="199.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-53" cx="174.024871" cy="203.737615" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-54" cx="167.859145" cy="207.190587" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-55" cx="161.441509" cy="210.149158" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-56" cx="154.811529" cy="212.595086" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-57" cx="148.010083" cy="214.513293" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-58" cx="141.079102" cy="215.891951" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-62" cx="112.920898" cy="215.891951" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-63" cx="105.989917" cy="214.513293" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-64" cx="99.188471" cy="212.595086" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-65" cx="92.558491" cy="210.149158" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-66" cx="86.140855" cy="207.190587" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-67" cx="79.975129" cy="203.737615" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-68" cx="74.099327" cy="199.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-72" cx="54.188471" cy="179.900673" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-73" cx="50.262385" cy="174.024871" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-74" cx="46.809413" cy="167.859145" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-75" cx="43.850842" cy="161.441509" r="1.3" fill="none" stroke="#bcb395" stroke-width="0.6" /><circle class="circle-76" cx="41.404914" cy="154.811529" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-77" cx="39.486707" cy="148.010083" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /><circle class="circle-78" cx="38.108049" cy="141.079102" r="1.22" fill="#bcb395" stroke="#bcb395" stroke-width="0.45" /></g><g class="layer4" font-family="Verdana" font-size="2.8" fill="#bcb395"><text class="label-0" x="21" y="119">0 años</text><text class="label-10" x="53" y="52">10 años</text><text class="label-20" x="125" y="25.5">20 años</text><text class="label-30" x="190" y="52">30 años</text><text class="label-40" x="223" y="119">40 años</text><text class="label-50" x="190" y="204">50 años</text><text class="label-60" x="125" y="230.5">60 años</text><text class="label-70" x="53" y="204">70 años</text></g><g class="layer4" font-family="Verdana" font-size="2.8" fill="#bcb395" alignment-baseline="middle" text-anchor="middle"><text x="42.101894" y="114.999115">2</text><text x="43.472892" y="108.106640">3</text><text x="45.380442" y="101.342979">4</text><text x="47.812782" y="94.749833">5</text><text x="50.754916" y="88.367850">6</text><text x="54.188705" y="82.236378">7</text><text x="58.092979" y="76.393220">8</text><text x="75.893220" y="59.592979">12</text><text x="81.736378" y="55.688705">13</text><text x="87.867850" y="52.254916">14</text><text x="94.249833" y="49.312782">15</text><text x="100.842979" y="46.880442">16</text><text x="107.606640" y="44.972892">17</text><text x="114.499115" y="43.601894">18</text><text x="139.500885" y="43.601894">22</text><text x="146.393360" y="44.972892">23</text><text x="153.157021" y="46.880442">24</text><text x="159.750167" y="49.312782">25</text><text x="166.132150" y="52.254916">26</text><text x="172.263622" y="55.688705">27</text><text x="178.106780" y="59.592979">28</text><text x="194.907021" y="76.393220">32</text><text x="198.811295" y="82.236378">33</text><text x="202.245084" y="88.367850">34</text><text x="205.187218" y="94.749833">35</text><text x="207.619558" y="101.342979">36</text><text x="209.527108" y="108.106640">37</text><text x="210.898106" y="114.999115">38</text><text x="210.898106" y="141.000885">42</text><text x="209.527108" y="147.893360">43</text><text x="207.619558" y="154.657021">44</text><text x="205.187218" y="161.250167">45</text><text x="202.245084" y="167.632150">46</text><text x="198.811295" y="173.763622">47</text><text x="194.907021" y="179.606780">48</text><text x="178.106780" y="196.407021">52</text><text x="172.263622" y="200.311295">53</text><text x="166.132150" y="203.745084">54</text><text x="159.750167" y="206.687218">55</text><text x="153.157021" y="209.119558">56</text><text x="146.393360" y="211.027108">57</text><text x="139.500885" y="212.398106">58</text><text x="114.499115" y="212.398106">62</text><text x="107.606640" y="211.027108">63</text><text x="100.842979" y="209.119558">64</text><text x="94.249833" y="206.687218">65</text><text x="87.867850" y="203.745084">66</text><text x="81.736378" y="200.311295">67</text><text x="75.893220" y="196.407021">68</text><text x="58.092979" y="179.606780">72</text><text x="54.188705" y="173.763622">73</text><text x="50.754916" y="167.632150">74</text><text x="47.812782" y="161.250167">75</text><text x="45.380442" y="154.657021">76</text><text x="43.472892" y="147.893360">77</text><text x="42.101894" y="141.000885">78</text></g></svg>
+
+		<div class="mx-auto w-60 p-3">
+			<table>
+			  <tr>
+				<th>Línea paterna</th>
+				<td id="pat1_1" class="cell_white">xx</td>
+				<td id="pat2_1" class="cell_white">xx</td>
+				<td id="pat3_1" class="cell_white">xx</td>
+			  </tr>
+			  <tr>
+				<th>Línea materna</th>
+				<td id="mat1_1" class="cell_white">xx</td>
+				<td id="mat2_1" class="cell_white">xx</td>
+				<td id="mat3_1" class="cell_white">xx</td>
+			  </tr>
+			</table>      
+		  </div>
+		  
+
+		<div class="container mt-2">
+			<h2 class="row justify-content-center">Mapa de salud</h2>
+		</div>
+
+		<div class="mx-auto w-100 p-3">
+			<table>
+				<tr>
+					<th style="width:40%">Chakra</th>
+					<th>Física</th>
+					<th>Energía</th>
+					<th>Emociones</th>
+				</tr>
+				<tr>
+					<td class="cell_sahasrara">Sahasrara</td>
+					<td id="cell_a1_1" class="cell_sahasrara">xx</td>
+					<td id="cell_a2_1" class="cell_sahasrara">xx</td>
+					<td id="cell_a3_1" class="cell_sahasrara">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_ajna">Ajna</td>
+					<td id="cell_b1_1" class="cell_ajna">xx</td>
+					<td id="cell_b2_1" class="cell_ajna">xx</td>
+					<td id="cell_b3_1" class="cell_ajna">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_vishuddha">Vishuddha</td>
+					<td id="cell_c1_1" class="cell_vishuddha">xx</td>
+					<td id="cell_c2_1" class="cell_vishuddha">xx</td>
+					<td id="cell_c3_1" class="cell_vishuddha">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_anahata">Anahata</td>
+					<td id="cell_d1_1" class="cell_anahata">xx</td>
+					<td id="cell_d2_1" class="cell_anahata">xx</td>
+					<td id="cell_d3_1" class="cell_anahata">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_manipura">Manipura</td>
+					<td id="cell_e1_1" class="cell_manipura">xx</td>
+					<td id="cell_e2_1" class="cell_manipura">xx</td>
+					<td id="cell_e3_1" class="cell_manipura">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_svadhisthana">Svadhisthana</td>
+					<td id="cell_f1_1" class="cell_svadhisthana">xx</td>
+					<td id="cell_f2_1" class="cell_svadhisthana">xx</td>
+					<td id="cell_f3_1" class="cell_svadhisthana">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_muladhara">Muladhara</td>
+					<td id="cell_g1_1" class="cell_muladhara">xx</td>
+					<td id="cell_g2_1" class="cell_muladhara">xx</td>
+					<td id="cell_g3_1" class="cell_muladhara">xx</td>
+				</tr>
+				<tr>
+					<td class="cell_total">Total</td>
+					<td id="cell_h1_1" class="cell_total">xx</td>
+					<td id="cell_h2_1" class="cell_total">xx</td>
+					<td id="cell_h3_1" class="cell_total">xx</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+</main>
+
+</div>
+
+
+<!-- footer section -->
+<footer class="footer_section">
+	<div class="container">
+	  <div class="row">
+		<!-- CONTACTO -->
+		<div class="col-md-4 footer-col">
+		  <div class="footer_contact">
+			<h4>{% trans "CONTACTO:" %}</h4>
+			<div class="contact_link_box">
+			  <div>
+				<i class="fa fa-envelope" aria-hidden="true"></i>
+				<!-- Присвоим класс 'big-email' -->
+				<span class="big-email">Email: tatianakrvlova57@amail.com</span>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- REDES SOCIALES -->
+		<div class="col-md-4 footer-col">
+		  <div class="social-section">
+			<a class="footer-logo">{% trans "REDES SOCIALES:" %}</a>
+			<p>{% trans "Instagram" %}</p>
+			<div class="social-icons">
+			  <a href="https://www.instagram.com/matriz_del.destino/" target="_blank">
+				<img src="{% static 'calculator/images/instagram.png' %}" alt="{% trans 'Instagram' %}">
+			  </a>
+			  <a href="https://wa.link/mjqka1" target="_blank">
+				<img src="{% static 'calculator/images/whatsapp.png' %}" alt="{% trans 'WhatsApp' %}">
+			  </a>
+			  <a href="https://www.youtube.com/@Armon%C3%ADa_en_la_vida/videos" target="_blank">
+				<img src="{% static 'calculator/images/youtube.png' %}" alt="{% trans 'YouTube' %}">
+			  </a>
+			  <a href="https://t.me/matriz_del_destino" target="_blank">
+				<img src="{% static 'calculator/images/icons8-телеграм.png' %}" alt="{% trans 'Telegram' %}">
+			  </a>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- MIS HORARIOS -->
+<div class="col-md-4 footer-col">
+	<div class="footer_contact">
+	  <h4>{% trans "MIS HORARIOS:" %}</h4>
+	  <p>{% trans "Todos los dias" %}</p>
+	  <p>{% trans "10:00 AM - 8:00 PM" %}</p>
+	</div>
+  </div>
+  
+
+
+
+
+
+<!-- Плавающая кнопка -->
+<button id="floatingBtn" class="floating-button"></button>
+
+<!-- Окно чата (ранее .modal) -->
+<div id="chatWindow" class="chat-floating-window">
+  <!-- Кнопки управления вне шапки -->
+  <div class="chat-controls">
+    <span class="chat-minimize">&ndash;</span>
+    <span class="chat-close">&times;</span>
+  </div>
+  
+  <div class="chat-floating-content">
+    <!-- Шапка окна без кнопок -->
+    <div class="chat-floating-header">
+      <div class="chatbot-logo"></div>
+      <h2>CHATBOT AI</h2>
+    </div>
+
+    <!-- Подзаголовок -->
+    <div class="chat-subtitle">
+		Привет! Я Библиотека знаний Татьяны 🔮.
+    </div>
+
+
+	<div class="chat-subtitle">
+		Введи дату рождения в калькулятор  — и я расскажу тебе о твоей судьбе!  
+    </div>
+
+
+
+    <!-- Основная область переписки -->
+    <div class="chat-area">
+      <!-- Здесь появятся сообщения -->
+    </div>
+
+    <!-- Футер окна -->
+    <div class="chat-footer">
+      <button id="startNewChat">Начать новый чат</button>
+    </div>
+
+    <!-- Поле ввода + кнопка -->
+    <div class="input-area">
+      <input type="text" placeholder="Введите сообщение..." />
+      <button id="sendBtn">Отправить</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  window.ORDER_ID = "{{ order_id|default:'' }}";
+  console.log("ORDER_ID из шаблона:", window.ORDER_ID);
+  window.CSRF_TOKEN = '{{ csrf_token }}';
+</script>
+<script src="{% static 'calculator/jquery/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'calculator/js/calc_v2.js' %}"></script>
+
+
+
+</body>
+</html>
