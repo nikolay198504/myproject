@@ -240,7 +240,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     }
 
     function savePaidPoints(orderId, points) {
-      console.log("Попытка отправить points:", orderId, getPaidPoints());
+      console.log("Попытка отправить points:", orderId, points);
       fetch('/api/payments/save-points', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -382,6 +382,9 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           console.error("Ошибка при получении ответа:", error);
           addBotMessage("Извините, произошла ошибка.");
         });
+
+      let paidPoints = getPaidPoints();
+      localStorage.setItem("paidPoints", JSON.stringify(paidPoints));
     }
     
     
@@ -631,11 +634,20 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     }
     console.log("orderId:", orderId);
 
-    // Запускаем только если orderId реально есть и пользователь только что оплатил!
-    if (orderId && orderId !== "null" && orderId !== "") {
-      calculate(); // <-- пересчитать таблицу
-      savePaidPoints(orderId, getPaidPoints());
+    // Получаем points из localStorage
+    let points = [];
+    try {
+      points = JSON.parse(localStorage.getItem("paidPoints") || "[]");
+    } catch (e) {
+      points = [];
+    }
+
+    // Запускаем только если orderId реально есть и points не пустые и есть хотя бы одно value > 0
+    if (orderId && points.length && points.some(p => p.value > 0)) {
+      savePaidPoints(orderId, points);
       pollPaidInterpretation(orderId);
+      // После успешной отправки можно очистить localStorage
+      localStorage.removeItem("paidPoints");
     }
 
     // Применяем маску ввода для полей дат

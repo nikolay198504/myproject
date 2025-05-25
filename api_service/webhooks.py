@@ -108,6 +108,9 @@ async def payment_webhook(request: Request):
             # order.points = calculate_points_from_date(date)
             order.status = "paid"
             order.paid_at = datetime.datetime.now()
+            order.amount = amount or order.amount
+            order.customer_phone = customer_phone or order.customer_phone
+            order.customer_email = customer_email or order.customer_email
             db.commit()
             print(f"Updated status to: paid")
             if order.points:
