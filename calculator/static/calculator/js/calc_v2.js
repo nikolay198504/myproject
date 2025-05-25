@@ -193,6 +193,10 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         }
       };
       console.log("Считанные данные из таблицы (suffix=" + suffix + "):", data);
+      if (!data.chakras || !data.chakras.muladhara) {
+        console.error("data.chakras или muladhara не определены!", data);
+        return [];
+      }
       return data;
     }
 
@@ -217,16 +221,21 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 
     function getPaidPoints() {
       let data = readTableData("0");
+      console.log("data.chakras:", data.chakras);
+      function safeParse(val) {
+        const num = parseInt(val);
+        return isNaN(num) ? 0 : num; // если не число — вернуть 0
+      }
       return [
-        { name: "Cola kármica general", chakra: "Muladhara", aspect: "Física", value: parseInt(data.chakras.muladhara[0]) },
-        { name: "Cola kármica del amor", chakra: "Svadhisthana", aspect: "Emociones", value: parseInt(data.chakras.svadhisthana[1]) },
-        { name: "Pareja kármica en el amor", chakra: "Anahata", aspect: "Emociones", value: parseInt(data.chakras.anahata[0]) },
-        { name: "Amor y dinero", chakra: "Anahata", aspect: "Energía", value: parseInt(data.chakras.anahata[1]) },
-        { name: "Dirección de vida profesional", chakra: "Vishuddha", aspect: "Física", value: parseInt(data.chakras.vishuddha[0]) },
-        { name: "Fuente de ingresos", chakra: "Manipura", aspect: "Energía", value: parseInt(data.chakras.manipura[1]) },
-        { name: "Bloqueo financiero", chakra: "Svadhisthana", aspect: "Energía", value: parseInt(data.chakras.svadhisthana[2]) },
-        { name: "Energía masculina", chakra: "Ajna", aspect: "Física", value: parseInt(data.chakras.ajna[2]) },
-        { name: "Energía femenina", chakra: "Anahata", aspect: "Física", value: parseInt(data.chakras.anahata[2]) }
+        { name: "Cola kármica general", chakra: "Muladhara", aspect: "Física", value: safeParse(data.chakras.muladhara[0]) },
+        { name: "Cola kármica del amor", chakra: "Svadhisthana", aspect: "Emociones", value: safeParse(data.chakras.svadhisthana[1]) },
+        { name: "Pareja kármica en el amor", chakra: "Anahata", aspect: "Emociones", value: safeParse(data.chakras.anahata[0]) },
+        { name: "Amor y dinero", chakra: "Anahata", aspect: "Energía", value: safeParse(data.chakras.anahata[1]) },
+        { name: "Dirección de vida profesional", chakra: "Vishuddha", aspect: "Física", value: safeParse(data.chakras.vishuddha[0]) },
+        { name: "Fuente de ingresos", chakra: "Manipura", aspect: "Energía", value: safeParse(data.chakras.manipura[1]) },
+        { name: "Bloqueo financiero", chakra: "Svadhisthana", aspect: "Energía", value: safeParse(data.chakras.svadhisthana[2]) },
+        { name: "Energía masculina", chakra: "Ajna", aspect: "Física", value: safeParse(data.chakras.ajna[2]) },
+        { name: "Energía femenina", chakra: "Anahata", aspect: "Física", value: safeParse(data.chakras.anahata[2]) }
       ];
     }
 
@@ -283,7 +292,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         return;
       }
       let freePoints = [
-        { chakra: "Muladhara", aspect: "Energía", value: parseInt(data.chakras.muladhara[1]) }, // Recurso interior
+        { chakra: "Muladhara", aspect: "Energía", value: parseInt(data.chakras.muladhara[0]) }, // Recurso interior
         { chakra: "Ajna", aspect: "Energía", value: parseInt(data.chakras.ajna[1]) },           // Talento
         { chakra: "Anahata", aspect: "Emociones", value: parseInt(data.chakras.anahata[2]) }    // Zona de confort
       ];
@@ -299,8 +308,6 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         .then(response => response.json())
         .then(data => {
           console.log("Ответ сервера:", data);
-    
-          // Проверяем, есть ли сообщение от сервера
           if (data.message) {
             addBotMessage(data.message);
     
@@ -615,31 +622,22 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
   // Инициализация при загрузке страницы
   // ================================================
   document.addEventListener("DOMContentLoaded", function() {
+    calculate();
+
     const params = new URLSearchParams(window.location.search);
     let orderId = params.get('order_id');
     if (!orderId || orderId.startsWith('{')) {
       orderId = params.get('_payform_order_id');
     }
     console.log("orderId:", orderId);
-    if (orderId) {
-      // Сохраняем points на сервере!
-      savePaidPoints(orderId, getPaidPoints());
 
-      // Потом уже делаем запрос на интерпретацию
-      fetch(`/api/payments/paid-interpretation?order_id=${orderId}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Не удалось получить результат.');
-          }
-          return response.json();
-        })
-        .then(data => {
-          addBotMessage("Спасибо за оплату! Вот твой результат по чакрам:\n" + (data.message || 'Не удалось получить результат.'));
-        })
-        .catch(() => {
-          addBotMessage("Не удалось получить результат по чакрам. Проверьте номер заказа или обратитесь в поддержку.");
-        });
+    // Запускаем только если orderId реально есть и пользователь только что оплатил!
+    if (orderId && orderId !== "null" && orderId !== "") {
+      calculate(); // <-- пересчитать таблицу
+      savePaidPoints(orderId, getPaidPoints());
+      pollPaidInterpretation(orderId);
     }
+
     // Применяем маску ввода для полей дат
     document.getElementById("inputDate1").addEventListener("input", dateEventMask);
     document.getElementById("inputDate2").addEventListener("input", dateEventMask);
@@ -1196,4 +1194,55 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       // Если первая дата вообще невалидна — покажем panel0 (какой-то блок с сообщением об ошибке)
       $('#panel0').show();
     }
+  }
+
+  function pollPaidInterpretation(orderId, maxAttempts = 20, interval = 3000) {
+    let attempts = 0;
+    let waitingMsgId = null;
+
+    function updateWaitingMessage(text) {
+      // Удаляем старое сообщение, если оно есть
+      if (waitingMsgId) {
+        const oldMsg = document.getElementById(waitingMsgId);
+        if (oldMsg) oldMsg.remove();
+      }
+      // Добавляем новое сообщение
+      const chatArea = document.querySelector(".chat-area");
+      const botMsg = document.createElement("div");
+      botMsg.classList.add("message", "bot-message");
+      botMsg.textContent = "CHATBOT AI: " + text;
+      waitingMsgId = "waiting-msg";
+      botMsg.id = waitingMsgId;
+      chatArea.appendChild(botMsg);
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    function poll() {
+      fetch(`/api/payments/paid-interpretation?order_id=${orderId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.message && !data.message.includes("не удалось") && !data.message.includes("Order not paid")) {
+            updateWaitingMessage(""); // Удалить индикатор
+            addBotMessage("Спасибо за оплату! Вот твой результат по чакрам:\n" + data.message);
+          } else if (attempts < maxAttempts) {
+            attempts++;
+            updateWaitingMessage("Ожидаем подтверждения оплаты..."); // Показываем только один раз
+            setTimeout(poll, interval);
+          } else {
+            updateWaitingMessage(""); // Удалить индикатор
+            addBotMessage("Не удалось получить результат по чакрам. Проверьте номер заказа или обратитесь в поддержку.");
+          }
+        })
+        .catch(() => {
+          if (attempts < maxAttempts) {
+            attempts++;
+            updateWaitingMessage("Ожидаем подтверждения оплаты...");
+            setTimeout(poll, interval);
+          } else {
+            updateWaitingMessage("");
+            addBotMessage("Не удалось получить результат по чакрам. Проверьте номер заказа или обратитесь в поддержку.");
+          }
+        });
+    }
+    poll();
   }

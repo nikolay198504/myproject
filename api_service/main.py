@@ -13,6 +13,11 @@ from api_service.webhooks import router as webhooks_router
 import random
 import datetime
 from starlette.staticfiles import StaticFiles
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+
+print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI(
     title="Нейро-консультант API",

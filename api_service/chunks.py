@@ -5,7 +5,7 @@ from typing import List, Dict, Any
 from dotenv import load_dotenv
 import openai
 
-load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+# load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 BASE_API_DIR = os.getenv("API_BASE_DIR")
 if BASE_API_DIR is None:
     BASE_API_DIR = os.path.dirname(os.path.abspath(__file__))
