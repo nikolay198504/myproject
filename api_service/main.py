@@ -12,11 +12,19 @@ from api_service.payments import router as payments_router, PendingOrder, Sessio
 from api_service.webhooks import router as webhooks_router
 import random
 import datetime
+from starlette.staticfiles import StaticFiles
 
 app = FastAPI(
     title="Нейро-консультант API",
     version="1.0.0",
     description="API для получения ответов нейро-консультанта матрицы судьбы"
+)
+
+# Монтируем статику из calculator/static
+app.mount(
+    "/static",
+    StaticFiles(directory=os.path.join("calculator", "static")),
+    name="static"
 )
 
 # Подключаем роутеры

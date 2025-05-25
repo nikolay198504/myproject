@@ -31,7 +31,7 @@ env.bak/
 venv.bak/
 
 # Django static files
-static/
+!calculator/static/
 *.db
 
 # Logs and local database

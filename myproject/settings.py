@@ -79,11 +79,12 @@ USE_TZ = True
 
 # Статические файлы
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    BASE_DIR / "calculator/static",
-    # другие папки со статикой, если есть (например, для другого фронта)
+    os.path.join(BASE_DIR, 'calculator', 'static'),
 ]
+
+# Не указывайте STATIC_ROOT, если не используете collectstatic!
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # <-- закомментируйте или удалите
 
 # Месторасположение файлов медиа (если используются)
 MEDIA_URL = '/media/'
