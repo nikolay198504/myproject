@@ -343,7 +343,78 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               // Обработчик для кнопки "Да"
               yesBtn.addEventListener("click", async function () {
                 chatArea.removeChild(buttonContainer);
-                openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...");
+                openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
+
+                // Получаем значения из input-ов
+                const email = document.getElementById("inputEmail") ? document.getElementById("inputEmail").value.trim() : "";
+                const phone = document.getElementById("inputPhone") ? document.getElementById("inputPhone").value.trim() : "";
+
+                if (!email && !phone) {
+                  // Показываем форму для ввода email/телефона
+                  const inputDiv = document.createElement("div");
+                  inputDiv.style.display = "flex";
+                  inputDiv.style.flexDirection = "column";
+                  inputDiv.style.gap = "8px";
+                  inputDiv.style.margin = "10px 0";
+
+                  const emailInput = document.createElement("input");
+                  emailInput.type = "email";
+                  emailInput.placeholder = "Ваш email (необязательно)";
+                  emailInput.style.padding = "8px";
+                  emailInput.style.borderRadius = "8px";
+                  emailInput.style.border = "1px solid #ccc";
+
+                  const phoneInput = document.createElement("input");
+                  phoneInput.type = "tel";
+                  phoneInput.placeholder = "Ваш телефон (обязательно)";
+                  phoneInput.style.padding = "8px";
+                  phoneInput.style.borderRadius = "8px";
+                  phoneInput.style.border = "1px solid #ccc";
+
+                  const continueBtn = document.createElement("button");
+                  continueBtn.textContent = "Продолжить";
+                  continueBtn.style.padding = "8px 16px";
+                  continueBtn.style.borderRadius = "20px";
+                  continueBtn.style.border = "2px solid #fff";
+                  continueBtn.style.backgroundColor = "#000";
+                  continueBtn.style.color = "#fff";
+                  continueBtn.style.cursor = "pointer";
+
+                  inputDiv.appendChild(emailInput);
+                  inputDiv.appendChild(phoneInput);
+                  inputDiv.appendChild(continueBtn);
+                  chatArea.appendChild(inputDiv);
+                  chatArea.scrollTop = chatArea.scrollHeight;
+
+                  continueBtn.addEventListener("click", async function () {
+                    const emailVal = emailInput.value.trim();
+                    const phoneVal = phoneInput.value.trim();
+                    if (!emailVal && !phoneVal) {
+                      addBotMessage("Пожалуйста, укажите хотя бы email или телефон!");
+                      return;
+                    }
+                    // Получаем order_id с сервера
+                    const response = await fetch('/create_order/', {
+                      method: "POST",
+                      headers: {
+                        "X-CSRFToken": window.CSRF_TOKEN,
+                        "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify({ email: emailVal, phone: phoneVal })
+                    });
+                    const data = await response.json();
+                    const orderId = data.order_id;
+
+                    let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}`;
+                    if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
+                    if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
+                    payUrl += `&do=pay`;
+
+                    window.location.href = payUrl;
+                  });
+
+                  return; // Не продолжаем дальше
+                }
 
                 // Получаем order_id с сервера
                 const response = await fetch('/create_order/', {
@@ -352,13 +423,19 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                         "X-CSRFToken": window.CSRF_TOKEN,
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({})
+                    body: JSON.stringify({ email, phone })
                 });
                 const data = await response.json();
                 const orderId = data.order_id;
 
-                console.log('Ссылка на оплату:', `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=link`);
-                window.location.href = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=link`;
+                // Формируем ссылку с нужными параметрами
+                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}`;
+                if (email) payUrl += `&customer_email=${encodeURIComponent(email)}`;
+                if (phone) payUrl += `&customer_phone=${encodeURIComponent(phone)}`;
+                payUrl += `&do=pay`;
+
+                console.log('Ссылка на оплату:', payUrl);
+                window.location.href = payUrl;
               });
     
               // Обработчик для кнопки "Нет"

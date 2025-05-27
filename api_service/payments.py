@@ -99,7 +99,7 @@ async def create_payment_link(payment: PaymentRequest):
         "Authorization": f"Bearer {SECRET_KEY}",
         "Content-Type": "application/json"
     }
-    response = requests.post("https://payform.ru/api/v1/invoice", json=data, headers=headers)
+    response = requests.post("https://payform.ru/api/v1/invoice/create", json=data, headers=headers)
     print("[CREATE-LINK] Status code:", response.status_code)
     print("[CREATE-LINK] Response text:", response.text)
     try:
