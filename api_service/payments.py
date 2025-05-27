@@ -60,6 +60,7 @@ class PaymentRequest(BaseModel):
     birth_date: str
     email: str
     phone: str
+    points: Optional[List[Dict[str, Any]]] = None
 
 def generate_signature(data: dict, secret_key: str) -> str:
     sorted_items = sorted(data.items())
@@ -70,11 +71,13 @@ def generate_signature(data: dict, secret_key: str) -> str:
 async def create_payment_link(payment: PaymentRequest):
     import json
     print("[CREATE-LINK] Запрос на создание заказа:", payment)
+    print("Создаём заказ с points:", payment.points)
+    print("Получены points:", payment.points)
     db = SessionLocal()
     order = Order(
         status="pending",
         date=payment.birth_date or datetime.date.today().isoformat(),
-        points=json.dumps([]),  # или реальные points, если есть
+        points=json.dumps(payment.points) if payment.points else json.dumps([]),
         amount="1000",
         customer_phone=payment.phone,
         customer_email=payment.email
