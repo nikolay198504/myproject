@@ -15,6 +15,7 @@ from api_service.chunks import Chunk
 import datetime
 import time
 import json
+import os
 
 router = APIRouter()
 
@@ -67,6 +68,9 @@ def generate_signature(data: dict, secret_key: str) -> str:
     message = '&'.join(f"{k}={v}" for k, v in sorted_items)
     return hmac.new(secret_key.encode(), message.encode(), hashlib.sha256).hexdigest()
 
+BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
+print(f"[PAYMENTS] Using BASE_URL: {BASE_URL}")
+
 @router.post("/payments/create-link")
 async def create_payment_link(payment: PaymentRequest):
     import json
@@ -94,8 +98,9 @@ async def create_payment_link(payment: PaymentRequest):
         "description": f"Заказ №{order.order_id}. Сумма: 1000 руб.",
         "customer_email": payment.email or "",
         "customer_phone": payment.phone or "",
-        "success_url": f"http://127.0.0.1:8000/?order_id={order.order_id}",
-        "fail_url": "http://127.0.0.1:8000/"
+        "success_url": f"{BASE_URL}/?order_id={order.order_id}",
+        "fail_url": f"{BASE_URL}/",
+        "notification_url": f"{BASE_URL}/api/payments/webhook"
     }
     print("[CREATE-LINK] Данные для Продамус:", data)
     headers = {
@@ -186,8 +191,9 @@ async def generate_pay_url(payment_request: PaymentRequest):
         "description": f"Заказ №{order_num}. Анализ чакр.",
         "customer_phone": payment_request.phone,
         "customer_email": payment_request.email,
-        "success_url": f"https://b8bd-185-200-107-64.ngrok-free.app/?order_id={order_num}",
-        "fail_url": "https://b8bd-185-200-107-64.ngrok-free.app/fail"
+        "success_url": f"{BASE_URL}/?order_id={order_num}",
+        "fail_url": f"{BASE_URL}/fail",
+        "notification_url": f"{BASE_URL}/api/payments/webhook"
     }
 
     headers = {

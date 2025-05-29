@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import uuid
 from .models import Order
+import json
 
 def calc(request):
     order_id = request.GET.get('order_id')
@@ -13,7 +14,12 @@ def payment_success(request):
 
 def create_order(request):
     if request.method == "POST":
-        # Можно добавить получение email/phone из POST-данных, если нужно
-        order = Order.objects.create(status="pending")
+        data = json.loads(request.body)
+        order = Order.objects.create(
+            status="pending",
+            date=data.get("birth_date"),
+            customer_email=data.get("email"),
+            customer_phone=data.get("phone"),
+        )
         return JsonResponse({"order_id": order.order_id})
     return JsonResponse({"error": "Only POST allowed"}, status=405)

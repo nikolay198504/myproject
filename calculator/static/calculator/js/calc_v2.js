@@ -400,7 +400,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                         "X-CSRFToken": window.CSRF_TOKEN,
                         "Content-Type": "application/json"
                       },
-                      body: JSON.stringify({ email: emailVal, phone: phoneVal })
+                      body: JSON.stringify({ email: emailVal, phone: phoneVal, birth_date: date1 })
                     });
                     const data = await response.json();
                     const orderId = data.order_id;
@@ -423,7 +423,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                         "X-CSRFToken": window.CSRF_TOKEN,
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ email, phone })
+                    body: JSON.stringify({ email, phone, birth_date: date1 })
                 });
                 const data = await response.json();
                 const orderId = data.order_id;
@@ -1285,7 +1285,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     }
   }
 
-  function pollPaidInterpretation(orderId, maxAttempts = 20, interval = 3000) {
+  function pollPaidInterpretation(orderId, maxAttempts = 20, interval = 2000) {
     let attempts = 0;
     let waitingMsgId = null;
 
