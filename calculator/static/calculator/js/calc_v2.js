@@ -722,11 +722,10 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     // Запускаем только если orderId реально есть и points не пустые и есть хотя бы одно value > 0
     if (orderId && points.length && points.some(p => p.value > 0)) {
       savePaidPoints(orderId, points);
-      pollPaidInterpretation(orderId);
-      // После успешной отправки можно очистить localStorage
+      pollPaidInterpretation(orderId, 60, 3000);
       localStorage.removeItem("paidPoints");
     } else if (orderId) {
-      pollPaidInterpretation(orderId);
+      pollPaidInterpretation(orderId, 60, 3000);
     }
 
     // Применяем маску ввода для полей дат
@@ -1287,7 +1286,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     }
   }
 
-  function pollPaidInterpretation(orderId, maxAttempts = 20, interval = 2000) {
+  function pollPaidInterpretation(orderId, maxAttempts = 60, interval = 3000) {
     console.log("Вызвана pollPaidInterpretation с orderId:", orderId);
     let attempts = 0;
     let waitingMsgId = null;
