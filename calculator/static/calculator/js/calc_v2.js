@@ -405,12 +405,20 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                     const data = await response.json();
                     const orderId = data.order_id;
 
-                    let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}`;
+                    let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=pay`;
                     if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
                     if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
-                    payUrl += `&do=pay`;
 
+                    console.log('Ссылка на оплату:', payUrl);
                     window.location.href = payUrl;
+                  });
+
+                  // Добавляю обработку Enter для email и телефона
+                  emailInput.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") continueBtn.click();
+                  });
+                  phoneInput.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") continueBtn.click();
                   });
 
                   return; // Не продолжаем дальше
@@ -429,10 +437,9 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 const orderId = data.order_id;
 
                 // Формируем ссылку с нужными параметрами
-                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}`;
+                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=pay`;
                 if (email) payUrl += `&customer_email=${encodeURIComponent(email)}`;
                 if (phone) payUrl += `&customer_phone=${encodeURIComponent(phone)}`;
-                payUrl += `&do=pay`;
 
                 console.log('Ссылка на оплату:', payUrl);
                 window.location.href = payUrl;
@@ -710,6 +717,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       orderId = params.get('_payform_order_id');
     }
     console.log("orderId:", orderId);
+
+    if (orderId) {
+        // Открываем чат сразу, если вернулись после оплаты
+        document.getElementById("chatWindow").style.display = "block";
+        openChatWindow("Спасибо за оплату! Ваш результат будет показан ниже.");
+    }
 
     // Получаем points из localStorage
     let points = [];
