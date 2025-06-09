@@ -41,18 +41,30 @@ class Chunk:
 
     # Сопоставление (chakra, aspect) -> point_name для custom_points
     CHAKRA_ASPECT_TO_POINT = {
-        ("Muladhara", "Energía"): "Recurso interior",
-        ("Ajna", "Energía"): "Talento",
-        ("Anahata", "Emociones"): "Zona de confort",
-        ("Muladhara", "Física"): "Cola kármica general",
+        ("Anahata", "Fisica"): "Zona de confort",
+        ("Sahasrara", "Fisica"): "Recurso interior",
+        ("Sahasrara", "Energia"): "Talento",
+        ("Muladhara", "Fisica"): "Cola kármica general",
         ("Svadhisthana", "Emociones"): "Cola kármica del amor",
-        ("Anahata", "Energía"): "Amor y dinero",
-        ("Vishuddha", "Física"): "Dirección de vida profesional",
-        ("Manipura", "Energía"): "Fuente de ingresos",
-        ("Svadhisthana", "Energía"): "Bloqueo financiero",
-        ("Ajna", "Física"): "Energía masculina",
-        ("Anahata", "Física"): "Energía femenina",
+        ("Muladhara", "Emociones"): "Pareja kármica en el amor",
+        ("Manipura", "Emociones"): "Amor y dinero",
+        ("Manipura", "Fisica"): "Dirección de vida profesional",
+        ("Manipura", "Energia"): "Fuente de ingresos",
+        ("Muladhara", "Energia"): "Bloqueo financiero",
+        
     }
+
+    def normalize(self, val):
+        if not isinstance(val, str):
+            return val
+        return (
+            val.replace("í", "i")
+               .replace("é", "e")
+               .replace("ó", "o")
+               .replace("Í", "I")
+               .replace("É", "E")
+               .replace("Ó", "O")
+        )
 
     async def consult_personal(self, free_points: List[Dict[str, Any]]) -> str:
         """
@@ -63,7 +75,7 @@ class Chunk:
         lines = []
         for point in free_points:
             chakra = point.get("chakra")
-            aspect = point.get("aspect")
+            aspect = self.normalize(point.get("aspect"))
             val = point.get("value")
             val_str = str(val)
             point_name = self.CHAKRA_ASPECT_TO_POINT.get((chakra, aspect))
@@ -75,9 +87,24 @@ class Chunk:
                 lines.append(f"{point_name} ({val}):\n(Нет описания)")
                 continue
             description = point_block.get("description", "")
-            value_text = point_block.get("values", {}).get(val_str)
-            if value_text:
-                lines.append(f"{point_name} ({val}):\n{description}\n{value_text}")
+            value_block = point_block.get(val_str)
+            if isinstance(value_block, dict):
+                value_title = value_block.get("title")
+                value_text = value_block.get("text")
+                if value_title and value_text:
+                    value_full = f"{value_title}. {value_text}"
+                elif value_title:
+                    value_full = value_title
+                elif value_text:
+                    value_full = value_text
+                else:
+                    value_full = str(value_block)
+            elif isinstance(value_block, str):
+                value_full = value_block
+            else:
+                value_full = "(Нет описания)"
+            if value_full:
+                lines.append(f"{point_name} ({val}):\n{description}\n{value_full}")
             else:
                 lines.append(f"{point_name} ({val}):\n{description}\n(Нет описания)")
         return "\n\n".join(lines)
@@ -100,9 +127,29 @@ class Chunk:
                     lines.append(f"{point_name} ({val}):\n(Нет описания)")
                     continue
                 description = point_block.get("description", "")
-                value_text = point_block.get("values", {}).get(val_str)
-                if value_text:
-                    lines.append(f"{point_name} ({val}):\n{description}\n{value_text}")
+                if point_name == "Energía masculina":
+                    value_block = point_block.get("Línea paterna", {}).get(val_str)
+                elif point_name == "Energía femenina":
+                    value_block = point_block.get("Línea materna", {}).get(val_str)
+                else:
+                    value_block = point_block.get(val_str)
+                if isinstance(value_block, dict):
+                    value_title = value_block.get("title")
+                    value_text = value_block.get("text")
+                    if value_title and value_text:
+                        value_full = f"{value_title}. {value_text}"
+                    elif value_title:
+                        value_full = value_title
+                    elif value_text:
+                        value_full = value_text
+                    else:
+                        value_full = str(value_block)
+                elif isinstance(value_block, str):
+                    value_full = value_block
+                else:
+                    value_full = "(Нет описания)"
+                if value_full:
+                    lines.append(f"{point_name} ({val}):\n{description}\n{value_full}")
                 else:
                     lines.append(f"{point_name} ({val}):\n{description}\n(Нет описания)")
             # Если нет имени, точка пропускается

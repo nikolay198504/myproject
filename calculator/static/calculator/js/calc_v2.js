@@ -226,16 +226,19 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         const num = parseInt(val);
         return isNaN(num) ? 0 : num; // если не число — вернуть 0
       }
+      const lineaPaternaValue = parseInt(data.paterna[0]);
+      const lineaMaternaValue = parseInt(data.materna[0]);
       return [
-        { name: "Cola kármica general", chakra: "Muladhara", aspect: "Física", value: safeParse(data.chakras.muladhara[0]) },
-        { name: "Cola kármica del amor", chakra: "Svadhisthana", aspect: "Emociones", value: safeParse(data.chakras.svadhisthana[1]) },
-        { name: "Pareja kármica en el amor", chakra: "Anahata", aspect: "Emociones", value: safeParse(data.chakras.anahata[0]) },
-        { name: "Amor y dinero", chakra: "Anahata", aspect: "Energía", value: safeParse(data.chakras.anahata[1]) },
-        { name: "Dirección de vida profesional", chakra: "Vishuddha", aspect: "Física", value: safeParse(data.chakras.vishuddha[0]) },
+        { name: "Energía masculina", value: lineaPaternaValue },
+        { name: "Energía femenina", value: lineaMaternaValue },
+        { name: "Cola kármica general", chakra: "Muladhara", aspect: "Fisica", value: safeParse(data.chakras.muladhara[0]) },
+        { name: "Cola kármica del amor", chakra: "Svadhisthana", aspect: "Emociones", value: safeParse(data.chakras.svadhisthana[2]) },
+        { name: "Pareja kármica en el amor", chakra: "Muladhara", aspect: "Emociones", value: safeParse(data.chakras.anahata[2]) },
+        { name: "Amor y dinero", chakra: "Manipura", aspect: "Emociones", value: safeParse(data.chakras.anahata[2]) },
+        { name: "Dirección de vida profesional", chakra: "Manipura", aspect: "Física", value: safeParse(data.chakras.vishuddha[0]) },
         { name: "Fuente de ingresos", chakra: "Manipura", aspect: "Energía", value: safeParse(data.chakras.manipura[1]) },
-        { name: "Bloqueo financiero", chakra: "Svadhisthana", aspect: "Energía", value: safeParse(data.chakras.svadhisthana[2]) },
-        { name: "Energía masculina", chakra: "Ajna", aspect: "Física", value: safeParse(data.chakras.ajna[2]) },
-        { name: "Energía femenina", chakra: "Anahata", aspect: "Física", value: safeParse(data.chakras.anahata[2]) }
+        { name: "Bloqueo financiero", chakra: "Muladhara", aspect: "Energia", value: safeParse(data.chakras.svadhisthana[1]) },
+        
       ];
     }
 
@@ -292,9 +295,9 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         return;
       }
       let freePoints = [
-        { chakra: "Muladhara", aspect: "Energía", value: parseInt(data.chakras.muladhara[0]) }, // Recurso interior
-        { chakra: "Ajna", aspect: "Energía", value: parseInt(data.chakras.ajna[1]) },           // Talento
-        { chakra: "Anahata", aspect: "Emociones", value: parseInt(data.chakras.anahata[2]) }    // Zona de confort
+        { name: "Zona de confort", chakra: "Anahata", aspect: "Fisica", value: parseInt(data.chakras.anahata[0]) },
+        { name: "Recurso interior", chakra: "Sahasrara", aspect: "Fisica", value: parseInt(data.chakras.sahasrara[2]) },
+        { name: "Talento", chakra: "Sahasrara", aspect: "Energia", value: parseInt(data.chakras.sahasrara[1]) }
       ];
     
       console.log("Собранные данные для бесплатной части:", freePoints);
@@ -313,7 +316,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     
             // Через 2 секунды предлагаем платный расчёт
             setTimeout(function () {
-              openChatWindow("Хочешь углублённый расчёт (платно)?");
+              openChatWindow("Хочешь углублённый расчёт для PERSONAL (платно)?");
     
               // Создаём кнопки "Да" и "Нет"
               const chatArea = document.querySelector(".chat-area");
@@ -630,7 +633,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           })
           .then(response => response.json())
           .then(data => {
-            addBotMessage(data.message);
+            if (data.message) {
+              addBotMessage(data.message);
+            } else {
+              console.error("Поле 'message' отсутствует в ответе сервера.");
+              addBotMessage("Извините, произошла ошибка обработки данных.");
+            }
           })
           .catch(error => {
             console.error("Ошибка при получении ответа:", error);
@@ -675,7 +683,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           })
           .then(response => response.json())
           .then(data => {
-            addBotMessage(data.message);
+            if (data.message) {
+              addBotMessage(data.message);
+            } else {
+              console.error("Поле 'message' отсутствует в ответе сервера.");
+              addBotMessage("Извините, произошла ошибка обработки данных.");
+            }
           })
           .catch(error => {
             console.error("Ошибка при получении ответа:", error);
@@ -935,21 +948,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     return result;
   };
 
-  function sum22(value)
-  {
-    if (value <= 22) {
-      return value;
+  function sum22(value) {
+    value = Number(value);
+    while (value > 22) {
+      value = value.toString().split('').reduce((a, b) => a + Number(b), 0);
     }
-
-    var result = 0;
-    for (var i = 0; i < value.length; i++) {
-      result += (value.charCodeAt(i) - 48);
-    }
-    if (result > 22) {
-      return sum22(result.toString());
-    } else {
-      return result;
-    }
+    return value;
   }
 
   function base22(value)
@@ -1310,6 +1314,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         const oldMsg = document.getElementById(waitingMsgId);
         if (oldMsg) oldMsg.remove();
       }
+      if (!text) return;
       // Добавляем новое сообщение
       const chatArea = document.querySelector(".chat-area");
       const botMsg = document.createElement("div");
