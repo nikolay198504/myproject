@@ -161,18 +161,16 @@ class Chunk:
             final_text = f"Расширенная интерпретация для даты {date}:\n\n{final_text}"
         return final_text
 
-    async def consult_compatibility(self, computed_personal: str, computed_compatibility: str) -> str:
+    async def consult_compatibility(self, computed_personal: str, computed_compatibility: str, stage: str = "start") -> str:
         """
         Генерирует консультацию по совместимости на основе персональных и совместимых данных.
-
-        Args:
-            computed_personal (str): Персональные данные.
-            computed_compatibility (str): Данные по совместимости.
-
-        Returns:
-            str: Текст консультации (пока не реализовано).
+        stage: "start" — первый вопрос, "offer_paid" — предложение платного расчёта.
         """
-        return "Пока не реализовано: consult_compatibility."
+        if stage == "start":
+            return "Готов узнать о consult_compatibility (платно)?"
+        elif stage == "offer_paid":
+            return "Хочешь углублённый расчёт совместимости (платно)?\nДа\nНет"
+        # дальше — обработка платного сценария
 
     async def ask_gpt(self, user_text: str) -> str:
         """

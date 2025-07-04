@@ -18,6 +18,7 @@ import json
 from api_service.payments import ORDERS, SessionLocal, Order, PendingOrder
 import re
 import datetime
+from sqlalchemy import Column, String
 
 router = APIRouter()
 

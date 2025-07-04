@@ -40,6 +40,7 @@ class Order(Base):
     customer_phone = Column(String, nullable=True)
     customer_email = Column(String, nullable=True)
     paid_at = Column(DateTime, nullable=True)  # дата и время оплаты
+    type = Column(String, default="personal")  # personal или compatibility
 
     @property
     def order_id(self):
@@ -62,6 +63,7 @@ class PaymentRequest(BaseModel):
     email: str
     phone: str
     points: Optional[List[Dict[str, Any]]] = None
+    type: Optional[str] = "personal"
 
 def generate_signature(data: dict, secret_key: str) -> str:
     sorted_items = sorted(data.items())
@@ -78,24 +80,28 @@ async def create_payment_link(payment: PaymentRequest):
     print("Создаём заказ с points:", payment.points)
     print("Получены points:", payment.points)
     db = SessionLocal()
+    # Получаем тип заказа, если передан, иначе personal
+    order_type = getattr(payment, "type", "personal")
+    amount = "1500" if order_type == "compatibility" else "1000"
     order = Order(
         status="pending",
         date=payment.birth_date or datetime.date.today().isoformat(),
         points=json.dumps(payment.points) if payment.points else json.dumps([]),
-        amount="1000",
+        amount=amount,
         customer_phone=payment.phone,
-        customer_email=payment.email
+        customer_email=payment.email,
+        type=order_type
     )
     db.add(order)
     db.commit()
     db.refresh(order)
-    print(f"[CREATE-LINK] Создан заказ: id={order.id}, order_id={order.order_id}")
+    print(f"[CREATE-LINK] Создан заказ: id={order.id}, order_id={order.order_id}, type={order.type}")
     db.close()
     # Формируем data только для payform.ru!
     data = {
-        "amount": "1000",
+        "amount": amount,
         "order_id": order.order_id,
-        "description": f"Заказ №{order.order_id}. Сумма: 1000 руб.",
+        "description": f"Заказ №{order.order_id}. Сумма: {amount} руб.",
         "customer_email": payment.email or "",
         "customer_phone": payment.phone or "",
         "success_url": f"{BASE_URL}/?order_id={order.order_id}",

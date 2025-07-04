@@ -397,13 +397,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                       return;
                     }
                     // Получаем order_id с сервера
-                    const response = await fetch('/create_order/', {
+                    const response = await fetch('/api/payments/create-link', {
                       method: "POST",
                       headers: {
-                        "X-CSRFToken": window.CSRF_TOKEN,
                         "Content-Type": "application/json"
                       },
-                      body: JSON.stringify({ email: emailVal, phone: phoneVal, birth_date: date1 })
+                      body: JSON.stringify({ email: emailVal, phone: phoneVal, birth_date: date1, type: "compatibility" })
                     });
                     const data = await response.json();
                     const orderId = data.order_id;
@@ -427,25 +426,23 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                   return; // Не продолжаем дальше
                 }
 
-                // Получаем order_id с сервера
-                const response = await fetch('/create_order/', {
-                    method: "POST",
-                    headers: {
-                        "X-CSRFToken": window.CSRF_TOKEN,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ email, phone, birth_date: date1 })
-                });
-                const data = await response.json();
+                // Если email/телефон уже есть (маловероятно), сразу создаём заказ
+                fetch('/api/payments/create-link', {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ email, phone, birth_date: date1, type: "compatibility" })
+                })
+                .then(response => response.json())
+                .then(data => {
                 const orderId = data.order_id;
-
-                // Формируем ссылку с нужными параметрами
                 let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=pay`;
                 if (email) payUrl += `&customer_email=${encodeURIComponent(email)}`;
                 if (phone) payUrl += `&customer_phone=${encodeURIComponent(phone)}`;
-
                 console.log('Ссылка на оплату:', payUrl);
                 window.location.href = payUrl;
+                });
               });
     
               // Обработчик для кнопки "Нет"
@@ -492,7 +489,6 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       calculate(); // Обновляет таблицы (PERSONAL и COMPATIBILITY)
       $('#panelX').show();
       $('#panel2').show(); // Показываем панели для совместимости
-      openChatWindow("Готов узнать о совместимости?");
 
       var personalData = readTableData("0");
       var compatibilityData = readTableData("1");
@@ -536,7 +532,145 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       })
       .then(response => response.json())
       .then(data => {
-        addBotMessage(data.message);
+        openChatWindow(data.message);
+
+        // Если это нужное сообщение — добавьте кнопки
+        if (data.message === "Готов узнать о consult_compatibility (платно)?") {
+          const chatArea = document.querySelector(".chat-area");
+          const buttonContainer = document.createElement("div");
+          buttonContainer.style.margin = "10px 0";
+          buttonContainer.style.display = "flex";
+          buttonContainer.style.gap = "10px";
+
+          const yesBtn = document.createElement("button");
+          yesBtn.textContent = "Да";
+          yesBtn.style.padding = "8px 16px";
+          yesBtn.style.borderRadius = "20px";
+          yesBtn.style.border = "2px solid #fff";
+          yesBtn.style.backgroundColor = "#000";
+          yesBtn.style.color = "#fff";
+          yesBtn.style.cursor = "pointer";
+
+          const noBtn = document.createElement("button");
+          noBtn.textContent = "Нет";
+          noBtn.style.padding = "8px 16px";
+          noBtn.style.borderRadius = "20px";
+          noBtn.style.border = "2px solid #fff";
+          noBtn.style.backgroundColor = "#000";
+          noBtn.style.color = "#fff";
+          noBtn.style.cursor = "pointer";
+
+          yesBtn.addEventListener("click", function () {
+            chatArea.removeChild(buttonContainer);
+            openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
+
+            // Получаем значения из input-ов
+            const email = document.getElementById("inputEmail") ? document.getElementById("inputEmail").value.trim() : "";
+            const phone = document.getElementById("inputPhone") ? document.getElementById("inputPhone").value.trim() : "";
+
+            if (!email && !phone) {
+              // Показываем форму для ввода email/телефона
+              const inputDiv = document.createElement("div");
+              inputDiv.style.display = "flex";
+              inputDiv.style.flexDirection = "column";
+              inputDiv.style.gap = "8px";
+              inputDiv.style.margin = "10px 0";
+
+              const emailInput = document.createElement("input");
+              emailInput.type = "email";
+              emailInput.placeholder = "Ваш email (необязательно)";
+              emailInput.style.padding = "8px";
+              emailInput.style.borderRadius = "8px";
+              emailInput.style.border = "1px solid #ccc";
+
+              const phoneInput = document.createElement("input");
+              phoneInput.type = "tel";
+              phoneInput.placeholder = "Ваш телефон (обязательно)";
+              phoneInput.style.padding = "8px";
+              phoneInput.style.borderRadius = "8px";
+              phoneInput.style.border = "1px solid #ccc";
+
+              const continueBtn = document.createElement("button");
+              continueBtn.textContent = "Продолжить";
+              continueBtn.style.padding = "8px 16px";
+              continueBtn.style.borderRadius = "20px";
+              continueBtn.style.border = "2px solid #fff";
+              continueBtn.style.backgroundColor = "#000";
+              continueBtn.style.color = "#fff";
+              continueBtn.style.cursor = "pointer";
+
+              inputDiv.appendChild(emailInput);
+              inputDiv.appendChild(phoneInput);
+              inputDiv.appendChild(continueBtn);
+              chatArea.appendChild(inputDiv);
+              chatArea.scrollTop = chatArea.scrollHeight;
+
+              continueBtn.addEventListener("click", async function () {
+                const emailVal = emailInput.value.trim();
+                const phoneVal = phoneInput.value.trim();
+                if (!emailVal && !phoneVal) {
+                  addBotMessage("Пожалуйста, укажите хотя бы email или телефон!");
+                  return;
+                }
+                // Получаем order_id с сервера (сюда можно добавить параметры для совместимости)
+                const response = await fetch('/api/payments/create-link', {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ email: emailVal, phone: phoneVal, birth_date: date1, type: "compatibility" })
+                });
+                const data = await response.json();
+                const orderId = data.order_id;
+
+                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1500&products[0][quantity]=1&products[0][name]=Совместимость&order_id=${orderId}&do=pay`;
+                if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
+                if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
+
+                console.log('Ссылка на оплату:', payUrl);
+                window.location.href = payUrl;
+              });
+
+              // Добавляю обработку Enter для email и телефона
+              emailInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") continueBtn.click();
+              });
+              phoneInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") continueBtn.click();
+              });
+
+              return; // Не продолжаем дальше
+            }
+
+            // Если email/телефон уже есть (маловероятно), сразу создаём заказ
+            fetch('/api/payments/create-link', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ email, phone, birth_date: date1, type: "compatibility" })
+            })
+            .then(response => response.json())
+            .then(data => {
+              const orderId = data.order_id;
+              let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1500&products[0][quantity]=1&products[0][name]=Совместимость&order_id=${orderId}&do=pay`;
+              if (email) payUrl += `&customer_email=${encodeURIComponent(email)}`;
+              if (phone) payUrl += `&customer_phone=${encodeURIComponent(phone)}`;
+              console.log('Ссылка на оплату:', payUrl);
+              window.location.href = payUrl;
+            });
+          });
+
+          noBtn.addEventListener("click", function () {
+            chatArea.removeChild(buttonContainer);
+            openChatWindow("Хорошо, продолжаем без платной части!");
+          });
+
+          buttonContainer.appendChild(yesBtn);
+          buttonContainer.appendChild(noBtn);
+          chatArea.appendChild(buttonContainer);
+          chatArea.scrollTop = chatArea.scrollHeight;
+        }
       })
       .catch(error => {
         console.error("Ошибка при получении ответа:", error);

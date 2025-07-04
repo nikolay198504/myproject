@@ -8,6 +8,7 @@ class Order(models.Model):
     customer_phone = models.CharField(max_length=20, blank=True, null=True)
     customer_email = models.EmailField(blank=True, null=True)
     paid_at = models.DateTimeField(blank=True, null=True)  # дата и время оплаты
+    type = models.CharField(max_length=32, default='personal')
 
     def __str__(self):
         return f"{self.order_id} ({self.status})"
