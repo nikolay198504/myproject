@@ -8,7 +8,7 @@ import json
 import os
 import traceback
 from fastapi import FastAPI
-from api_service.payments import router as payments_router, PendingOrder, SessionLocal
+from api_service.payments import router as payments_router, PendingOrder, SessionLocal, Order
 from api_service.webhooks import router as webhooks_router
 import random
 import datetime
@@ -62,8 +62,8 @@ class ModelAnswer(BaseModel):
     text: str
 
 class ModelCompatibility(BaseModel):
-    computed_personal: str
-    computed_compatibility: str
+    partner1: dict
+    partner2: dict
 
 app.add_middleware(
     CORSMiddleware,
@@ -113,14 +113,9 @@ async def consult_paid(data: ModelPaid):
 
 @app.post("/consult_compatibility")
 async def consult_compatibility(data: ModelCompatibility):
-    global request_count
-    request_count += 1
     try:
-        answer = await chunk.consult_compatibility(
-            computed_personal=data.computed_personal,
-            computed_compatibility=data.computed_compatibility
-        )
-        return {"message": answer}
+        # На первом этапе всегда возвращаем предложение оплатить
+        return {"message": "Готов узнать о consult_compatibility (платно)?"}
     except Exception as e:
         print("Ошибка в обработчике /consult_compatibility:", e)
         print(traceback.format_exc())
@@ -177,6 +172,54 @@ async def get_rule_text(
         print("Ошибка в обработчике /get_rule_text:", e)
         print(traceback.format_exc())
         return JSONResponse(status_code=404, content={"error": f"Нет описания для {chakra}/{aspect}/{value}: {e}"})
+
+@app.get("/payments/compatibility-interpretation")
+async def get_compatibility_result(order_id: str):
+    """
+    Получить результат совместимости по order_id (например, ORD-000123).
+    """
+    db = SessionLocal()
+    try:
+        # Извлекаем числовой id из строки вида ORD-000123
+        id_int = int(order_id.replace("ORD-", ""))
+        order = db.query(Order).filter(Order.id == id_int).first()
+        if not order:
+            return JSONResponse(status_code=404, content={"error": "Order not found"})
+        if order.type != "compatibility":
+            return JSONResponse(status_code=400, content={"error": "Order is not compatibility type"})
+        if not order.compatibility_result:
+            return JSONResponse(status_code=202, content={"message": "Result not ready yet"})
+        return {"result": order.compatibility_result}
+    finally:
+        db.close()
+
+@app.get("/payments/paid-interpretation")
+async def get_personal_result(order_id: str):
+    db = SessionLocal()
+    try:
+        id_int = int(order_id.replace("ORD-", ""))
+        order = db.query(Order).filter(Order.id == id_int).first()
+        if not order:
+            return JSONResponse(status_code=404, content={"error": "Order not found"})
+        if order.type != "personal":
+            return JSONResponse(status_code=400, content={"error": "Order is not personal type"})
+        if not order.personal_result:
+            return JSONResponse(status_code=202, content={"message": "Result not ready yet"})
+        return {"result": order.personal_result}
+    finally:
+        db.close()
+
+@app.get("/payments/order-type")
+async def get_order_type(order_id: str):
+    db = SessionLocal()
+    try:
+        id_int = int(order_id.replace("ORD-", ""))
+        order = db.query(Order).filter(Order.id == id_int).first()
+        if not order:
+            return JSONResponse(status_code=404, content={"error": "Order not found"})
+        return {"type": order.type}
+    finally:
+        db.close()
 
 if __name__ == "__main__":
     import uvicorn

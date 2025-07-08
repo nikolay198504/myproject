@@ -400,3 +400,84 @@ class Chunk:
             "Я консультант по Матрице Судьбы и с радостью помогу вам узнать больше о ваших энергиях, чакрах и жизненных задачах! "
             "Пожалуйста, задайте вопрос по теме или введите вашу дату рождения для индивидуального разбора."
         )
+
+    async def consult_compatibility_full(self, partner1: dict, partner2: dict) -> str:
+        """
+        Формирует текст для чат-бота по совместимости двух партнёров на основе COMPATIBILITY.json.
+        partner1, partner2 — dict с ключом 'chakras', где по каждой чакре массив из 3 значений.
+        """
+        # 1. Загрузка COMPATIBILITY.json
+        compat_path = os.path.join(BASE_API_DIR, 'base', 'COMPATIBILITY.json')
+        async with aiofiles.open(compat_path, 'r', encoding='utf-8') as f:
+            compat_data = json.loads(await f.read())
+
+        chakras_list = ["ajna", "anahata", "svadhisthana", "manipura", "muladhara", "sahasrara"]
+        result_lines = []
+
+        # 2. custom_points (описания и трактовки по чакрам)
+        for chakra in chakras_list:
+            # Найти блок custom_points для этой чакры
+            block = None
+            for item in compat_data.get("custom_points", []):
+                if item.get("chakra", "").lower() == chakra:
+                    block = item
+                    break
+            if not block:
+                continue
+
+            # Описание чакры
+            result_lines.append(f"{chakra.capitalize()} — {block.get('description', '')}")
+
+            # Значения для партнёров
+            val1 = partner1["chakras"].get(chakra, [None, None, None])[2]
+            val2 = partner2["chakras"].get(chakra, [None, None, None])[2]
+            val1_str = str(val1) if val1 is not None else "?"
+            val2_str = str(val2) if val2 is not None else "?"
+
+            desc1 = block.get(val1_str, "(нет описания)")
+            desc2 = block.get(val2_str, "(нет описания)")
+
+            result_lines.append(f"Партнёр 1: {val1_str} — {desc1}")
+            result_lines.append(f"Партнёр 2: {val2_str} — {desc2}")
+            result_lines.append("")  # пустая строка для разделения
+
+        # 3. recommendations (по anahata, Emociones)
+        rec_block = None
+        for item in compat_data.get("recommendations", []):
+            if item.get("chakra", "").lower() == "anahata" and item.get("aspect", "").lower() == "emociones":
+                rec_block = item
+                break
+        if rec_block:
+            result_lines.append("Рекомендации:")
+            for i, partner in enumerate([partner1, partner2], 1):
+                val = partner["chakras"].get("anahata", [None, None, None])[2]
+                val_str = str(val) if val is not None else "?"
+                plus = rec_block.get(val_str, {}).get("плюсы", "(нет плюсов)")
+                minus = rec_block.get(val_str, {}).get("минусы", "(нет минусов)")
+                desc = rec_block.get("description", "")
+                result_lines.append(f"Партнёр {i}: {desc}\nПлюсы: {plus}\nМинусы: {minus}")
+            result_lines.append("")
+
+        # 4. compatibility (по anahata, Emociones)
+        comp_block = None
+        for item in compat_data.get("compatibility", []):
+            if item.get("chakra", "").lower() == "anahata" and item.get("aspect", "").lower() == "emociones":
+                comp_block = item
+                break
+        if comp_block:
+            result_lines.append("Совместимость по Anahata:")
+            result_lines.append(comp_block.get("description", ""))
+            v1 = partner1["chakras"].get("anahata", [None, None, None])[2]
+            v2 = partner2["chakras"].get("anahata", [None, None, None])[2]
+            key1 = f"{v1}-{v2}"
+            key2 = f"{v2}-{v1}"
+            comp = comp_block.get(key1) or comp_block.get(key2)
+            if comp:
+                result_lines.append(f"Пара {key1 if comp_block.get(key1) else key2}:")
+                result_lines.append(f"Совместимость: {comp.get('совместимость', '')}")
+                result_lines.append(f"Описание: {comp.get('описание', '')}")
+            else:
+                result_lines.append(f"Нет точного описания для пары {v1}-{v2}.")
+            result_lines.append("")
+
+        return "\n".join(result_lines)

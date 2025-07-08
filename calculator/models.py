@@ -9,6 +9,8 @@ class Order(models.Model):
     customer_email = models.EmailField(blank=True, null=True)
     paid_at = models.DateTimeField(blank=True, null=True)  # дата и время оплаты
     type = models.CharField(max_length=32, default='personal')
+    compatibility_result = models.TextField(blank=True, null=True)  # Результат совместимости
+    personal_result = models.TextField(blank=True, null=True)       # Результат персонального анализа
 
     def __str__(self):
         return f"{self.order_id} ({self.status})"

@@ -348,100 +348,88 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 chatArea.removeChild(buttonContainer);
                 openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
 
-                // Получаем значения из input-ов
-                const email = document.getElementById("inputEmail") ? document.getElementById("inputEmail").value.trim() : "";
-                const phone = document.getElementById("inputPhone") ? document.getElementById("inputPhone").value.trim() : "";
+                // Создаём форму для ввода email и телефона
+                const inputDiv = document.createElement("div");
+                inputDiv.style.display = "flex";
+                inputDiv.style.flexDirection = "column";
+                inputDiv.style.gap = "8px";
+                inputDiv.style.margin = "10px 0";
 
-                if (!email && !phone) {
-                  // Показываем форму для ввода email/телефона
-                  const inputDiv = document.createElement("div");
-                  inputDiv.style.display = "flex";
-                  inputDiv.style.flexDirection = "column";
-                  inputDiv.style.gap = "8px";
-                  inputDiv.style.margin = "10px 0";
+                const emailInput = document.createElement("input");
+                emailInput.type = "email";
+                emailInput.placeholder = "Ваш email (необязательно)";
+                emailInput.style.padding = "8px";
+                emailInput.style.borderRadius = "8px";
+                emailInput.style.border = "1px solid #ccc";
 
-                  const emailInput = document.createElement("input");
-                  emailInput.type = "email";
-                  emailInput.placeholder = "Ваш email (необязательно)";
-                  emailInput.style.padding = "8px";
-                  emailInput.style.borderRadius = "8px";
-                  emailInput.style.border = "1px solid #ccc";
+                const phoneInput = document.createElement("input");
+                phoneInput.type = "tel";
+                phoneInput.placeholder = "Ваш телефон (обязательно)";
+                phoneInput.style.padding = "8px";
+                phoneInput.style.borderRadius = "8px";
+                phoneInput.style.border = "1px solid #ccc";
 
-                  const phoneInput = document.createElement("input");
-                  phoneInput.type = "tel";
-                  phoneInput.placeholder = "Ваш телефон (обязательно)";
-                  phoneInput.style.padding = "8px";
-                  phoneInput.style.borderRadius = "8px";
-                  phoneInput.style.border = "1px solid #ccc";
+                const continueBtn = document.createElement("button");
+                continueBtn.textContent = "Продолжить";
+                continueBtn.style.padding = "8px 16px";
+                continueBtn.style.borderRadius = "20px";
+                continueBtn.style.border = "2px solid #fff";
+                continueBtn.style.backgroundColor = "#000";
+                continueBtn.style.color = "#fff";
+                continueBtn.style.cursor = "pointer";
 
-                  const continueBtn = document.createElement("button");
-                  continueBtn.textContent = "Продолжить";
-                  continueBtn.style.padding = "8px 16px";
-                  continueBtn.style.borderRadius = "20px";
-                  continueBtn.style.border = "2px solid #fff";
-                  continueBtn.style.backgroundColor = "#000";
-                  continueBtn.style.color = "#fff";
-                  continueBtn.style.cursor = "pointer";
+                inputDiv.appendChild(emailInput);
+                inputDiv.appendChild(phoneInput);
+                inputDiv.appendChild(continueBtn);
+                chatArea.appendChild(inputDiv);
+                chatArea.scrollTop = chatArea.scrollHeight;
 
-                  inputDiv.appendChild(emailInput);
-                  inputDiv.appendChild(phoneInput);
-                  inputDiv.appendChild(continueBtn);
-                  chatArea.appendChild(inputDiv);
-                  chatArea.scrollTop = chatArea.scrollHeight;
+                continueBtn.addEventListener("click", async function () {
+                  const emailVal = emailInput.value.trim();
+                  const phoneVal = phoneInput.value.trim();
+                  if (!phoneVal) {
+                    addBotMessage("Пожалуйста, укажите телефон!");
+                    return;
+                  }
+                  const paidPoints = getPaidPoints();
+                  const response = await fetch('/api/payments/create-link', {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      email: emailVal,
+                      phone: phoneVal,
+                      birth_date: date1,
+                      type: "personal",
+                      points: paidPoints
+                    })
+                  });
+                  const data = await response.json();
+                  const orderId = data.order_id;
+                  if (!orderId) {
+                    addBotMessage("Ошибка: не удалось получить номер заказа. Попробуйте позже.");
+                    return;
+                  }
+                  localStorage.setItem("orderId", orderId);
+                  localStorage.setItem("orderType", "personal");
 
-                  continueBtn.addEventListener("click", async function () {
-                    const emailVal = emailInput.value.trim();
-                    const phoneVal = phoneInput.value.trim();
-                    if (!emailVal && !phoneVal) {
-                      addBotMessage("Пожалуйста, укажите хотя бы email или телефон!");
-                      return;
-                    }
-                    // Получаем order_id с сервера
-                    const response = await fetch('/api/payments/create-link', {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json"
-                      },
-                      body: JSON.stringify({ email: emailVal, phone: phoneVal, birth_date: date1, type: "compatibility" })
-                    });
-                    const data = await response.json();
-                    const orderId = data.order_id;
-
-                    let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=pay`;
+                  if (data.payment_url) {
+                    window.location.href = data.payment_url;
+                  } else {
+                    const amount = 1000;
+                    const productName = "Персональный анализ";
+                    let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=${amount}&products[0][quantity]=1&products[0][name]=${encodeURIComponent(productName)}&order_id=${orderId}&do=pay`;
                     if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
                     if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
-
-                    console.log('Ссылка на оплату:', payUrl);
                     window.location.href = payUrl;
-                  });
+                  }
+                });
 
-                  // Добавляю обработку Enter для email и телефона
-                  emailInput.addEventListener("keydown", function(e) {
-                    if (e.key === "Enter") continueBtn.click();
-                  });
-                  phoneInput.addEventListener("keydown", function(e) {
-                    if (e.key === "Enter") continueBtn.click();
-                  });
-
-                  return; // Не продолжаем дальше
-                }
-
-                // Если email/телефон уже есть (маловероятно), сразу создаём заказ
-                fetch('/api/payments/create-link', {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({ email, phone, birth_date: date1, type: "compatibility" })
-                })
-                .then(response => response.json())
-                .then(data => {
-                const orderId = data.order_id;
-                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1000&products[0][quantity]=1&products[0][name]=Чакры&order_id=${orderId}&do=pay`;
-                if (email) payUrl += `&customer_email=${encodeURIComponent(email)}`;
-                if (phone) payUrl += `&customer_phone=${encodeURIComponent(phone)}`;
-                console.log('Ссылка на оплату:', payUrl);
-                window.location.href = payUrl;
+                // Обработка Enter
+                emailInput.addEventListener("keydown", function(e) {
+                  if (e.key === "Enter") continueBtn.click();
+                });
+                phoneInput.addEventListener("keydown", function(e) {
+                  if (e.key === "Enter") continueBtn.click();
                 });
               });
     
@@ -522,19 +510,23 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       console.log("Отправляем данные для PERSONAL:", computed_personal);
       console.log("Отправляем данные для COMPATIBILITY:", computed_compatibility);
 
+      // ... перед отправкой:
+      var partner1 = readTableData("0"); // данные по первой дате
+      var partner2 = readTableData("1"); // данные по второй дате
+
       fetch("/api/consult_compatibility", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          computed_personal: computed_personal,
-          computed_compatibility: computed_compatibility
+        body: JSON.stringify({
+          partner1: { chakras: partner1.chakras },
+          partner2: { chakras: partner2.chakras }
         })
       })
       .then(response => response.json())
       .then(data => {
         openChatWindow(data.message);
 
-        // Если это нужное сообщение — добавьте кнопки
+        // Показываем предложение об оплате совместимости
         if (data.message === "Готов узнать о consult_compatibility (платно)?") {
           const chatArea = document.querySelector(".chat-area");
           const buttonContainer = document.createElement("div");
@@ -560,104 +552,96 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           noBtn.style.color = "#fff";
           noBtn.style.cursor = "pointer";
 
-          yesBtn.addEventListener("click", function () {
+          yesBtn.addEventListener("click", async function () {
             chatArea.removeChild(buttonContainer);
             openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
 
-            // Получаем значения из input-ов
-            const email = document.getElementById("inputEmail") ? document.getElementById("inputEmail").value.trim() : "";
-            const phone = document.getElementById("inputPhone") ? document.getElementById("inputPhone").value.trim() : "";
+            // Создаём форму для ввода email и телефона
+            const inputDiv = document.createElement("div");
+            inputDiv.style.display = "flex";
+            inputDiv.style.flexDirection = "column";
+            inputDiv.style.gap = "8px";
+            inputDiv.style.margin = "10px 0";
 
-            if (!email && !phone) {
-              // Показываем форму для ввода email/телефона
-              const inputDiv = document.createElement("div");
-              inputDiv.style.display = "flex";
-              inputDiv.style.flexDirection = "column";
-              inputDiv.style.gap = "8px";
-              inputDiv.style.margin = "10px 0";
+            const emailInput = document.createElement("input");
+            emailInput.type = "email";
+            emailInput.placeholder = "Ваш email (необязательно)";
+            emailInput.style.padding = "8px";
+            emailInput.style.borderRadius = "8px";
+            emailInput.style.border = "1px solid #ccc";
 
-              const emailInput = document.createElement("input");
-              emailInput.type = "email";
-              emailInput.placeholder = "Ваш email (необязательно)";
-              emailInput.style.padding = "8px";
-              emailInput.style.borderRadius = "8px";
-              emailInput.style.border = "1px solid #ccc";
+            const phoneInput = document.createElement("input");
+            phoneInput.type = "tel";
+            phoneInput.placeholder = "Ваш телефон (обязательно)";
+            phoneInput.style.padding = "8px";
+            phoneInput.style.borderRadius = "8px";
+            phoneInput.style.border = "1px solid #ccc";
 
-              const phoneInput = document.createElement("input");
-              phoneInput.type = "tel";
-              phoneInput.placeholder = "Ваш телефон (обязательно)";
-              phoneInput.style.padding = "8px";
-              phoneInput.style.borderRadius = "8px";
-              phoneInput.style.border = "1px solid #ccc";
+            const continueBtn = document.createElement("button");
+            continueBtn.textContent = "Продолжить";
+            continueBtn.style.padding = "8px 16px";
+            continueBtn.style.borderRadius = "20px";
+            continueBtn.style.border = "2px solid #fff";
+            continueBtn.style.backgroundColor = "#000";
+            continueBtn.style.color = "#fff";
+            continueBtn.style.cursor = "pointer";
 
-              const continueBtn = document.createElement("button");
-              continueBtn.textContent = "Продолжить";
-              continueBtn.style.padding = "8px 16px";
-              continueBtn.style.borderRadius = "20px";
-              continueBtn.style.border = "2px solid #fff";
-              continueBtn.style.backgroundColor = "#000";
-              continueBtn.style.color = "#fff";
-              continueBtn.style.cursor = "pointer";
+            inputDiv.appendChild(emailInput);
+            inputDiv.appendChild(phoneInput);
+            inputDiv.appendChild(continueBtn);
+            chatArea.appendChild(inputDiv);
+            chatArea.scrollTop = chatArea.scrollHeight;
 
-              inputDiv.appendChild(emailInput);
-              inputDiv.appendChild(phoneInput);
-              inputDiv.appendChild(continueBtn);
-              chatArea.appendChild(inputDiv);
-              chatArea.scrollTop = chatArea.scrollHeight;
+            continueBtn.addEventListener("click", async function () {
+              const emailVal = emailInput.value.trim();
+              const phoneVal = phoneInput.value.trim();
+              if (!phoneVal) {
+                addBotMessage("Пожалуйста, укажите телефон!");
+                return;
+              }
+              var partner1 = readTableData("0");
+              var partner2 = readTableData("1");
+              const response = await fetch('/api/payments/create-link', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  email: emailVal,
+                  phone: phoneVal,
+                  birth_date: "", // или date1, если нужно
+                  type: "compatibility",
+                  points: [
+                    partner1,
+                    partner2
+                  ]
+                })
+              });
+              const data = await response.json();
+              const orderId = data.order_id;
+              if (!orderId) {
+                addBotMessage("Ошибка: не удалось получить номер заказа. Попробуйте позже.");
+                return;
+              }
+              localStorage.setItem("orderId", orderId);
+              localStorage.setItem("orderType", "compatibility");
 
-              continueBtn.addEventListener("click", async function () {
-                const emailVal = emailInput.value.trim();
-                const phoneVal = phoneInput.value.trim();
-                if (!emailVal && !phoneVal) {
-                  addBotMessage("Пожалуйста, укажите хотя бы email или телефон!");
-                  return;
-                }
-                // Получаем order_id с сервера (сюда можно добавить параметры для совместимости)
-                const response = await fetch('/api/payments/create-link', {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  body: JSON.stringify({ email: emailVal, phone: phoneVal, birth_date: date1, type: "compatibility" })
-                });
-                const data = await response.json();
-                const orderId = data.order_id;
-
-                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1500&products[0][quantity]=1&products[0][name]=Совместимость&order_id=${orderId}&do=pay`;
+              if (data.payment_url) {
+                window.location.href = data.payment_url;
+              } else {
+                const amount = 1500;
+                const productName = "Совместимость";
+                let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=${amount}&products[0][quantity]=1&products[0][name]=${encodeURIComponent(productName)}&order_id=${orderId}&do=pay`;
                 if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
                 if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
-
-                console.log('Ссылка на оплату:', payUrl);
                 window.location.href = payUrl;
-              });
+              }
+            });
 
-              // Добавляю обработку Enter для email и телефона
-              emailInput.addEventListener("keydown", function(e) {
-                if (e.key === "Enter") continueBtn.click();
-              });
-              phoneInput.addEventListener("keydown", function(e) {
-                if (e.key === "Enter") continueBtn.click();
-              });
-
-              return; // Не продолжаем дальше
-            }
-
-            // Если email/телефон уже есть (маловероятно), сразу создаём заказ
-            fetch('/api/payments/create-link', {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({ email, phone, birth_date: date1, type: "compatibility" })
-            })
-            .then(response => response.json())
-            .then(data => {
-              const orderId = data.order_id;
-              let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=1500&products[0][quantity]=1&products[0][name]=Совместимость&order_id=${orderId}&do=pay`;
-              if (email) payUrl += `&customer_email=${encodeURIComponent(email)}`;
-              if (phone) payUrl += `&customer_phone=${encodeURIComponent(phone)}`;
-              console.log('Ссылка на оплату:', payUrl);
-              window.location.href = payUrl;
+            // Обработка Enter
+            emailInput.addEventListener("keydown", function(e) {
+              if (e.key === "Enter") continueBtn.click();
+            });
+            phoneInput.addEventListener("keydown", function(e) {
+              if (e.key === "Enter") continueBtn.click();
             });
           });
 
@@ -863,13 +847,22 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     if (!orderId || orderId.startsWith('{')) {
       orderId = params.get('_payform_order_id');
     }
+    if (!orderId) {
+      orderId = localStorage.getItem("orderId");
+    }
     console.log("orderId:", orderId);
 
+    // Показываем ошибку только если в URL есть параметры оплаты, но orderId не определён
     if (orderId) {
-        // Открываем чат сразу, если вернулись после оплаты
         document.getElementById("chatWindow").style.display = "block";
         openChatWindow("Спасибо за оплату! Ваш результат будет показан ниже.");
+    } else if (
+        window.location.search.includes("order_id") ||
+        window.location.search.includes("_payform_order_id")
+    ) {
+        addBotMessage("Ошибка: не удалось определить номер заказа. Пожалуйста, попробуйте ещё раз или обратитесь в поддержку.");
     }
+    // Если пользователь просто зашёл на сайт — ничего не показываем, чат-бот работает как обычно
 
     // Получаем points из localStorage
     let points = [];
@@ -879,13 +872,52 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       points = [];
     }
 
-    // Запускаем только если orderId реально есть и points не пустые и есть хотя бы одно value > 0
+    // --- ВОТ ЗДЕСЬ ВСТАВЬ ПРОВЕРКУ ---
+    // Можно попробовать определить тип заказа по points или по localStorage (например, если points.length === 2 и есть chakras — это совместимость)
+    let isCompatibility = false;
+    if (points.length === 2 && points[0].chakras && points[1].chakras) {
+      isCompatibility = true;
+    }
+
     if (orderId && points.length && points.some(p => p.value > 0)) {
       savePaidPoints(orderId, points);
-      pollPaidInterpretation(orderId, 60, 3000);
+      if (isCompatibility) {
+        pollCompatibilityResult(orderId, 120, 3000);
+      } else {
+        pollPaidInterpretation(orderId, 120, 3000);
+      }
       localStorage.removeItem("paidPoints");
     } else if (orderId) {
-      pollPaidInterpretation(orderId, 60, 3000);
+      // Новый надёжный способ определения типа заказа
+      async function ensureOrderType(orderId) {
+        let orderType = localStorage.getItem("orderType");
+        if (orderType) return orderType;
+
+        // Если нет в localStorage — узнаём у сервера
+        try {
+          const resp = await fetch(`/api/payments/order-type?order_id=${orderId}`);
+          const data = await resp.json();
+          if (data.type) {
+            localStorage.setItem("orderType", data.type);
+            return data.type;
+          }
+        } catch (e) {
+          console.error("Не удалось получить тип заказа с сервера:", e);
+        }
+        return null;
+      }
+
+      (async function() {
+        let orderType = await ensureOrderType(orderId);
+
+        if (orderType === "compatibility") {
+          pollCompatibilityResult(orderId, 120, 3000);
+        } else if (orderType === "personal") {
+          pollPaidInterpretation(orderId, 120, 3000);
+        } else {
+          addBotMessage("Не удалось определить тип заказа. Пожалуйста, попробуйте ещё раз или обратитесь в поддержку.");
+        }
+      })();
     }
 
     // Применяем маску ввода для полей дат
@@ -1437,7 +1469,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     }
   }
 
-  function pollPaidInterpretation(orderId, maxAttempts = 60, interval = 3000) {
+  function pollPaidInterpretation(orderId, maxTries = 120, interval = 3000) {
     console.log("Вызвана pollPaidInterpretation с orderId:", orderId);
     let attempts = 0;
     let waitingMsgId = null;
@@ -1467,7 +1499,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           if (data.message && !data.message.includes("не удалось") && !data.message.includes("Order not paid")) {
             updateWaitingMessage(""); // Удалить индикатор
             addBotMessage("Спасибо за оплату! Вот твой результат по чакрам:\n" + data.message);
-          } else if (attempts < maxAttempts) {
+          } else if (attempts < maxTries) {
             attempts++;
             updateWaitingMessage("Ожидаем подтверждения оплаты..."); // Показываем только один раз
             setTimeout(poll, interval);
@@ -1477,7 +1509,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           }
         })
         .catch(() => {
-          if (attempts < maxAttempts) {
+          if (attempts < maxTries) {
             attempts++;
             updateWaitingMessage("Ожидаем подтверждения оплаты...");
             setTimeout(poll, interval);
@@ -1489,3 +1521,98 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     }
     poll();
   }
+
+  // Функция для получения и отображения результата совместимости
+  function fetchCompatibilityResult(orderId) {
+    fetch(`/api/payments/compatibility-interpretation?order_id=${orderId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.result) {
+                // Показываем результат в чат-боте
+                openChatWindow(data.result);
+            } else if (data.message) {
+                openChatWindow("Результат ещё не готов. Пожалуйста, попробуйте позже.");
+            } else if (data.error) {
+                openChatWindow("Ошибка: " + data.error);
+            } else {
+                openChatWindow("Не удалось получить результат совместимости.");
+            }
+        })
+        .catch(error => {
+            openChatWindow("Ошибка при получении результата: " + error);
+        });
+  }
+
+  // Функция для получения и отображения результата персонального анализа
+  function fetchPersonalResult(orderId) {
+    fetch(`/api/payments/paid-interpretation?order_id=${orderId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.result) {
+                openChatWindow(data.result);
+            } else if (data.message) {
+                openChatWindow("Результат ещё не готов. Пожалуйста, попробуйте позже.");
+            } else if (data.error) {
+                openChatWindow("Ошибка: " + data.error);
+            } else {
+                openChatWindow("Не удалось получить результат персонального анализа.");
+            }
+        })
+        .catch(error => {
+            openChatWindow("Ошибка при получении результата: " + error);
+        });
+  }
+
+  function pollCompatibilityResult(orderId, maxTries = 120, interval = 3000) {
+    let attempts = 0;
+    let waitingMsgId = null;
+
+    function updateWaitingMessage(text) {
+      if (waitingMsgId) {
+        const oldMsg = document.getElementById(waitingMsgId);
+        if (oldMsg) oldMsg.remove();
+      }
+      if (!text) return;
+      const chatArea = document.querySelector(".chat-area");
+      const botMsg = document.createElement("div");
+      botMsg.classList.add("message", "bot-message");
+      botMsg.textContent = "CHATBOT AI: " + text;
+      waitingMsgId = "waiting-msg";
+      botMsg.id = waitingMsgId;
+      chatArea.appendChild(botMsg);
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    function poll() {
+      fetch(`/api/payments/compatibility-interpretation?order_id=${orderId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.result) {
+            updateWaitingMessage("");
+            openChatWindow(data.result);
+          } else if (attempts < maxTries) {
+            attempts++;
+            updateWaitingMessage("Ожидаем подтверждения оплаты...");
+            setTimeout(poll, interval);
+          } else {
+            updateWaitingMessage("");
+            openChatWindow("Не удалось получить результат совместимости. Проверьте номер заказа или обратитесь в поддержку.");
+          }
+        })
+        .catch(() => {
+          if (attempts < maxTries) {
+            attempts++;
+            updateWaitingMessage("Ожидаем подтверждения оплаты...");
+            setTimeout(poll, interval);
+          } else {
+            updateWaitingMessage("");
+            openChatWindow("Не удалось получить результат совместимости. Проверьте номер заказа или обратитесь в поддержку.");
+          }
+        });
+    }
+    poll();
+  }
+
+  // Например, после успешного получения результата:
+  localStorage.removeItem("orderId");
+  localStorage.removeItem("orderType");

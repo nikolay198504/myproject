@@ -19,6 +19,8 @@ from api_service.payments import ORDERS, SessionLocal, Order, PendingOrder
 import re
 import datetime
 from sqlalchemy import Column, String
+import asyncio
+from api_service.chunks import Chunk
 
 router = APIRouter()
 
@@ -204,6 +206,26 @@ async def payment_webhook(request: Request):
         order.amount = amount or order.amount
         order.customer_phone = customer_phone or order.customer_phone
         order.customer_email = customer_email or order.customer_email
+        if order.type == "personal":
+            try:
+                points_data = json.loads(order.points) if order.points else []
+                chunk = Chunk()
+                result = await chunk.consult_paid(points_data)
+                order.personal_result = result
+                print("Сохранён результат персонального анализа:", result[:200], "...")
+            except Exception as e:
+                print("Ошибка при расчёте персонального анализа:", e)
+        if order.type == "compatibility":
+            try:
+                chunk = Chunk()
+                points_data = json.loads(order.points) if order.points else {}
+                partner1 = points_data[0] if isinstance(points_data, list) and len(points_data) > 0 else None
+                partner2 = points_data[1] if isinstance(points_data, list) and len(points_data) > 1 else None
+                result = await chunk.consult_compatibility_full(partner1, partner2)
+                order.compatibility_result = result
+                db.commit()
+            except Exception as e:
+                print(f"Ошибка при расчёте совместимости: {e}")
         db.commit()
         print(f"Updated status to: paid")
         db.close()

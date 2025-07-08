@@ -41,6 +41,8 @@ class Order(Base):
     customer_email = Column(String, nullable=True)
     paid_at = Column(DateTime, nullable=True)  # дата и время оплаты
     type = Column(String, default="personal")  # personal или compatibility
+    compatibility_result = Column(Text, nullable=True)  # <--- Добавить это поле
+    personal_result = Column(Text, nullable=True)  # <--- Добавить это поле
 
     @property
     def order_id(self):
@@ -113,18 +115,29 @@ async def create_payment_link(payment: PaymentRequest):
         "Authorization": f"Bearer {SECRET_KEY}",
         "Content-Type": "application/json"
     }
-    response = requests.post("https://payform.ru/api/v1/invoice/create", json=data, headers=headers)
-    print("[CREATE-LINK] Status code:", response.status_code)
-    print("[CREATE-LINK] Response text:", response.text)
     try:
-        result = response.json()
-    except Exception:
-        return {"error": response.text, "status_code": response.status_code}
-    if "url" in result:
-        print(f"[CREATE-LINK] Ссылка на оплату: {result['url']}")
-        return {"payment_url": result["url"], "order_id": order.order_id}
-    else:
-        return {"error": result, "order_id": order.order_id}
+        # Запрос к платёжной системе (payform/prodamus)
+        result = requests.post(PAYFORM_URL, data=data)
+        if result.status_code == 200:
+            payform_data = result.json()
+            return {
+                "payment_url": payform_data.get("url"),
+                "order_id": order.order_id
+            }
+        else:
+            # Даже если платёжка не ответила, верни order_id!
+            return {
+                "order_id": order.order_id,
+                "payment_url": None,
+                "error": "Failed to create payment link, use manual link"
+            }
+    except Exception as e:
+        # На всякий случай — тоже верни order_id
+        return {
+            "order_id": order.order_id,
+            "payment_url": None,
+            "error": f"Exception: {str(e)}"
+        }
 
 @router.get("/payments/status")
 async def payment_status(order_id: str):
