@@ -349,51 +349,51 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
 
                 // Создаём форму для ввода email и телефона
-                const inputDiv = document.createElement("div");
-                inputDiv.style.display = "flex";
-                inputDiv.style.flexDirection = "column";
-                inputDiv.style.gap = "8px";
-                inputDiv.style.margin = "10px 0";
+                  const inputDiv = document.createElement("div");
+                  inputDiv.style.display = "flex";
+                  inputDiv.style.flexDirection = "column";
+                  inputDiv.style.gap = "8px";
+                  inputDiv.style.margin = "10px 0";
 
-                const emailInput = document.createElement("input");
-                emailInput.type = "email";
-                emailInput.placeholder = "Ваш email (необязательно)";
-                emailInput.style.padding = "8px";
-                emailInput.style.borderRadius = "8px";
-                emailInput.style.border = "1px solid #ccc";
+                  const emailInput = document.createElement("input");
+                  emailInput.type = "email";
+                  emailInput.placeholder = "Ваш email (необязательно)";
+                  emailInput.style.padding = "8px";
+                  emailInput.style.borderRadius = "8px";
+                  emailInput.style.border = "1px solid #ccc";
 
-                const phoneInput = document.createElement("input");
-                phoneInput.type = "tel";
-                phoneInput.placeholder = "Ваш телефон (обязательно)";
-                phoneInput.style.padding = "8px";
-                phoneInput.style.borderRadius = "8px";
-                phoneInput.style.border = "1px solid #ccc";
+                  const phoneInput = document.createElement("input");
+                  phoneInput.type = "tel";
+                  phoneInput.placeholder = "Ваш телефон (обязательно)";
+                  phoneInput.style.padding = "8px";
+                  phoneInput.style.borderRadius = "8px";
+                  phoneInput.style.border = "1px solid #ccc";
 
-                const continueBtn = document.createElement("button");
-                continueBtn.textContent = "Продолжить";
-                continueBtn.style.padding = "8px 16px";
-                continueBtn.style.borderRadius = "20px";
-                continueBtn.style.border = "2px solid #fff";
-                continueBtn.style.backgroundColor = "#000";
-                continueBtn.style.color = "#fff";
-                continueBtn.style.cursor = "pointer";
+                  const continueBtn = document.createElement("button");
+                  continueBtn.textContent = "Продолжить";
+                  continueBtn.style.padding = "8px 16px";
+                  continueBtn.style.borderRadius = "20px";
+                  continueBtn.style.border = "2px solid #fff";
+                  continueBtn.style.backgroundColor = "#000";
+                  continueBtn.style.color = "#fff";
+                  continueBtn.style.cursor = "pointer";
 
-                inputDiv.appendChild(emailInput);
-                inputDiv.appendChild(phoneInput);
-                inputDiv.appendChild(continueBtn);
-                chatArea.appendChild(inputDiv);
-                chatArea.scrollTop = chatArea.scrollHeight;
+                  inputDiv.appendChild(emailInput);
+                  inputDiv.appendChild(phoneInput);
+                  inputDiv.appendChild(continueBtn);
+                  chatArea.appendChild(inputDiv);
+                  chatArea.scrollTop = chatArea.scrollHeight;
 
-                continueBtn.addEventListener("click", async function () {
-                  const emailVal = emailInput.value.trim();
-                  const phoneVal = phoneInput.value.trim();
+                  continueBtn.addEventListener("click", async function () {
+                    const emailVal = emailInput.value.trim();
+                    const phoneVal = phoneInput.value.trim();
                   if (!phoneVal) {
                     addBotMessage("Пожалуйста, укажите телефон!");
-                    return;
-                  }
+                      return;
+                    }
                   const paidPoints = getPaidPoints();
-                  const response = await fetch('/api/payments/create-link', {
-                    method: "POST",
+                    const response = await fetch('/api/payments/create-link', {
+                      method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                       email: emailVal,
@@ -402,9 +402,9 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                       type: "personal",
                       points: paidPoints
                     })
-                  });
-                  const data = await response.json();
-                  const orderId = data.order_id;
+                    });
+                    const data = await response.json();
+                    const orderId = data.order_id;
                   if (!orderId) {
                     addBotMessage("Ошибка: не удалось получить номер заказа. Попробуйте позже.");
                     return;
@@ -422,14 +422,14 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                     if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
                     window.location.href = payUrl;
                   }
-                });
+                  });
 
                 // Обработка Enter
-                emailInput.addEventListener("keydown", function(e) {
-                  if (e.key === "Enter") continueBtn.click();
-                });
-                phoneInput.addEventListener("keydown", function(e) {
-                  if (e.key === "Enter") continueBtn.click();
+                  emailInput.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") continueBtn.click();
+                  });
+                  phoneInput.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") continueBtn.click();
                 });
               });
     
@@ -517,7 +517,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       fetch("/api/consult_compatibility", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        body: JSON.stringify({ 
           partner1: { chakras: partner1.chakras },
           partner2: { chakras: partner2.chakras }
         })
@@ -557,52 +557,52 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
             openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
 
             // Создаём форму для ввода email и телефона
-            const inputDiv = document.createElement("div");
-            inputDiv.style.display = "flex";
-            inputDiv.style.flexDirection = "column";
-            inputDiv.style.gap = "8px";
-            inputDiv.style.margin = "10px 0";
+              const inputDiv = document.createElement("div");
+              inputDiv.style.display = "flex";
+              inputDiv.style.flexDirection = "column";
+              inputDiv.style.gap = "8px";
+              inputDiv.style.margin = "10px 0";
 
-            const emailInput = document.createElement("input");
-            emailInput.type = "email";
-            emailInput.placeholder = "Ваш email (необязательно)";
-            emailInput.style.padding = "8px";
-            emailInput.style.borderRadius = "8px";
-            emailInput.style.border = "1px solid #ccc";
+              const emailInput = document.createElement("input");
+              emailInput.type = "email";
+              emailInput.placeholder = "Ваш email (необязательно)";
+              emailInput.style.padding = "8px";
+              emailInput.style.borderRadius = "8px";
+              emailInput.style.border = "1px solid #ccc";
 
-            const phoneInput = document.createElement("input");
-            phoneInput.type = "tel";
-            phoneInput.placeholder = "Ваш телефон (обязательно)";
-            phoneInput.style.padding = "8px";
-            phoneInput.style.borderRadius = "8px";
-            phoneInput.style.border = "1px solid #ccc";
+              const phoneInput = document.createElement("input");
+              phoneInput.type = "tel";
+              phoneInput.placeholder = "Ваш телефон (обязательно)";
+              phoneInput.style.padding = "8px";
+              phoneInput.style.borderRadius = "8px";
+              phoneInput.style.border = "1px solid #ccc";
 
-            const continueBtn = document.createElement("button");
-            continueBtn.textContent = "Продолжить";
-            continueBtn.style.padding = "8px 16px";
-            continueBtn.style.borderRadius = "20px";
-            continueBtn.style.border = "2px solid #fff";
-            continueBtn.style.backgroundColor = "#000";
-            continueBtn.style.color = "#fff";
-            continueBtn.style.cursor = "pointer";
+              const continueBtn = document.createElement("button");
+              continueBtn.textContent = "Продолжить";
+              continueBtn.style.padding = "8px 16px";
+              continueBtn.style.borderRadius = "20px";
+              continueBtn.style.border = "2px solid #fff";
+              continueBtn.style.backgroundColor = "#000";
+              continueBtn.style.color = "#fff";
+              continueBtn.style.cursor = "pointer";
 
-            inputDiv.appendChild(emailInput);
-            inputDiv.appendChild(phoneInput);
-            inputDiv.appendChild(continueBtn);
-            chatArea.appendChild(inputDiv);
-            chatArea.scrollTop = chatArea.scrollHeight;
+              inputDiv.appendChild(emailInput);
+              inputDiv.appendChild(phoneInput);
+              inputDiv.appendChild(continueBtn);
+              chatArea.appendChild(inputDiv);
+              chatArea.scrollTop = chatArea.scrollHeight;
 
-            continueBtn.addEventListener("click", async function () {
-              const emailVal = emailInput.value.trim();
-              const phoneVal = phoneInput.value.trim();
+              continueBtn.addEventListener("click", async function () {
+                const emailVal = emailInput.value.trim();
+                const phoneVal = phoneInput.value.trim();
               if (!phoneVal) {
                 addBotMessage("Пожалуйста, укажите телефон!");
-                return;
-              }
+                  return;
+                }
               var partner1 = readTableData("0");
               var partner2 = readTableData("1");
-              const response = await fetch('/api/payments/create-link', {
-                method: "POST",
+                const response = await fetch('/api/payments/create-link', {
+                  method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   email: emailVal,
@@ -614,9 +614,9 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                     partner2
                   ]
                 })
-              });
-              const data = await response.json();
-              const orderId = data.order_id;
+                });
+                const data = await response.json();
+                const orderId = data.order_id;
               if (!orderId) {
                 addBotMessage("Ошибка: не удалось получить номер заказа. Попробуйте позже.");
                 return;
@@ -634,14 +634,14 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 if (phoneVal) payUrl += `&customer_phone=${encodeURIComponent(phoneVal)}`;
                 window.location.href = payUrl;
               }
-            });
+              });
 
             // Обработка Enter
-            emailInput.addEventListener("keydown", function(e) {
-              if (e.key === "Enter") continueBtn.click();
-            });
-            phoneInput.addEventListener("keydown", function(e) {
-              if (e.key === "Enter") continueBtn.click();
+              emailInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") continueBtn.click();
+              });
+              phoneInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") continueBtn.click();
             });
           });
 

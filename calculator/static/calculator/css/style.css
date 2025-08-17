@@ -3,112 +3,130 @@
 =============================== */
 
 .arrow-container {
-  display: inline-block;
-  transition: all 0.2s ease-in-out;
-  width: 150px;
-  height: 150px;
-  position: relative; /* Стрелка будет двигаться отдельно от текста */
+  width: 150px; /* Ширина контейнера */
+  height: 150px; /* Высота контейнера */
+  display: inline-block; /* Контейнер стрелки */
+  transition: all 0.2s ease-in-out; /* Плавное изменение */
+  width: 150px; /* Ширина контейнера */
+  height: 150px; /* Высота контейнера */
+  position: relative; /* Для позиционирования стрелки */
 }
 
 .arrow {
-  display: inline-block;
-  transition: all 0.2s ease-in-out;
-  width: 100px;
-  height: 100px;
-  position: relative;
+  display: inline-block; /* Стрелка как блочный элемент */
+  transition: all 0.2s ease-in-out; /* Плавное изменение */
+  width: 100px; /* Ширина стрелки */
+  height: 100px; /* Высота стрелки */
+  position: relative; /* Для позиционирования */
 }
 
 .arrow-up {
-  margin-bottom: 10px;
-  position: absolute;
-  top: 65px !important;
-  left: -215px; /* Расположим стрелку влево */
+  margin-bottom: 10px; /* Отступ снизу */
+  position: absolute; /* Абсолютное позиционирование */
+  top: 65px !important; /* Положение сверху */
+  left: -215px; /* Сдвиг влево */
 }
 
 .arrow-down {
-  margin-top: 0px;
-  position: absolute;
-  bottom: 75px;
-  left: 265px;  /* Расположение стрелки вправо */
-  transform: rotate(180deg) scaleX(-1);
+  pointer-events: none;
+  margin-top: 0px; /* Отступ сверху */
+  position: absolute; /* Абсолютное позиционирование */
+  bottom: 75px; /* Положение снизу */
+  left: 265px;  /* Сдвиг вправо */
+  transform: rotate(180deg) scaleX(-1); /* Поворот стрелки */
+  pointer-events: none;
+  margin-top: 0px; /* Отступ сверху */
+  position: absolute; /* Абсолютное позиционирование */
+  bottom: 75px; /* Положение снизу */
+  left: 265px;  /* Сдвиг вправо */
+  transform: rotate(180deg) scaleX(-1); /* Поворот стрелки */
 }
 
 /* Текстовые блоки около стрелок */
 .text-block {
-  position: relative;
-  text-align: center;
+  position: relative; /* Для позиционирования */
+  text-align: center; /* Выравнивание по центру */
 }
 
 /* Общие стили для текста */
 .text-arrow {
-  font-style: italic;
-  font-size: 2rem;
-  margin: 10px 0;
-  position: relative;
+  font-style: italic; /* Курсив */
+  font-size: 2rem; /* Размер шрифта */
+  margin: 10px 0; /* Отступы сверху и снизу */
+  position: relative; /* Для позиционирования */
 }
 
 /* Позиционирование текста "MATRIZ PERSONAL" */
 .text-matriz-personal {
-  top: 0;
-  left: -240px;
+  position: relative; /* чтобы top/left работали */
+  top: 0; /* Положение сверху */
+  left: -240px; /* Сдвиг влево */
 }
 
 /* Позиционирование текста "MATRIZ DE COMPATIBILIDAD" */
 .text-matriz-compatibilidad {
-  top: -25px;
-  left: 250px;
+  position: relative; /* чтобы top/left работали */
+  top: -25px; /* Сдвиг вверх */
+  left: 250px; /* Сдвиг вправо */
 }
+
+.btn.btn-custom {
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+
 
 /* ===============================
    2. Базовые стили для всего тела, таблиц и футера
 =============================== */
 
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  height: 100%; /* Высота на весь экран */
+  margin: 0; /* Без внешних отступов */
+  padding: 0; /* Без внутренних отступов */
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-  background-color: #000;
-  color: #fff;
+  display: flex; /* Гибкое позиционирование */
+  flex-direction: column; /* Колонка */
+  font-family: "Montserrat", sans-serif; /* Шрифт */
+  font-weight: 300; /* Толщина шрифта */
+  background-color: #000; /* Чёрный фон */
+  color: #fff; /* Белый текст */
 }
 
 main {
-  flex: 1 0 auto;
+  flex: 1 0 auto; /* Гибкий основной блок */
 }
 
 /* Футер (общие стили) */
 .footer_section {
-  flex-shrink: 0;
-  margin-top: 500px !important;
-  background-color: #000;
-  color: #fff;
-  padding: 70px 0;
+  flex-shrink: 0; /* Не сжимается */
+  margin-top: 500px !important; /* Отступ сверху */
+  background-color: #000; /* Чёрный фон */
+  color: #fff; /* Белый текст */
+  padding: 70px 0; /* Внутренние отступы */
 }
 
 /* Заголовки в футере */
 h1, h2 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Dancing Script', cursive; /* Красивый шрифт */
 }
 
 /* Таблицы */
 table {
-  width: 100%;
-  padding: 10px;
-  border-collapse: separate;
-  border-spacing: 0 5px;
-  table-layout: fixed;
+  width: 100%; /* На всю ширину */
+  padding: 10px; /* Внутренний отступ */
+  border-collapse: separate; /* Раздельные границы */
+  border-spacing: 0 5px; /* Промежутки между строками */
+  table-layout: fixed; /* Фиксированная ширина */
 }
 
 table th {
-  text-align: center;
-  text-decoration: none;
-  font-weight: normal;
+  text-align: center; /* Выравнивание по центру */
+  text-decoration: none; /* Без подчеркивания */
+  font-weight: normal; /* Обычный шрифт */
 }
 
 table > tbody > tr > td,
@@ -117,26 +135,26 @@ table > tfoot > tr > td,
 table > tfoot > tr > th,
 table > thead > tr > td,
 table > thead > tr > th {
-  border: 2px solid #f8f8f8;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 7px;
-  padding: 5px;
+  border: 2px solid #f8f8f8; /* Границы */
+  text-align: center; /* Центрирование */
+  vertical-align: middle; /* Вертикальное выравнивание */
+  border-radius: 7px; /* Скругление */
+  padding: 5px; /* Внутренний отступ */
 }
 
 .cell_gray {
-  background-color: #E0E0E0 !important;
-  color: #000 !important;
+  background-color: #E0E0E0 !important; /* Серый фон */
+  color: #000 !important; /* Чёрный текст */
 }
 
-.cell_sahasrara    { background-color: #664074 !important; color: white; }
-.cell_ajna         { background-color: #155493 !important; color: white; }
-.cell_vishuddha    { background-color: #009ED1 !important; color: white; }
-.cell_anahata      { background-color: #009E52 !important; color: white; }
-.cell_manipura     { background-color: #EFBE3D !important; color: white; }
-.cell_svadhisthana { background-color: #F28D3B !important; color: white; }
-.cell_muladhara    { background-color: #E54144 !important; color: white; }
-.cell_total        { background-color: #bcb395 !important; color: white; }
+.cell_sahasrara    { background-color: #664074 !important; color: white !important; } /* Фон и цвет для чакры сахасрара */
+.cell_ajna         { background-color: #155493 !important; color: white !important; } /* Аджна */
+.cell_vishuddha    { background-color: #009ED1 !important; color: white !important; } /* Вишуддха */
+.cell_anahata      { background-color: #009E52 !important; color: white !important; } /* Анахата */
+.cell_manipura     { background-color: #EFBE3D !important; color: white !important; } /* Манипура */
+.cell_svadhisthana { background-color: #F28D3B !important; color: white !important; } /* Свадхистхана */
+.cell_muladhara    { background-color: #E54144 !important; color: white !important; } /* Муладхара */
+.cell_total        { background-color: #bcb395 !important; color: white !important; } /* Сумма */
 
 /* ===============================
    3. Стили для футера (логотип, соц.сети)
@@ -144,31 +162,31 @@ table > thead > tr > th {
 
 /* CSS-переменные */
 :root {
-  --footer-h4-size: 32px;
-  --footer-logo-size: 40px;
-  --footer-p-size: 30px;
-  --floating-btn-size: 100px;
+  --footer-h4-size: 32px; /* Размер заголовка футера */
+  --footer-logo-size: 40px; /* Размер логотипа футера */
+  --footer-p-size: 30px; /* Размер текста футера */
+  --floating-btn-size: 100px; /* Размер плавающей кнопки */
 }
 
 .footer_section {
-  background-color: #222831;
-  color: #fff;
-  padding: 75px 0 40px 0;
-  text-align: center;
+  background-color: #222831; /* Цвет футера */
+  color: #fff; /* Белый текст */
+  padding: 75px 0 40px 0; /* Внутренние отступы */
+  text-align: center; /* Центрирование */
 }
 
 .footer_section h4 {
-  font-size: var(--footer-h4-size);
-  font-weight: 600;
-  margin-bottom: 20px;
-  font-family: 'Dancing Script', cursive;
+  font-size: var(--footer-h4-size); /* Размер заголовка */
+  font-weight: 600; /* Жирный */
+  margin-bottom: 20px; /* Отступ снизу */
+  font-family: 'Dancing Script', cursive; /* Красивый шрифт */
 }
 
 .footer_section .footer-logo {
-  display: block;
-  font-weight: bold;
-  font-size: 36px !important;
-  line-height: 1;
+  display: block; /* Блочный элемент */
+  font-weight: bold; /* Жирный */
+  font-size: 36px !important; /* Размер */
+  line-height: 1; /* Межстрочный интервал */
   color: #fff;
   margin-bottom: 20px;
   font-family: 'Dancing Script', cursive;
@@ -176,37 +194,37 @@ table > thead > tr > th {
 }
 
 .footer_section p {
-  color: #dbdbdb;
-  font-size: var(--footer-p-size);
+  color: #dbdbdb; /* Серый текст */
+  font-size: var(--footer-p-size); /* Размер */
 }
 
 .footer_section .footer-col {
-  margin-bottom: 36px;
+  margin-bottom: 36px; /* Отступ снизу */
 }
 
 /* Контейнер контактов */
 .footer_section .footer_contact .contact_link_box {
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Гибкое позиционирование */
+  flex-direction: column; /* Колонка */
   text-align: center;
 }
 .footer_section .footer_contact .contact_link_box a {
-  margin: 5px 0;
+  margin: 5px 0; /* Отступы */
   color: #fff;
 }
 .footer_section .footer_contact .contact_link_box a:hover {
-  color: #ffbe33;
+  color: #ffbe33; /* Жёлтый при наведении */
 }
 
 /* Класс для увеличения размера Email */
 .big-email {
-  font-size: 1.7rem !important;
+  font-size: 1.7rem !important; /* Крупный email */
 }
 
 /* Социальные иконки */
 .footer_section .footer_social {
-  display: flex;
-  justify-content: center;
+  display: flex; /* Гибкое позиционирование */
+  justify-content: center; /* Центрирование */
   margin-top: 20px;
   margin-bottom: 100px;
 }
@@ -229,7 +247,7 @@ table > thead > tr > th {
 
 /* Фиксированный размер для соц.иконок (картинок) */
 .social-icons a img {
-  width: 40px;
+  width: 40px; /* Размер иконки */
   height: 40px;
   transition: opacity 0.3s ease;
 }
@@ -269,22 +287,23 @@ table > thead > tr > th {
 =============================== */
 
 .floating-button {
-  position: fixed;
-  bottom: 160px;
-  right: 150px;
-  width: var(--floating-btn-size);
-  height: var(--floating-btn-size);
-  border-radius: 50%;
-  background: url("/static/calculator/images/push.gif") no-repeat center center;
-  background-size: cover;
-  border: none;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  position: fixed; /* Фиксированное позиционирование */
+  bottom: 150px;   /* Отступ снизу */
+  right: 100px;     /* Отступ справа */
+  left: unset;     /* Не задаём отступ слева */
+  width: 100px;     /* Ширина кнопки */
+  height: 100px;    /* Высота кнопки */
+  border-radius: 50%; /* Круглая кнопка */
+  background: url("/static/calculator/images/push.gif") no-repeat center center; /* Фон-картинка */
+  background-size: cover; /* Картинка на весь фон */
+  border: none; /* Без границы */
+  cursor: pointer; /* Курсор-рука */
+  z-index: 1000; /* Поверх всего */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Тень */
 }
 .floating-button:hover {
-  transform: scale(1.05);
-  transition: transform 0.2s ease-in-out;
+  transform: scale(1.05); /* Увеличение при наведении */
+  transition: transform 0.2s ease-in-out; /* Плавное увеличение */
 }
 
 .chat-floating-window {
@@ -340,6 +359,9 @@ table > thead > tr > th {
   border: 1px solid #fff;
   border-radius: 35px;
   margin-top: 50px;
+}
+.chat-floating-header.text-left.text-white {
+  padding-top: 100px;
 }
 .chat-floating-header::before {
   content: "";
@@ -448,3 +470,73 @@ table > thead > tr > th {
 #sendBtn {
   border-radius: 40px;
 }
+
+.main-title-mobile {
+  font-size: 2.5rem !important;           /* Очень крупный подзаголовок для десктопа */
+  font-weight: 900;                     /* Полужирный */
+  margin-top: 5000px !important;          /* Отступ сверху (тестовый) */
+  margin-bottom: 160px !important;       /* Отступ снизу, чтобы текст был чуть ниже */
+  text-align: center !important;          /* Выравнивание влево */
+  color: #fbfbfb !important;               /* Белый цвет */
+  background: none !important;          /* Без фона */
+  box-shadow: none !important;          /* Без тени */
+  display: block !important;            /* Блочный элемент */
+  padding: 0 !important;                /* Без внутренних отступов */
+  border-radius: 0 !important;          /* Без скругления углов */
+}
+
+.main-title {
+  font-size: 19rem !important;           /* Очень крупный заголовок для десктопа */
+  font-weight: bold;
+  margin-top: 120px !important;
+  margin-bottom: 40px !important;
+  text-align: left !important;
+  white-space: nowrap !important;        /* Не переносить строки */
+  width: 100vw !important;               /* На всю ширину окна */
+  max-width: none !important;
+  overflow: visible !important;
+  background: none !important;
+  box-shadow: none !important;
+  color: #0d17a0 !important;
+  display: block !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+header.text-left.text-white {
+  width: 100vw !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+@media (min-width: 701px) {
+  header.text-left.text-white .main-title {
+    font-size: 2rem !important;
+    text-align: left !important;
+    color: #ffffff !important;
+    white-space: nowrap !important;
+    width: 100vw !important;
+    max-width: none !important;
+    overflow: visible !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .row.justify-content-center.g-5 {
+    margin-top: 120px !important;
+  }
+  .main-title-mobile {
+    margin-top: 0 !important;
+  }
+}
+
+
+
+@media (max-width: 700px) {
+  header.text-left.text-white .main-title {
+    text-align: left !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+

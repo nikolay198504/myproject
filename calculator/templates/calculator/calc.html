@@ -34,9 +34,14 @@
   background-size: cover;
   min-height: 900px; /* или больше, например 600px */
 ">
-  <div class="d-flex p-4">
-    <h1 style="margin: 50px 96px; font-size:40px; white-space: nowrap;">
+    <div class="d-flex p-4 justify-content-start">
+    <h1 class="main-title">
       TU MATRIZ PERSONALIZADA
+    </h1>
+  </div>
+  <div class="d-block w-100">
+    <h1 class="main-title-mobile">
+      Para el análisis de la matriz,<br>por favor introduce tu fecha de nacimiento
     </h1>
   </div>
 </header>
@@ -67,9 +72,6 @@
     <!--   добавляет тень текста: 0px по горизонтали, 10px по вертикали, 30px радиус размытия, полупрозрачный белый цвет -->
 	<main>
 	  <!-- Единый центральный заголовок -->
-	  <h1 class="text-center" style="font-size: 2.7rem; font-weight: 900; margin-top: -100px; margin-bottom: 160px; white-space: nowrap; text-align: left; margin-left: -80px; text-shadow: 0 10px 30px rgba(255, 255, 255, 0.5);">
-		Para el análisis de la matriz, por favor introduce tu fecha de nacimiento
-	</h1>
 	
 	
 	
@@ -87,7 +89,7 @@
 			<img src="{% static 'calculator/images/стрелка вверх.png' %}" alt="Arrow Up" class="arrow arrow-up">
 		  </div>
 		  <!-- Поле ввода -->
-		  <div class="input-group input-group-lg mb-3" style="max-width: 300px; margin: 0 auto;">
+		  <div class="input-group input-group-lg mb-3 inputs-offset" style="max-width: 300px; margin: 0 auto;">
 			<input type="text" maxlength="10" class="form-control input-gold" pattern="[0-9.]" id="inputDate1" placeholder="dd.mm.yyyy" aria-label="dd.mm.yyyy" onkeydown="handleEnter(event, calc_1);">
 		  </div>
 		  <!-- Кнопка -->
@@ -108,7 +110,7 @@
 			<img src="{% static 'calculator/images/стрелка вниз.png' %}" alt="Arrow Down" class="arrow arrow-down">
 		  </div>
 		  <!-- Поле ввода -->
-		  <div class="input-group input-group-lg mb-3" style="max-width: 300px; margin: -96px auto 0;">
+		  <div class="input-group input-group-lg mb-3 inputs-offset" style="max-width: 300px; margin: 0 auto;">
 
 			<input type="text" maxlength="10" class="form-control input-gold" id="inputDate2" placeholder="dd.mm.yyyy" aria-label="dd.mm.yyyy" onkeydown="handleEnter(event, calc_2);">
 		  </div>
@@ -368,12 +370,12 @@
 			  <div>
 				<i class="fa fa-envelope" aria-hidden="true"></i>
 				<!-- Присвоим класс 'big-email' -->
-				<span class="big-email">Email: tatianakrvlova57@amail.com</span>
+				<span class="big-email">Email: tatianakrvlova57@gamail.com</span>
 			  </div>
 			</div>
 		  </div>
 		</div>
-		
+		 
 		<!-- REDES SOCIALES -->
 		<div class="col-md-4 footer-col">
 		  <div class="social-section">
