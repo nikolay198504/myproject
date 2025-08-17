@@ -21,6 +21,8 @@ body {
 
 /* === Планшеты (iPad, 701–992px): центрируем заголовки/подписи в колонках, убираем большие сдвиги === */
 @media (min-width: 701px) and (max-width: 992px) {
+  /* Доп. опускание ПРАВОЙ колонки целиком (текст + стрелка + инпуты) */
+  .text-matriz-compatibilidad { margin-top: 61px !important; }
   /* Общее: центрируем содержимое колонок */
   .row > [class*="col-"] {
     display: flex !important;
@@ -54,10 +56,18 @@ body {
   .text-matriz-personal p,
   .text-matriz-compatibilidad p { font-size: 0.92em !important; line-height: 1.35 !important; }
   /* Выравниваем высоту текстовых блоков, чтобы инпуты были на одной линии */
+  /* Фиксированная высота описаний + нижний отступ, чтобы стрелки не наезжали */
   .text-matriz-personal p,
-  .text-matriz-compatibilidad p { min-height: 260px !important; }
+  .text-matriz-compatibilidad p {
+    height: 300px !important;           /* компактнее по высоте */
+    margin-bottom: 18px !important;     /* больше отступа до стрелки */
+  }
   .text-matriz-personal .text-arrow,
-  .text-matriz-compatibilidad .text-arrow { min-height: 80px !important; }
+  .text-matriz-compatibilidad .text-arrow {
+    height: 100px !important;           /* стрелки чуть меньше */
+    margin-top: 6px !important;         /* отступ от текста сверху */
+    margin-bottom: 16px !important;     /* отступ до инпутов */
+  }
   /* Стрелочный блок и стрелки — без абсолютных отступов на планшетах */
   .arrow-container { display: flex !important; justify-content: center !important; }
   .arrow, .arrow-up, .arrow-down {
@@ -65,8 +75,11 @@ body {
     left: auto !important; right: auto !important;
     top: auto !important; bottom: auto !important;
     transform: none !important;
-    margin: 8px auto !important;
+    margin: 6px auto 16px !important;  /* больше отступа до инпута */
     display: block !important;
+    height: 100px !important;          /* синхронизировано с .text-arrow */
+    max-height: 100px !important;
+    z-index: 1;
   }
 
   /* Улучшаем переносы заголовков/подписей */
@@ -74,7 +87,7 @@ body {
   .text-matriz-personal p,
   .text-matriz-compatibilidad .text-arrow,
   .text-matriz-compatibilidad p {
-    max-width: 440px !important;
+    max-width: 480px !important;        /* шире текстовый блок — меньше «ступенек» переносов */
     white-space: normal !important;
     word-break: normal !important;
     overflow-wrap: anywhere !important;
@@ -100,7 +113,10 @@ body {
   .text-matriz-personal .btn.btn-custom,
   .text-matriz-compatibilidad .btn.btn-custom { height: 42px !important; font-size: 0.96rem !important; }
   .text-matriz-personal .input-group.input-group-lg,
-  .text-matriz-compatibilidad .input-group.input-group-lg { margin-top: 10px !important; margin-bottom: 8px !important; }
+  .text-matriz-compatibilidad .input-group.input-group-lg { margin-top: 10px !important; margin-bottom: 10px !important; }
+  /* Гарантируем одинаковую точку старта первого инпута после стрелки */
+  .text-matriz-personal .input-group.input-group-lg:first-of-type,
+  .text-matriz-compatibilidad .input-group.input-group-lg:first-of-type { margin-top: 12px !important; }
   .text-matriz-personal .input-group.input-group-lg .form-control,
   .text-matriz-compatibilidad .input-group.input-group-lg .form-control { height: 42px !important; }
 }
@@ -782,5 +798,19 @@ table > thead > tr > th {
 @media (max-width: 375px) {
   .main-title-mobile {
     font-size: 1em !important;        /* Размер шрифта на самых маленьких экранах */
+  }
+}
+
+/* ===================================================================
+   8. Десктоп (≥ 993px): увеличить фон заголовка (картинка часов)
+   Не влияет на планшеты/мобилки
+=================================================================== */
+@media (min-width: 993px) {
+  header.text-left.text-white {
+    /* Заполняем всю ширину, без чёрных полей слева/справа */
+    background-size: cover !important;         /* заполнить контейнер по ширине */
+    background-repeat: no-repeat !important;   /* без повторов */
+    background-position: center center !important; /* по центру */
+    min-height: 780px !important;              /* высота секции под фон */
   }
 }
