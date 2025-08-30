@@ -114,8 +114,8 @@ async def consult_paid(data: ModelPaid):
 @app.post("/consult_compatibility")
 async def consult_compatibility(data: ModelCompatibility):
     try:
-        # На первом этапе всегда возвращаем предложение оплатить
-        return {"message": "Готов узнать о consult_compatibility (платно)?"}
+        # На первом этапе всегда возвращаем предложение оплатить (испанский текст для чата)
+        return {"message": "🔮 ¿Quieres descubrir tu compatibilidad con otra persona? (premium)"}
     except Exception as e:
         print("Ошибка в обработчике /consult_compatibility:", e)
         print(traceback.format_exc())

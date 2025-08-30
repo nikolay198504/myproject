@@ -1,1282 +1,648 @@
 {
     "custom_points": [
       {
-        "chakra": "ajna",
+        "chakra": "Ajna",
         "aspect": "Emociones",
-        "description": "Ajna отвечает за мышление, образное и логическое восприятие мира. Здесь проявляется, как человек обрабатывает информацию, строит представление о мире и выражает свои идеи.",
-        "1": "Лидерское мышление, активное, быстрое. Умеет видеть суть и моментально принимать решения.",
-        "2": "Интуитивное мышление, чувствует подтексты, восприимчив к энергетике слов.",
-        "3": "Образное мышление, творческое, эмоциональное. Выражает идеи красиво и вдохновенно.",
-        "4": "Структурное мышление, логичное. Видит систему, умеет стратегически мыслить.",
-        "5": "Обучаемое мышление, любит новое, легко переключается. Склонно к рассеянности.",
-        "6": "Гармоничное, миротворческое мышление. Умеет видеть все стороны и находить баланс.",
-        "7": "Глубокий аналитик. Ум интуитивный, уединённый, склонен к самоанализу и сомнениям.",
-        "8": "Сильный, напористый интеллект. Ум доминирующий, опора на факты и результат.",
-        "9": "Философское мышление. Интеграция разных точек зрения, мудрость, духовное видение.",
-        "10": "Креативный и нестабильный ум. Может прыгать от идеи к идее. Гениальность на грани хаоса.",
-        "11": "Ментальная перегрузка. Ум очень чувствительный, может легко уставать.",
-        "12": "Мышление-жертва. Склонен подстраиваться, подавлять свои идеи ради других.",
-        "13": "Инновационное, революционное мышление. Ум нестандартный, может вызывать шок у других.",
-        "14": "Мыслящий эстет, любит красоту формулировок и утончённость идей.",
-        "15": "Магическое, эзотерическое мышление. Склонен к эзотерике, тайным знаниям.",
-        "16": "Ментальные кризисы, перезагрузки ума. Через разрушение — обновление мышления.",
-        "17": "Оптимизм, светлый ум, легко вдохновляет и заражает идеями.",
-        "18": "Склонность к пессимизму. Ум заземлён, требует чёткости и материального подтверждения.",
-        "19": "Просветлённый ум. Мысли возвышенные, направлены на общее благо.",
-        "20": "Закрытое мышление, склонное к тайнам. Информация скрыта, часто молчит.",
-        "21": "Зрелый ум. Объединяет интуицию и опыт, умеет вести за собой мыслями.",
-        "22": "Мистический ум. Мышление вне логики, через озарения, знаки и потоки."
+        "description": "Ajna responde por el pensamiento, la percepción imaginativa y lógica del mundo. Aquí se manifiesta cómo la persona procesa la información, construye su visión del mundo y expresa sus ideas.",
+        "1": "Pensamiento de líder, activo y rápido. Sabe ver la esencia y tomar decisiones de inmediato.",
+        "2": "Pensamiento intuitivo, percibe los subtextos, sensible a la energía de las palabras.",
+        "3": "Pensamiento imaginativo, creativo y emocional. Expresa ideas de forma bella e inspiradora.",
+        "4": "Pensamiento estructurado y lógico. Ve el sistema y sabe pensar estratégicamente.",
+        "5": "Pensamiento aprendiz, ama lo nuevo y cambia fácilmente. Tiende a la dispersión.",
+        "6": "Pensamiento armonioso y pacificador. Sabe ver todos los lados y encontrar equilibrio.",
+        "7": "Analista profundo. Mente intuitiva, solitaria, inclinada al autoanálisis y a las dudas.",
+        "8": "Intelecto fuerte y dominante. Mente con apoyo en hechos y resultados.",
+        "9": "Pensamiento filosófico. Integra diferentes puntos de vista, sabiduría y visión espiritual.",
+        "10": "Mente creativa e inestable. Puede saltar de una idea a otra. Genialidad al borde del caos.",
+        "11": "Sobrecarga mental. Mente muy sensible, puede fatigarse fácilmente.",
+        "12": "Pensamiento-víctima. Tiende a adaptarse, reprimir sus ideas en favor de otros.",
+        "13": "Pensamiento innovador y revolucionario. Mente no estándar, puede causar shock en los demás.",
+        "14": "Mente estética, ama la belleza de las formulaciones y la sutileza de las ideas.",
+        "15": "Pensamiento mágico y esotérico. Inclinado al esoterismo y al conocimiento secreto.",
+        "16": "Crisis mentales, reinicios de la mente. A través de la destrucción llega la renovación del pensamiento.",
+        "17": "Optimismo, mente luminosa, fácilmente inspira y contagia con ideas.",
+        "18": "Tendencia al pesimismo. Mente aterrizada, requiere claridad y confirmación material.",
+        "19": "Mente iluminada. Pensamientos elevados, dirigidos al bien común.",
+        "20": "Pensamiento cerrado, inclinado a los secretos. Información oculta, a menudo guarda silencio.",
+        "21": "Mente madura. Une intuición y experiencia, sabe guiar con sus pensamientos.",
+        "22": "Mente mística. Pensamiento más allá de la lógica, a través de iluminaciones, señales y flujos."
       },
+      
       {
-        "chakra": "anahata",
+        "chakra": "Anahata",
         "aspect": "Emociones",
-        "description": "Anahata отвечает за эмоциональную сферу, чувства и любовь. Она показывает, как человек выражает эмоции, строит привязанности, воспринимает близость и заботу. Через эту чакру мы чувствуем душевную связь с собой и другими.",
-        "1": "Открытые, смелые чувства. Быстро проявляет симпатию, эмоционально щедрый.",
-        "2": "Нежная эмоциональность. Требует безопасности, склонен к привязанности.",
-        "3": "Игривость, лёгкость в чувствах. Спонтанная любовь, открытое сердце.",
-        "4": "Сдержанные чувства, проявление любви через заботу и контроль.",
-        "5": "Чувства переменчивы. Быстро влюбляется, быстро остывает.",
-        "6": "Гармония, эмпатия, тонкое восприятие. Стремится к миру и взаимопониманию.",
-        "7": "Глубокие чувства, не сразу открывается. Требует доверия и уединения.",
-        "8": "Стабильные чувства. Проявляет любовь через действия и защиту.",
-        "9": "Духовная любовь, сострадание, умение любить без условий.",
-        "10": "Эмоциональные качели. Сильные чувства, но трудно удержать стабильность.",
-        "11": "Тревожность, одиночество, стремление к признанию.",
-        "12": "Жертвенность в любви. Склонность ставить другого выше себя.",
-        "13": "Нестандартное проявление чувств. Удивляет, может быть эксцентричен.",
-        "14": "Эстетика чувств. Любовь через красоту, философское восприятие.",
-        "15": "Сложные, фатальные чувства. Возможна болезненная привязанность.",
-        "16": "Кризис и перерождение в чувствах. Страсть и боль идут рядом.",
-        "17": "Вдохновляющая любовь. Радость, щедрость души.",
-        "18": "Сомнения в любви. Тяжело верить, требуется подтверждение.",
-        "19": "Всеобъемлющая любовь. Способность любить весь мир.",
-        "20": "Скрытые чувства. Сложность в выражении, таинственность.",
-      "21": "Зрелая, принимающая любовь. Уважение, поддержка.",
-      "22": "Безусловная, духовная любовь. Принятие и благословение."
-    },
-    {
-      "chakra": "svadhisthana",
-      "aspect": "Emociones",
-    "description": "Svadhisthana — чакра чувственности, сексуальности и удовольствия. Через неё проявляется наша способность к наслаждению, близости и принятию своего тела.",
-    "1": "Импульсивность, страсть, сильное телесное влечение. Желание доминировать и брать инициативу.",
-    "2": "Нежность, стеснительность, желание защищённости в близости. Чувственность открывается только при доверии.",
-    "3": "Игривая чувственность. Открытость к телесному контакту, флирт, удовольствие через радость.",
-    "4": "Контроль, сдержанность, привязанность к стабильности. Проявляет желания через безопасность.",
-    "5": "Переменчивость, стремление к экспериментам. Удовольствие через свободу и новизну.",
-    "6": "Мягкая, дипломатичная сексуальность. Гармония в близости, умение слышать партнёра.",
-    "7": "Глубокая чувственность, может долго не раскрываться. Сексуальность с элементом тайны.",
-    "8": "Сила, надёжность, доминирующая энергия. Чувственность проявляется через заботу и контроль.",
-    "9": "Духовное слияние через телесность. Стремление к глубокой, осознанной близости.",
-    "10": "Сильные желания, часто непредсказуемые. Перепады от страсти к охлаждению.",
-    "11": "Страх близости, внутренние ограничения. Возможны блоки на уровне тела.",
-    "12": "Склонность подавлять желания, жертвенность. Может ставить интересы партнёра выше своих.",
-    "13": "Оригинальные предпочтения, нестандартная сексуальность. Может быть шокирующей.",
-    "14": "Эстетика в интимной сфере. Любовь к красоте, тактильности, форме.",
-    "15": "Фатальные желания. Кармическое притяжение, страсть как зависимость.",
-    "16": "Бурные чувственные переживания. Возможны кризисы в близости.",
-    "17": "Идеализация близости. Романтический взгляд на сексуальность.",
-    "18": "Неудовлетворённость, обиды в интимной сфере. Склонность к подавлению желаний.",
-    "19": "Чувственность как миссия. Способность дарить удовольствие во благо.",
-    "20": "Скрытые желания, тайные влечения. Внутренние конфликты с телесностью.",
-    "21": "Осознанная зрелая сексуальность. Спокойствие, внутренняя уверенность.",
-    "22": "Духовное слияние, чувственность вне телесности. Поток божественного наслаждения."
-    },
-    {
-  "chakra": "manipura",
-        "aspect": "Emociones",
-          "description": "Manipura — чакра воли, силы и действий. Она показывает, как человек проявляет инициативу, реализует цели, взаимодействует с властью и контролем.",
-        "1": "Решительный лидер, проявляет волю ярко и сразу. Действует независимо, идёт вперёд.",
-        "2": "Действует мягко, через взаимодействие и согласие. Не любит давления.",
-        "3": "Проявляет волю через творчество. Вдохновляет, заряжает энергией.",
-        "4": "Организованный, системный. Стремится к контролю, стабильности и порядку.",
-        "5": "Импульсивный, быстро переключается. Инициативен, но может не доводить до конца.",
-        "6": "Мягкий лидер, стремится к балансу в действиях. Умеет договариваться.",
-        "7": "Действует из глубины, после раздумий. Не любит спешки.",
-        "8": "Сильный волевой центр. Стремится к власти, результату, доминирует.",
-        "9": "Воля направлена на благо. Лидер с высоким уровнем ответственности.",
-        "10": "Нестабильность в действиях. Много идей, но трудно удержать фокус.",
-        "11": "Воля подавлена. Часто действует из страха или под давлением.",
-        "12": "Жертвует своими желаниями ради других. Склонен к выгоранию.",
-        "13": "Оригинальные способы действия. Идёт против системы, реформатор.",
-        "14": "Философия в действиях. Действует эстетично, через гармонию.",
-        "15": "Манипулятивные действия. Может действовать скрыто, в тени.",
-        "16": "Сильные волевые трансформации. Через разрушение к силе.",
-        "17": "Вдохновляющий лидер. Воля — через свет, идею, пример.",
-        "18": "Склонен к апатии, может избегать ответственности.",
-        "19": "Миссия — служить. Действует ради общего блага.",
-        "20": "Скрытые действия. Делает многое в тени, без огласки.",
-        "21": "Зрелая воля. Уверенность, спокойствие, внутренняя мощь.",
-        "22": "Духовное действие. Воля, направленная на высокую цель, служение."
-     },
-    {
-   "chakra": "muladhara",
-        "aspect": "Emociones",
-          "description": "Muladhara — чакра стабильности, безопасности и финансов. Она показывает, как человек относится к деньгам, ресурсам, выживанию и основам жизни.",
-        "1": "Самостоятельность, активное выстраивание опоры. Деньги приходят через инициативу.",
-        "2": "Ищет безопасность в партнёрстве. Финансы через взаимодействие и доверие.",
-        "3": "Финансовая лёгкость, нестандартные источники дохода. Деньги приходят через творчество.",
-        "4": "Финансовая стабильность, контроль, порядок. Склонность к накоплению.",
-        "5": "Финансовая изменчивость. Доход связан с переменами, путешествиями.",
-        "6": "Гармония в финансах через служение, помощь другим. Склонность к равновесию.",
-        "7": "Глубокие финансовые страхи или родовые программы. Требуется доверие миру.",
-        "8": "Мощный поток ресурсов. Легко притягивает деньги, но может быть зависимость от них.",
-        "9": "Финансовая зрелость, мудрое управление. Деньги как инструмент служения.",
-        "10": "Резкие взлёты и падения. Сложно удерживать постоянство.",
-        "11": "Финансовая тревожность, блоки в теме выживания.",
-        "12": "Склонность к жертвенности. Деньги уходят на помощь другим.",
-        "13": "Деньги приходят через нестандартные идеи, неожиданные источники.",
-        "14": "Тратит на красоту, комфорт. Финансы через эстетику и стиль.",
-        "15": "Привязка к деньгам, страх бедности. Возможны испытания.",
-        "16": "Финансовые кризисы ведут к перерождению. Уроки на уровне выживания.",
-        "17": "Финансы через вдохновение, миссию. Деньги приходят, когда человек горит идеей.",
-        "18": "Финансовая пассивность, избегание ответственности.",
-        "19": "Финансы во имя помощи другим. Умение делиться.",
-        "20": "Скрытые ресурсы, тайные источники дохода.",
-        "21": "Зрелое отношение к деньгам. Уверенность, стратегичность.",
-        "22": "Финансы на служение. Деньги как духовный инструмент."
+        "description": "Anahata responde por la esfera emocional, los sentimientos y el amor. Muestra cómo la persona expresa las emociones, construye los apegos, percibe la cercanía y el cuidado. A través de este chakra sentimos la conexión del alma con nosotros mismos y con los demás.",
+        "1": "Sentimientos abiertos y valientes. Muestra simpatía rápidamente, emocionalmente generoso.",
+        "2": "Emocionalidad tierna. Necesita seguridad, tiende al apego.",
+        "3": "Jocosidad, ligereza en los sentimientos. Amor espontáneo, corazón abierto.",
+        "4": "Sentimientos contenidos, expresión del amor a través del cuidado y el control.",
+        "5": "Sentimientos cambiantes. Se enamora rápido y se enfría rápido.",
+        "6": "Armonía, empatía, percepción sutil. Busca la paz y la comprensión mutua.",
+        "7": "Sentimientos profundos, no se abre de inmediato. Requiere confianza y recogimiento.",
+        "8": "Sentimientos estables. Expresa amor a través de acciones y protección.",
+        "9": "Amor espiritual, compasión, capacidad de amar sin condiciones.",
+        "10": "Altibajos emocionales. Sentimientos fuertes, pero difícil mantener estabilidad.",
+        "11": "Ansiedad, soledad, deseo de reconocimiento.",
+        "12": "Sacrificio en el amor. Tendencia a poner al otro por encima de sí mismo.",
+        "13": "Expresión no estándar de los sentimientos. Sorprende, puede ser excéntrico.",
+        "14": "Estética de los sentimientos. Amor a través de la belleza, percepción filosófica.",
+        "15": "Sentimientos complejos, fatales. Posible apego doloroso.",
+        "16": "Crisis y renacimiento en los sentimientos. Pasión y dolor van de la mano.",
+        "17": "Amor inspirador. Alegría, generosidad del alma.",
+        "18": "Dudas en el amor. Difícil confiar, necesita confirmación.",
+        "19": "Amor que todo lo abarca. Capacidad de amar al mundo entero.",
+        "20": "Sentimientos ocultos. Dificultad para expresarse, carácter enigmático.",
+        "21": "Amor maduro y acogedor. Respeto, apoyo.",
+        "22": "Amor incondicional y espiritual. Aceptación y bendición."
       },
-    {
-   "chakra": "sahasrara",
+      
+      {
+        "chakra": "Svadhisthana",
         "aspect": "Emociones",
-          "description": "Sahasrara — чакра духовного пути и предназначения. Она показывает, к чему стремится душа, какую миссию несёт человек, с чем связано его высшее «Я».",
-  "1": "Предназначение лидера, инициатора перемен. Путь через действия и влияние.",
-        "2": "Миссия мира и гармонии. Служение через интуицию, поддержку.",
-        "3": "Вдохновлять, творить, делиться радостью. Предназначение в самовыражении.",
-        "4": "Создание структур, управление, порядок. Путь ответственности.",
-        "5": "Обучение, путешествия, обмен знаниями. Развитие через коммуникации.",
-        "6": "Служение через исцеление, гармонизацию. Миссия — примирение.",
-        "7": "Глубокая внутренняя работа. Кармический путь очищения.",
-        "8": "Миссия власти, достижения. Путь реализатора, создателя.",
-        "9": "Духовное лидерство, мудрость. Учитель, наставник.",
-        "10": "Гений, нестабильный путь. Необходимость научиться балансу.",
-        "11": "Миссия пробуждения, часто через одиночество. Глубокая чувствительность.",
-        "12": "Служение, самопожертвование. Путь сострадания.",
-        "13": "Революционер, преобразователь. Путь обновления мира.",
-        "14": "Эстет, философ. Предназначение в создании красоты и смысла.",
-        "15": "Кармический учитель. Миссия — проработка страстей, освобождение.",
-        "16": "Путь трансформаций. Через кризисы к свету.",
-        "17": "Вдохновитель, светоч. Несёт людям надежду и веру.",
-        "18": "Проработка страха и ограничений. Рост через принятие себя.",
-        "19": "Миссия служения человечеству. Несёт глобальную помощь.",
-        "20": "Духовное отшельничество. Путь уединения, работы с тайнами.",
-        "21": "Зрелое, осознанное служение. Миссия — объединять и направлять.",
-        "22": "Духовный проводник. Несёт свет, просветление, универсальную любовь."
+        "description": "Svadhisthana es el chakra de la sensualidad, la sexualidad y el placer. A través de él se manifiesta nuestra capacidad de disfrutar, de la intimidad y de la aceptación de nuestro cuerpo.",
+        "1": "Impulsividad, pasión, fuerte atracción física. Deseo de dominar y tomar la iniciativa.",
+        "2": "Ternura, timidez, deseo de protección en la intimidad. La sensualidad se revela solo con confianza.",
+        "3": "Sensualidad juguetona. Apertura al contacto físico, coqueteo, placer a través de la alegría.",
+        "4": "Control, contención, apego a la estabilidad. Manifiesta los deseos a través de la seguridad.",
+        "5": "Variabilidad, inclinación a los experimentos. Placer a través de la libertad y la novedad.",
+        "6": "Sexualidad suave y diplomática. Armonía en la intimidad, capacidad de escuchar a la pareja.",
+        "7": "Sensualidad profunda, puede tardar en abrirse. Sexualidad con un elemento de misterio.",
+        "8": "Fuerza, fiabilidad, energía dominante. La sensualidad se manifiesta a través del cuidado y el control.",
+        "9": "Fusión espiritual a través de la corporalidad. Aspiración a una intimidad profunda y consciente.",
+        "10": "Deseos fuertes, a menudo impredecibles. Cambios de la pasión al enfriamiento.",
+        "11": "Miedo a la intimidad, limitaciones internas. Pueden existir bloqueos a nivel corporal.",
+        "12": "Tendencia a reprimir deseos, sacrificio. Puede poner los intereses de la pareja por encima de los suyos.",
+        "13": "Preferencias originales, sexualidad no estándar. Puede ser impactante.",
+        "14": "Estética en la esfera íntima. Amor por la belleza, lo táctil y la forma.",
+        "15": "Deseos fatales. Atracción kármica, pasión como dependencia.",
+        "16": "Intensas experiencias sensuales. Son posibles crisis en la intimidad.",
+        "17": "Idealización de la intimidad. Visión romántica de la sexualidad.",
+        "18": "Insatisfacción, resentimientos en la esfera íntima. Tendencia a reprimir los deseos.",
+        "19": "Sensualidad como misión. Capacidad de dar placer para el bien.",
+        "20": "Deseos ocultos, atracciones secretas. Conflictos internos con la corporalidad.",
+        "21": "Sexualidad consciente y madura. Calma, confianza interior.",
+        "22": "Fusión espiritual, sensualidad más allá de lo físico. Flujo de placer divino."
+      },
+      
+      {
+        "chakra": "Manipura",
+        "aspect": "Emociones",
+        "description": "Manipura es el chakra de la voluntad, la fuerza y la acción. Muestra cómo la persona manifiesta la iniciativa, alcanza sus metas, interactúa con el poder y el control.",
+        "1": "Líder decidido, manifiesta la voluntad de manera brillante e inmediata. Actúa de forma independiente, avanza hacia adelante.",
+        "2": "Actúa suavemente, a través de la interacción y el acuerdo. No le gusta la presión.",
+        "3": "Manifiesta la voluntad a través de la creatividad. Inspira, transmite energía.",
+        "4": "Organizado y sistemático. Tiende al control, la estabilidad y el orden.",
+        "5": "Impulsivo, cambia rápidamente. Iniciador, pero puede no concluir lo que empieza.",
+        "6": "Líder suave, busca equilibrio en las acciones. Sabe llegar a acuerdos.",
+        "7": "Actúa desde la profundidad, después de reflexionar. No le gusta la prisa.",
+        "8": "Centro de voluntad fuerte. Busca el poder, el resultado, tiende a dominar.",
+        "9": "La voluntad está dirigida al bien. Líder con alto nivel de responsabilidad.",
+        "10": "Inestabilidad en las acciones. Muchas ideas, pero difícil mantener el enfoque.",
+        "11": "La voluntad está reprimida. A menudo actúa por miedo o bajo presión.",
+        "12": "Sacrifica sus propios deseos por los demás. Tiende al agotamiento.",
+        "13": "Maneras originales de actuar. Va contra el sistema, reformador.",
+        "14": "Filosofía en las acciones. Actúa con estética, a través de la armonía.",
+        "15": "Acciones manipulativas. Puede actuar en secreto, en la sombra.",
+        "16": "Fuertes transformaciones de voluntad. A través de la destrucción hacia la fuerza.",
+        "17": "Líder inspirador. Su voluntad se manifiesta a través de la luz, la idea, el ejemplo.",
+        "18": "Tendencia a la apatía, puede evitar la responsabilidad.",
+        "19": "Su misión es servir. Actúa por el bien común.",
+        "20": "Acciones ocultas. Hace mucho en la sombra, sin publicidad.",
+        "21": "Voluntad madura. Confianza, calma, poder interior.",
+        "22": "Acción espiritual. Voluntad dirigida a un objetivo elevado, al servicio."
+      },
+      
+      {
+        "chakra": "Muladhara",
+        "aspect": "Emociones",
+        "description": "Muladhara es el chakra de la estabilidad, la seguridad y las finanzas. Muestra cómo la persona se relaciona con el dinero, los recursos, la supervivencia y las bases de la vida.",
+        "1": "Autosuficiencia, construcción activa de apoyo. El dinero llega a través de la iniciativa.",
+        "2": "Busca seguridad en la pareja. Finanzas a través de la interacción y la confianza.",
+        "3": "Ligereza financiera, fuentes de ingresos no estándar. El dinero llega a través de la creatividad.",
+        "4": "Estabilidad financiera, control, orden. Tendencia al ahorro.",
+        "5": "Variabilidad financiera. Los ingresos están relacionados con los cambios y los viajes.",
+        "6": "Armonía en las finanzas a través del servicio, la ayuda a otros. Tendencia al equilibrio.",
+        "7": "Miedos financieros profundos o programas ancestrales. Es necesario confiar en el mundo.",
+        "8": "Poderoso flujo de recursos. Atrae dinero fácilmente, pero puede haber dependencia de él.",
+        "9": "Madurez financiera, gestión sabia. El dinero como instrumento de servicio.",
+        "10": "Subidas y bajadas bruscas. Difícil mantener la constancia.",
+        "11": "Ansiedad financiera, bloqueos en el tema de la supervivencia.",
+        "12": "Tendencia al sacrificio. El dinero se gasta en ayudar a otros.",
+        "13": "El dinero llega a través de ideas no estándar, fuentes inesperadas.",
+        "14": "Gasta en belleza y confort. Finanzas a través de la estética y el estilo.",
+        "15": "Apego al dinero, miedo a la pobreza. Son posibles pruebas.",
+        "16": "Las crisis financieras conducen al renacimiento. Lecciones a nivel de supervivencia.",
+        "17": "Finanzas a través de la inspiración, la misión. El dinero llega cuando la persona arde con una idea.",
+        "18": "Pasividad financiera, evasión de la responsabilidad.",
+        "19": "Finanzas en nombre de ayudar a otros. Capacidad de compartir.",
+        "20": "Recursos ocultos, fuentes secretas de ingresos.",
+        "21": "Actitud madura hacia el dinero. Confianza, visión estratégica.",
+        "22": "Finanzas al servicio. El dinero como instrumento espiritual."
+      },
+      
+      {
+        "chakra": "Sahasrara",
+        "aspect": "Emociones",
+        "description": "Sahasrara es el chakra del camino espiritual y del propósito. Muestra hacia qué tiende el alma, qué misión lleva la persona y con qué está relacionado su Yo superior.",
+        "1": "Propósito de líder, iniciador de cambios. El camino es a través de la acción y la influencia.",
+        "2": "Misión de paz y armonía. Servicio a través de la intuición y el apoyo.",
+        "3": "Inspirar, crear, compartir alegría. El propósito está en la autoexpresión.",
+        "4": "Creación de estructuras, gestión, orden. El camino de la responsabilidad.",
+        "5": "Enseñanza, viajes, intercambio de conocimientos. Desarrollo a través de la comunicación.",
+        "6": "Servicio a través de la sanación y la armonización. La misión es la reconciliación.",
+        "7": "Trabajo interior profundo. Camino kármico de purificación.",
+        "8": "Misión de poder y logros. Camino del realizador, creador.",
+        "9": "Liderazgo espiritual, sabiduría. Maestro, mentor.",
+        "10": "Genio, camino inestable. Necesidad de aprender el equilibrio.",
+        "11": "Misión de despertar, a menudo a través de la soledad. Gran sensibilidad.",
+        "12": "Servicio, autosacrificio. Camino de la compasión.",
+        "13": "Revolucionario, transformador. Camino de la renovación del mundo.",
+        "14": "Esteta, filósofo. Propósito en la creación de belleza y sentido.",
+        "15": "Maestro kármico. La misión es trabajar las pasiones y alcanzar la liberación.",
+        "16": "Camino de transformaciones. A través de las crisis hacia la luz.",
+        "17": "Inspirador, portador de luz. Lleva a la gente esperanza y fe.",
+        "18": "Trabajo con el miedo y las limitaciones. Crecimiento a través de la aceptación de sí mismo.",
+        "19": "Misión de servicio a la humanidad. Aporta ayuda global.",
+        "20": "Ermitismo espiritual. Camino de recogimiento y trabajo con los misterios.",
+        "21": "Servicio maduro y consciente. Misión de unir y guiar.",
+        "22": "Guía espiritual. Porta luz, iluminación y amor universal."
       }
+      
     ],
     "recommendations": [
-      {
-        "chakra": "anahata",
-        "description": "Anahata отвечает за эмоциональную сферу, чувства и любовь. Она показывает, как человек выражает эмоции, строит привязанности, воспринимает близость и заботу. Через эту чакру мы чувствуем душевную связь с собой и другими.",
-        "aspect": "Emociones",
-        "1": {
-          "плюсы": "Генератор идей, вдохновляет, ведёт за собой, заряжает энергией.",
-          "минусы": "Может быть резким, нетерпеливым, не доводить дела до конца."
-        },
-        "2": {
-          "плюсы": "Интуитивен, гармоничен, создаёт тёплую атмосферу, поддерживает.",
-          "минусы": "Склонен к манипуляциям, излишне чувствителен и обидчив."
-        },
-   "3": {
-              "плюсы": "Несёт уют, красоту, заботу, умеет радоваться жизни.",
-              "минусы": "Может быть капризным, требовательным и эмоционально нестабильным."
-          },
-          "4": {
-              "плюсы": "Создаёт структуру, стабильность, надёжность. Опора и логика.",
-              "минусы": "Жёсткость, контроль, неспособность к гибкости."
-          },
-          "5": {
-              "плюсы": "Мудрость, духовность, знание. Наставник и советник.",
-              "минусы": "Догматизм, менторство, упрямство."
-          },
-          "6": {
-              "плюсы": "Любовь, гармония, миротворчество. Несёт поддержку.",
-              "минусы": "Зависимость, склонность к жертвенности и обидам."
-          },
-          "7": {
-              "плюсы": "Целеустремлённость, сила, защита. Стратег и защитник.",
-              "минусы": "Закрытость, напор, одиночество."
-          },
-          "8": {
-              "плюсы": "Рациональность, контроль, устойчивость. Ответственность.",
-              "минусы": "Жёсткость, категоричность, критичность."
-          },
-          "9": {
-              "плюсы": "Интуиция, глубина, философичность, мудрость.",
-              "минусы": "Изоляция, уход в себя, непонимание."
-          },
-          "10": {
-              "плюсы": "Гибкость, лёгкость, адаптация к переменам.",
-              "минусы": "Непостоянство, суетливость, безответственность."
-          },
-          "11": {
-              "плюсы": "Доброта, забота, сострадание. Мягкий, природный.",
-              "минусы": "Склонность к жертвенности, слабость, неуверенность."
-          },
-          "12": {
-              "плюсы": "Принятие, терпение, связь с родом. Служение.",
-              "минусы": "Жертвенность, зависимость, безволие."
-          },
-          "13": {
-              "плюсы": "Гибкость, трансформация, желание учиться.",
-              "минусы": "Поверхностность, страх перемен, растерянность."
-          },
-          "14": {
-              "плюсы": "Гармония, красота, умение поддерживать баланс.",
-              "минусы": "Пассивность, инертность, склонность к лени."
-          },
-          "15": {
-              "плюсы": "Страсть, харизма, сила притяжения.",
-              "минусы": "Манипуляции, привязанности, искушения."
-          },
-          "16": {
-              "плюсы": "Честность, трансформация, внутренний рост.",
-              "минусы": "Кризисы, разрушения, эмоциональные срывы."
-          },
-          "17": {
-              "плюсы": "Вера, вдохновение, мечта. Свет и идеалы.",
-              "минусы": "Иллюзии, наивность, отрыв от реальности."
-          },
-          "18": {
-              "плюсы": "Глубина чувств, интуиция, образность.",
-              "минусы": "Страхи, иллюзии, непонимание себя."
-          },
-          "19": {
-              "плюсы": "Открытость, радость, жизнелюбие.",
-              "минусы": "Излишняя наивность, гордыня, поверхностность."
-          },
-          "20": {
-              "плюсы": "Пробуждение, духовная миссия, высокая цель.",
-              "минусы": "Категоричность, резкость, неприемлемость чужого мнения."
-          },
-          "21": {
-              "плюсы": "Зрелость, устойчивость, мудрость. Умение завершать.",
-              "минусы": "Стагнация, перегрузка, отсутствие мотивации."
-          },
-          "22": {
-              "плюсы": "Интуиция, духовность, озарения, связь с высшим.",
-              "минусы": "Замкнутость, оторванность от реальности, духовная гордыня."
-          }
+  {
+    "chakra": "Anahata",
+    "description": "Anahata responde por la esfera emocional, los sentimientos y el amor. Muestra cómo la persona expresa las emociones, construye los apegos, percibe la cercanía y el cuidado. A través de este chakra sentimos la conexión del alma con nosotros mismos y con los demás.",
+    "aspect": "Emociones",
+    "1": {
+      "pros": "Generador de ideas, inspira, guía a otros, transmite energía.",
+      "contras": "Puede ser brusco, impaciente, no terminar lo que empieza."
+    },
+    "2": {
+      "pros": "Intuitivo, armonioso, crea un ambiente cálido, apoya.",
+      "contras": "Tendencia a manipular, demasiado sensible y susceptible."
+    },
+    "3": {
+      "pros": "Aporta comodidad, belleza, cuidado, sabe disfrutar de la vida.",
+      "contras": "Puede ser caprichoso, exigente e inestable emocionalmente."
+    },
+    "4": {
+      "pros": "Crea estructura, estabilidad, fiabilidad. Apoyo y lógica.",
+      "contras": "Rigidez, control, incapacidad de ser flexible."
+    },
+    "5": {
+      "pros": "Sabiduría, espiritualidad, conocimiento. Mentor y consejero.",
+      "contras": "Dogmatismo, tono de superioridad, terquedad."
+    },
+    "6": {
+      "pros": "Amor, armonía, pacificación. Aporta apoyo.",
+      "contras": "Dependencia, tendencia al sacrificio y a los resentimientos."
+    },
+    "7": {
+      "pros": "Determinación, fuerza, protección. Estratega y defensor.",
+      "contras": "Cerrado, impositivo, solitario."
+    },
+    "8": {
+      "pros": "Racionalidad, control, estabilidad. Responsabilidad.",
+      "contras": "Dureza, categórico, crítico."
+    },
+    "9": {
+      "pros": "Intuición, profundidad, filosofía, sabiduría.",
+      "contras": "Aislamiento, ensimismamiento, incomprensión."
+    },
+    "10": {
+      "pros": "Flexibilidad, ligereza, adaptación a los cambios.",
+      "contras": "Inconstancia, agitación, irresponsabilidad."
+    },
+    "11": {
+      "pros": "Bondad, cuidado, compasión. Suave, natural.",
+      "contras": "Tendencia al sacrificio, debilidad, inseguridad."
+    },
+    "12": {
+      "pros": "Aceptación, paciencia, conexión con el linaje. Servicio.",
+      "contras": "Sacrificio, dependencia, falta de voluntad."
+    },
+    "13": {
+      "pros": "Flexibilidad, transformación, deseo de aprender.",
+      "contras": "Superficialidad, miedo a los cambios, confusión."
+    },
+    "14": {
+      "pros": "Armonía, belleza, capacidad de mantener el equilibrio.",
+      "contras": "Pasividad, inercia, tendencia a la pereza."
+    },
+    "15": {
+      "pros": "Pasión, carisma, fuerza de atracción.",
+      "contras": "Manipulaciones, apegos, tentaciones."
+    },
+    "16": {
+      "pros": "Honestidad, transformación, crecimiento interior.",
+      "contras": "Crisis, destrucciones, rupturas emocionales."
+    },
+    "17": {
+      "pros": "Fe, inspiración, sueño. Luz e ideales.",
+      "contras": "Ilusiones, ingenuidad, desconexión de la realidad."
+    },
+    "18": {
+      "pros": "Profundidad de sentimientos, intuición, imaginación.",
+      "contras": "Miedos, ilusiones, incomprensión de sí mismo."
+    },
+    "19": {
+      "pros": "Apertura, alegría, amor a la vida.",
+      "contras": "Demasiada ingenuidad, orgullo, superficialidad."
+    },
+    "20": {
+      "pros": "Despertar, misión espiritual, alto propósito.",
+      "contras": "Categórico, brusco, rechazo de la opinión ajena."
+    },
+    "21": {
+      "pros": "Madurez, estabilidad, sabiduría. Capacidad de concluir.",
+      "contras": "Estancamiento, sobrecarga, falta de motivación."
+    },
+    "22": {
+      "pros": "Intuición, espiritualidad, revelaciones, conexión con lo superior.",
+      "contras": "Encierro, desconexión de la realidad, soberbia espiritual."
+    }
         }
         ],
     "compatibility": [
-      {
-        "chakra": "anahata",
-        "aspect": "Emociones",
-        "description": "Anahata отвечает за эмоциональную сферу, чувства и любовь. Она показывает, как человек выражает эмоции, строит привязанности, воспринимает близость и заботу. Через эту чакру мы чувствуем душевную связь с собой и другими.",
-        "source": "Первая цифра (до дефиса) взята из первой таблицы чакр 'chakra_anahata' (aspect: Emociones), вторая цифра — из второй таблицы чакр той же категории. Используются значения из 'chakra_anahata' (aspect: Emociones).",
-        "1-1": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "1-2": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-      
-       "1-3": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "1-4": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-5": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-6": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-7": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-8": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-9": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "1-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-14": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "1-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-17": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "1-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-19": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "1-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "1-22": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "2-2": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "2-3": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-4": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-5": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-6": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "2-7": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "2-8": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-9": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "2-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-14": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "2-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "2-21": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "2-22": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "3-3": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "3-4": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-5": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-6": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-7": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-8": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-9": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "3-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-14": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "3-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-17": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "3-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-19": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "3-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "3-22": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "4-4": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'контролирующие и сдержанные' — близкие эмоциональные стили."
-        },
-        "4-5": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-6": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-7": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-8": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'контролирующие и сдержанные' — близкие эмоциональные стили."
-        },
-        "4-9": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-20": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'контролирующие и сдержанные' — близкие эмоциональные стили."
-        },
-        "4-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "4-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-5": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-6": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-7": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-8": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-9": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-10": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-11": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-12": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-13": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-15": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "5-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "5-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-6": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "6-7": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "6-8": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-9": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "6-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-14": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "6-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "6-21": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "6-22": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "7-7": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "7-8": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-9": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "7-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-14": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "7-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "7-21": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "7-22": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "8-8": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'контролирующие и сдержанные' — близкие эмоциональные стили."
-        },
-        "8-9": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-20": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'контролирующие и сдержанные' — близкие эмоциональные стили."
-        },
-        "8-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "8-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-9": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'духовные и сострадательные' — близкие эмоциональные стили."
-        },
-        "9-10": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-11": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-12": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-13": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-14": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'духовные и сострадательные' — близкие эмоциональные стили."
-        },
-        "9-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-17": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "9-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-19": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "9-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "9-21": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "9-22": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'духовные и сострадательные' — близкие эмоциональные стили."
-        },
-        "10-10": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-11": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-12": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-13": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "10-15": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "10-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "10-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "10-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "10-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "10-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "11-11": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "11-12": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "11-13": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "11-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "11-15": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "11-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "11-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "11-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "11-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "11-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "11-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "11-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "12-12": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "12-13": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "12-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "12-15": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "12-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "12-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "12-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "12-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "12-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "12-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "12-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "13-13": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "13-14": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "13-15": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "13-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "13-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "13-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "13-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "13-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "13-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "13-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "14-14": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'духовные и сострадательные' — близкие эмоциональные стили."
-        },
-        "14-15": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "14-16": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "14-17": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "14-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "14-19": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "14-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "14-21": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "14-22": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'духовные и сострадательные' — близкие эмоциональные стили."
-        },
-        "15-15": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "15-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "15-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "15-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "15-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "15-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "15-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "15-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "16-16": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "16-17": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "16-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "16-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "16-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "16-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "16-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "17-17": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "17-18": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "17-19": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "17-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "17-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "17-22": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "18-18": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'нестабильные и жертвенные' — близкие эмоциональные стили."
-        },
-        "18-19": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "18-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "18-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "18-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "19-19": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'открытые и лёгкие' — близкие эмоциональные стили."
-        },
-        "19-20": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "19-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "19-22": {
-          "совместимость": "средняя",
-          "описание": "Один вдохновляет, другой — соединяется на уровне души. Возможна яркая, но не всегда стабильная связь."
-        },
-        "20-20": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'контролирующие и сдержанные' — близкие эмоциональные стили."
-        },
-        "20-21": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "20-22": {
-          "совместимость": "низкая",
-          "описание": "Эмоциональные стили сильно различаются. Возможны конфликты в проявлении чувств."
-        },
-        "21-21": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'глубокие и доверяющие' — близкие эмоциональные стили."
-        },
-        "21-22": {
-          "совместимость": "средняя",
-          "описание": "Соприкасающиеся глубинные ценности — возможна мягкая эмоциональная связь."
-        },
-        "22-22": {
-          "совместимость": "высокая",
-          "описание": "Оба партнёра из группы 'духовные и сострадательные' — близкие эмоциональные стили."
-        }
+  {
+    "chakra": "Anahata",
+    "aspect": "Emociones",
+    "description": "Anahata responde por la esfera emocional, los sentimientos y el amor. Muestra cómo la persona expresa las emociones, construye los apegos, percibe la cercanía y el cuidado. A través de este chakra sentimos la conexión del alma con nosotros mismos y con los demás.",
+    "source": "El primer número (antes del guion) se toma de la primera tabla de chakras 'chakra_anahata' (aspecto: Emociones), el segundo número de la segunda tabla de chakras de la misma categoría. Se utilizan valores de 'chakra_anahata' (aspecto: Emociones).",
+    "1-1": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "1-2": {
+      "compatibilidad": "baja",
+      "descripcion": "Los estilos emocionales son muy diferentes. Posibles conflictos en la expresión de los sentimientos."
+    },
+    "1-3": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "1-4": {
+      "compatibilidad": "baja",
+      "descripcion": "Los estilos emocionales son muy diferentes. Posibles conflictos en la expresión de los sentimientos."
+    },
+    "1-9": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "1-14": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "1-17": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "1-19": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "1-22": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "2-2": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "2-6": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "2-7": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "2-9": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "2-14": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "2-21": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "2-22": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "3-3": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "3-9": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "3-14": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "3-17": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "3-19": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "3-22": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "4-4": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+    },
+    "4-8": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+    },
+    "4-20": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+    },
+    "5-5": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-10": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-11": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-12": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-13": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-15": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "5-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "6-6": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "6-7": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "6-9": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "6-14": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "6-21": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "6-22": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "7-7": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "7-9": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "7-14": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "7-21": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "7-22": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "8-8": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+    },
+    "8-20": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+    },
+    "9-9": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+    },
+    "9-14": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+    },
+    "9-17": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "9-19": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "9-21": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "9-22": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+    },
+    "10-10": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "10-11": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "10-12": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "10-13": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "10-15": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "10-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "10-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "11-11": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "11-12": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "11-13": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "11-15": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "11-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "11-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "12-12": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "12-13": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "12-15": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "12-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "12-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "13-13": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "13-15": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "13-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "13-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "14-14": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+    },
+    "14-17": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "14-19": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "14-21": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "14-22": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+    },
+    "15-15": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "15-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "15-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "16-16": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "16-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "17-17": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "17-19": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "18-18": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+    },
+    "19-19": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "19-22": {
+      "compatibilidad": "media",
+      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "20-20": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+    },
+    "21-21": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+    },
+    "21-22": {
+      "compatibilidad": "media",
+      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "22-22": {
+      "compatibilidad": "alta",
+      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+    }
+  
       }
     ]
   }

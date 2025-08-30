@@ -15,31 +15,31 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 class Chunk:
     """
-    Класс для работы с консультациями по Матрице Судьбы, включая генерацию текстов по правилам и интеграцию с OpenAI.
+    Clase para trabajar con consultas de la Matriz del Destino, incluida la generación de textos por reglas e integración con OpenAI.
     """
     def __init__(self):
         """
-        Инициализация класса Chunk.
+        Inicialización de la clase Chunk.
         """
-        print("[DEBUG] Chunk init: Правка для consult_personal — теперь используется computed_data.")
+        print("[DEBUG] Chunk init: Corrección para consult_personal — ahora se usa computed_data.")
 
     async def get_rules_json(self) -> dict:
         """
-        Асинхронно загружает и возвращает содержимое файла Rules.json с описаниями энергий и аспектов.
+        Carga de forma asíncrona y devuelve el contenido del archivo Rules.json con descripciones de energías y aspectos.
 
         Returns:
-            dict: Словарь с правилами для трактовки энергий.
+            dict: Diccionario con las reglas para la interpretación de energías.
         Raises:
-            FileNotFoundError: Если файл не найден.
+            FileNotFoundError: Si no se encuentra el archivo.
         """
         rules_path = os.path.join(BASE_API_DIR, 'base', 'Rules.json')
         if not os.path.exists(rules_path):
-            raise FileNotFoundError(f"Файл {rules_path} не найден.")
+            raise FileNotFoundError(f"Archivo {rules_path} no encontrado.")
         async with aiofiles.open(rules_path, 'r', encoding='utf-8') as f:
             content = await f.read()
         return json.loads(content)
 
-    # Сопоставление (chakra, aspect) -> point_name для custom_points
+    # Mapeo (chakra, aspect) -> point_name para custom_points
     CHAKRA_ASPECT_TO_POINT = {
         ("Anahata", "Fisica"): "Zona de confort",
         ("Sahasrara", "Fisica"): "Recurso interior",
@@ -68,8 +68,8 @@ class Chunk:
 
     async def consult_personal(self, free_points: List[Dict[str, Any]]) -> str:
         """
-        Формирует текстовую консультацию по свободным точкам на основе правил из Rules.json (custom_points).
-        Теперь выводит сначала описание точки (description), затем индивидуальную трактовку.
+        Forma una consulta textual sobre puntos libres basada en las reglas de Rules.json (custom_points).
+        Ahora primero muestra la descripción del punto (description) y después la interpretación individual.
         """
         rules = await self.get_rules_json()
         lines = []
@@ -80,11 +80,11 @@ class Chunk:
             val_str = str(val)
             point_name = self.CHAKRA_ASPECT_TO_POINT.get((chakra, aspect))
             if not point_name:
-                lines.append(f"{chakra} - {aspect} - {val}:\n(Нет описания)")
+                lines.append(f"{chakra} - {aspect} - {val}:\n(Sin descripción)")
                 continue
             point_block = rules.get("custom_points", {}).get(point_name)
             if not point_block:
-                lines.append(f"{point_name} ({val}):\n(Нет описания)")
+                lines.append(f"{point_name} ({val}):\n(Sin descripción)")
                 continue
             description = point_block.get("description", "")
             value_block = point_block.get(val_str)
@@ -102,19 +102,19 @@ class Chunk:
             elif isinstance(value_block, str):
                 value_full = value_block
             else:
-                value_full = "(Нет описания)"
+                value_full = "(Sin descripción)"
             if value_full:
                 lines.append(f"{point_name} ({val}):\n{description}\n{value_full}")
             else:
-                lines.append(f"{point_name} ({val}):\n{description}\n(Нет описания)")
+                lines.append(f"{point_name} ({val}):\n{description}\n(Sin descripción)")
         return "\n\n".join(lines)
 
     async def consult_paid(self, points: List[Dict[str, Any]], date: str = None) -> str:
         """
-        Формирует расширенную консультацию по точкам с возможностью указания даты (custom_points).
-        Теперь, если в точке нет поля name, точка пропускается (никакой fallback по chakra+aspect).
+        Forma una consulta ampliada por puntos con posibilidad de indicar fecha (custom_points).
+        Ahora, si en el punto no hay campo name, el punto se omite (sin fallback por chakra+aspect).
         """
-        print("DEBUG paidPoints:", points)  # В начало функции
+        print("DEBUG paidPoints:", points)  # Al inicio de la función
         rules = await self.get_rules_json()
         lines = []
         for point in points:
@@ -124,7 +124,7 @@ class Chunk:
             if point_name:
                 point_block = rules.get("custom_points", {}).get(point_name)
                 if not point_block:
-                    lines.append(f"{point_name} ({val}):\n(Нет описания)")
+                    lines.append(f"{point_name} ({val}):\n(Sin descripción)")
                     continue
                 description = point_block.get("description", "")
                 if point_name == "Energía masculina":
@@ -147,64 +147,64 @@ class Chunk:
                 elif isinstance(value_block, str):
                     value_full = value_block
                 else:
-                    value_full = "(Нет описания)"
+                    value_full = "(Sin descripción)"
                 if value_full:
                     lines.append(f"{point_name} ({val}):\n{description}\n{value_full}")
                 else:
-                    lines.append(f"{point_name} ({val}):\n{description}\n(Нет описания)")
-            # Если нет имени, точка пропускается
+                    lines.append(f"{point_name} ({val}):\n{description}\n(Sin descripción)")
+            # Si no hay name, el punto se omite
             # continue
-        print("DEBUG lines:", lines)  # Перед формированием final_text
+        print("DEBUG lines:", lines)  # Antes de formar final_text
         final_text = "\n\n".join(lines)
-        print("DEBUG final_text:", final_text)  # Перед return
+        print("DEBUG final_text:", final_text)  # Antes de return
         if date:
-            final_text = f"Расширенная интерпретация для даты {date}:\n\n{final_text}"
+            final_text = f"Interpretación ampliada para la fecha {date}:\n\n{final_text}"
         return final_text
 
     async def consult_compatibility(self, computed_personal: str, computed_compatibility: str, stage: str = "start") -> str:
         """
-        Генерирует консультацию по совместимости на основе персональных и совместимых данных.
-        stage: "start" — первый вопрос, "offer_paid" — предложение платного расчёта.
+        Genera una consulta sobre compatibilidad basada en datos personales y de pareja.
+        stage: "start" — primera pregunta, "offer_paid" — oferta de cálculo de pago.
         """
         if stage == "start":
-            return "Готов узнать о consult_compatibility (платно)?"
+            return "¿Listo para conocer consult_compatibility (de pago)?"
         elif stage == "offer_paid":
-            return "Хочешь углублённый расчёт совместимости (платно)?\nДа\nНет"
-        # дальше — обработка платного сценария
+            return "¿Quieres un cálculo profundo de compatibilidad (de pago)?\nSí\nNo"
+        # a continuación: procesamiento del escenario de pago
 
     async def ask_gpt(self, user_text: str) -> str:
         """
-        Отправляет вопрос к OpenAI GPT и возвращает ответ, ограниченный тематикой Матрицы Судьбы.
+        Envía una pregunta a OpenAI GPT y devuelve la respuesta, limitada a la temática de la Matriz del Destino.
 
         Args:
-            user_text (str): Вопрос пользователя.
+            user_text (str): Pregunta del usuario.
 
         Returns:
-            str: Ответ языковой модели или сообщение об ошибке.
+            str: Respuesta del modelo o mensaje de error.
         """
         prompt = (
-            "Ты — дружелюбный и вовлекающий консультант по Матрице Судьбы. "
-            "Отвечай на вопросы пользователя по теме матрицы, энергий, чакр, даты рождения. "
-            "Пиши простым, понятным языком, добавляй примеры, вовлекай пользователя, предлагай воспользоваться калькулятором на сайте. "
-            "Если вопрос не по теме — мягко объясни, что ты консультант по Матрице Судьбы. "
+            "Eres un asesor amable y participativo de la Matriz del Destino. "
+            "Responde a las preguntas del usuario sobre la matriz, energías, chakras y fecha de nacimiento. "
+            "Escribe en lenguaje simple y claro, añade ejemplos, involucra al usuario y sugiere usar la calculadora del sitio. "
+            "Si la pregunta no es del tema, explica suavemente que eres asesor de la Matriz del Destino. "
             "\n\n"
-            "Чакры, которые используются в Матрице Судьбы:\n"
-            "— Sahasrara (Сахасрара): чакра высшего сознания, связь с высшими смыслами.\n"
-            "— Ajna (Аджна): чакра интуиции, внутреннего видения и мудрости.\n"
-            "— Vishuddha (Вишудха): чакра коммуникации, самовыражения и честности.\n"
-            "— Anahata (Анахата): чакра любви, гармонии и сострадания.\n"
-            "— Manipura (Манипура): чакра воли, самооценки и личной силы.\n"
-            "— Svadhisthana (Свадхистхана): чакра эмоций, творчества и удовольствия.\n"
-            "— Muladhara (Муладхара): чакра стабильности, безопасности и жизненной энергии.\n"
-            "Если пользователь спрашивает о значении или роли любой из этих чакр — отвечай кратко по описанию выше.\n"
-            "Если пользователь хочет узнать подробнее о себе, своей матрице или энергиях — предложи воспользоваться калькулятором для расчёта по дате рождения.\n"
+            "Chakras utilizados en la Matriz del Destino:\n"
+            "— Sahasrara: chakra de la conciencia superior, conexión con significados elevados.\n"
+            "— Ajna: chakra de la intuición, visión interior y sabiduría.\n"
+            "— Vishuddha: chakra de la comunicación, autoexpresión y honestidad.\n"
+            "— Anahata: chakra del amor, la armonía y la compasión.\n"
+            "— Manipura: chakra de la voluntad, autoestima y poder personal.\n"
+            "— Svadhisthana: chakra de las emociones, la creatividad y el placer.\n"
+            "— Muladhara: chakra de la estabilidad, la seguridad y la energía vital.\n"
+            "Si el usuario pregunta por el significado o el papel de cualquiera de estos chakras — responde brevemente con la descripción anterior.\n"
+            "Si el usuario quiere saber más sobre sí mismo, su matriz o energías — sugiere usar la calculadora para el cálculo por fecha de nacimiento.\n"
         )
         client = openai.OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": user_text + "\n\nПожалуйста, дай полный, развернутый ответ и обязательно закончи мысль."}
+                {"role": "user", "content": user_text + "\n\nPor favor, da una respuesta completa y detallada y asegúrate de concluir la idea."}
             ],
             max_tokens=1200
         )
@@ -212,206 +212,198 @@ class Chunk:
 
     async def get_answer_async(self, query: str) -> str:
         """
-        Обрабатывает пользовательский запрос: приветствия, благодарности, тематические вопросы.
-        Для тематических вопросов вызывает ask_gpt.
+        Procesa la solicitud del usuario: saludos, agradecimientos, preguntas temáticas.
+        Para preguntas temáticas llama a ask_gpt.
 
         Args:
-            query (str): Входящий текстовый запрос пользователя.
+            query (str): Entrada de texto del usuario.
 
         Returns:
-            str: Ответ на запрос.
+            str: Respuesta.
         """
         q = query.lower().strip()
         greetings = [
-            "привет", "здравствуйте", "добрый день", "добрый вечер", "hello", "hi", "хай", "доброго времени суток"
+            "hola", "buenas", "buenos días", "buenas tardes", "buenas noches", "hello", "hi"
         ]
         farewells = [
-            "пока", "до свидания", "bye", "goodbye", "до встречи", "увидимся", "спокойной ночи"
+            "adiós", "hasta luego", "bye", "goodbye", "nos vemos", "hasta pronto", "buenas noches"
         ]
         thanks = [
-            "спасибо", "благодарю", "thank you", "мерси", "спс", "спасибо большое"
+            "gracias", "muchas gracias", "thank you", "mil gracias"
         ]
 
         if any(word in q for word in greetings):
-            return "Здравствуйте! Я консультант по Матрице Судьбы. Могу рассчитать вашу матрицу, объяснить значения энергий и дать рекомендации. Просто введите вашу дату рождения в калькулятор!"
+            return "¡Hola! Soy asesor de la Matriz del Destino. Puedo calcular tu matriz, explicar el significado de las energías y dar recomendaciones. ¡Solo introduce tu fecha de nacimiento en la calculadora!"
         if any(word in q for word in farewells):
-            return "Всего доброго! Если будут вопросы по Матрице Судьбы — обращайтесь."
+            return "¡Todo lo mejor! Si tienes preguntas sobre la Matriz del Destino — aquí estaré."
         if any(word in q for word in thanks):
-            return "Пожалуйста! Если нужна консультация по Матрице Судьбы — я всегда на связи."
-        if "что ты можешь" in q or "что умеешь" in q or "твои возможности" in q or "кто ты" in q:
-            return "Я — консультант по Матрице Судьбы. Могу рассчитать вашу матрицу, объяснить значения энергий и дать рекомендации. Просто введите вашу дату рождения в калькулятор!"
+            return "¡Con gusto! Si necesitas una consulta sobre la Matriz del Destino — siempre estoy a tu disposición."
+        if "qué puedes" in q or "qué sabes hacer" in q or "tus capacidades" in q or "quién eres" in q:
+            return "Soy asesor de la Matriz del Destino. Puedo calcular tu matriz, explicar los significados de las energías y darte recomendaciones. ¡Solo introduce tu fecha de nacimiento en la calculadora!"
 
-        # Новая обработка для общих вопросов про чакры
+        # Nueva gestión para preguntas generales sobre chakras
         if (
-            "что такое чакр" in q or
-            "расскажи про чакр" in q or
-            "что ты знаешь про чакр" in q or
-            "знаешь про чакр" in q or
-            "объясни чакр" in q or
-            "про чакр" in q or
-            ("чакр" in q and ("что это" in q or "что значит" in q or "объясни" in q or "расскажи" in q))
+            "qué es chakr" in q or
+            "cuéntame de chakr" in q or
+            "qué sabes de chakr" in q or
+            "sabes de chakr" in q or
+            "explica chakr" in q or
+            "sobre chakr" in q or
+            ("chakr" in q and ("qué es" in q or "qué significa" in q or "explica" in q or "cuéntame" in q))
         ):
             return (
-                "Чакры — это энергетические центры, которые мы анализируем в вашей Матрице Судьбы. "
-                "В нашей системе используются 7 чакр: Сахасрара, Аджна, Вишудха, Анахата, Манипура, Свадхистхана, Муладхара. "
-                "Каждая из них отвечает за определённые аспекты вашей судьбы и энергии. "
-                "Хотите узнать подробнее о какой-то из них или рассчитать свою матрицу?"
+                "Los chakras son centros energéticos que analizamos en tu Matriz del Destino. "
+                "En nuestro sistema usamos 7 chakras: Sahasrara, Ajna, Vishuddha, Anahata, Manipura, Svadhisthana, Muladhara. "
+                "Cada uno responde por aspectos específicos de tu destino y energía. "
+                "¿Quieres saber más de alguno o calcular tu matriz?"
             )
 
-        # Новая обработка для вопросов "какие чакры есть"
-        if "какие чакр" in q:
+        # Nueva gestión para “qué chakras hay”
+        if "qué chakr" in q:
             return (
-                "В Матрице Судьбы используются 7 чакр:\n"
-                "— Сахасрара\n"
-                "— Аджна\n"
-                "— Вишудха\n"
-                "— Анахата\n"
-                "— Манипура\n"
-                "— Свадхистхана\n"
-                "— Муладхара\n"
-                "Каждая из них отвечает за определённые аспекты вашей судьбы и энергии. "
-                "Хотите узнать подробнее о какой-то из них?"
+                "En la Matriz del Destino se usan 7 chakras:\n"
+                "— Sahasrara\n"
+                "— Ajna\n"
+                "— Vishuddha\n"
+                "— Anahata\n"
+                "— Manipura\n"
+                "— Svadhisthana\n"
+                "— Muladhara\n"
+                "Cada uno responde por aspectos específicos de tu destino y energía. "
+                "¿Quieres saber más de alguno?"
             )
-        # Новая обработка для вопросов "сколько чакр"
-        if "сколько чакр" in q or "число чакр" in q or ("чакр" in q and "сколько" in q):
+        # “cuántos chakras”
+        if "cuántos chakr" in q or "número de chakr" in q or ("chakr" in q and "cuántos" in q):
+            return "En la Matriz del Destino se analizan 7 chakras: Sahasrara, Ajna, Vishuddha, Anahata, Manipura, Svadhisthana, Muladhara."
+        # “lista de chakras”
+        if "lista de chakr" in q or ("chakr" in q and "lista" in q):
+            return "Lista de 7 chakras en la Matriz del Destino: Sahasrara, Ajna, Vishuddha, Anahata, Manipura, Svadhisthana, Muladhara."
+        # “qué energías hay”
+        if "qué energ" in q or "lista de energ" in q:
             return (
-                "В Матрице Судьбы анализируется 7 чакр: Сахасрара, Аджна, Вишудха, Анахата, Манипура, Свадхистхана, Муладхара."
+                "En la Matriz del Destino se usan 22 energías (arcanos). Cada energía tiene su propio significado e impacta diferentes áreas de la vida. "
+                "Para un análisis individual introduce tu fecha de nacimiento en la calculadora."
             )
-        # Новая обработка для вопросов "список чакр"
-        if "список чакр" in q or ("чакр" in q and "список" in q):
+        # “22 energías” / “cuántas energías”
+        if "22 energías" in q or ("energías" in q and "cuántas" in q):
             return (
-                "Список 7 чакр в Матрице Судьбы: Сахасрара, Аджна, Вишудха, Анахата, Манипура, Свадхистхана, Муладхара."
+                "En la Matriz del Destino se usan 22 energías (arcanos). Cada una tiene su significado e influencia. "
+                "Para un análisis individual introduce tu fecha de nacimiento en la calculadora."
             )
-        # Новая обработка для вопросов "какие энергии есть"
-        if "какие энерг" in q or "что за энерг" in q or "список энерг" in q:
+        # “tarea de vida”
+        if "tarea de vida" in q or ("tarea" in q and "vida" in q):
             return (
-                "В Матрице Судьбы используются 22 энергии (аркана). Каждая энергия имеет своё значение и влияет на разные сферы жизни. "
-                "Для индивидуального разбора просто введите вашу дату рождения в калькулятор!"
+                "La tarea de vida es el propósito principal con el que una persona llega a este mundo. En la Matriz del Destino se determina por la fecha de nacimiento y ayuda a entender tu vocación principal, lecciones y pruebas. ¿Quieres conocer la tuya? ¡Introduce tu fecha en la calculadora!"
             )
-        # Новая обработка для вопросов "22 энергии" и "сколько энергий"
-        if "22 энергии" in q or ("энергии" in q and "сколько" in q):
+        # “qué significa consulta por fecha”
+        if "qué significa consulta" in q or "qué es consulta" in q or ("consulta" in q and "qué" in q):
             return (
-                "В Матрице Судьбы используются 22 энергии (аркана). Каждая из них имеет своё значение и влияет на разные сферы жизни. "
-                "Для индивидуального разбора просто введите вашу дату рождения в калькулятор!"
-            )
-        # Новая обработка для вопросов о жизненной задаче
-        if "жизненная задача" in q or "жизненных задач" in q or ("задач" in q and "жизн" in q):
-            return (
-                "Жизненная задача — это основная цель или предназначение, с которым человек приходит в этот мир. В Матрице Судьбы жизненная задача определяется по дате рождения и помогает понять, в чём ваше главное предназначение, какие уроки и испытания важны для вашего развития. Хотите узнать свою жизненную задачу? Введите дату рождения в калькулятор!"
-            )
-        # Новая обработка для вопросов "что значит консультация по дате рождения"
-        if "что значит консультация" in q or "что такое консультация" in q or ("консультация" in q and "что" in q):
-            return (
-                "Консультация по дате рождения — это индивидуальный разбор вашей Матрицы Судьбы. "
-                "Я могу рассчитать вашу матрицу, объяснить значения энергий и чакр, которые связаны с вашей датой рождения, и дать рекомендации для гармонизации жизни."
+                "La consulta por fecha de nacimiento es el análisis individual de tu Matriz del Destino. "
+                "Puedo calcular tu matriz, explicar el significado de tus energías y chakras y darte recomendaciones para armonizar tu vida."
             )
 
-        # Новая обработка для вопросов "чакры это", "что такое чакры", "что значит чакры"
+        # “chakras es”, “qué son chakras”
         if (
-            ("чакр" in q and ("это" in q or "значит" in q or "что такое" in q or "что это" in q))
-            or q.strip() == "чакры"
+            ("chakr" in q and ("es" in q or "significa" in q or "qué es" in q or "qué son")) 
+            or q.strip() == "chakras"
         ):
             return (
-                "Чакры — это энергетические центры, которые отражают разные аспекты вашей судьбы и энергии. "
-                "В Матрице Судьбы мы анализируем 7 чакр. Хотите узнать, как они проявляются именно у вас? "
-                "Просто введите вашу дату рождения в калькулятор — и получите индивидуальный разбор!"
+                "Los chakras son centros energéticos que reflejan distintos aspectos de tu destino y energía. "
+                "En la Matriz del Destino analizamos 7 chakras. ¿Quieres saber cómo se manifiestan en ti? "
+                "Introduce tu fecha de nacimiento en la calculadora — ¡y obtendrás tu análisis!"
             )
-        # Новая обработка для вопросов "что нужно для этого", "как получить консультацию", "как узнать свою матрицу"
+        # “qué necesito”, “cómo obtener consulta”, “cómo saber mi matriz”
         if (
-            "что нужно для этого" in q
-            or "как получить консультац" in q
-            or "как узнать свою матрицу" in q
-            or ("нужно" in q and "для этого" in q)
+            "qué necesito" in q
+            or "cómo obtener consulta" in q
+            or "cómo saber mi matriz" in q
+            or ("necesito" in q and "para esto" in q)
         ):
             return (
-                "Всё очень просто! Просто введите вашу дату рождения в калькулятор на сайте — и я сразу рассчитаю вашу Матрицу Судьбы, расскажу о ваших чакрах и энергиях, и дам индивидуальные рекомендации."
+                "¡Muy simple! Introduce tu fecha de nacimiento en la calculadora del sitio — y enseguida calcularé tu Matriz del Destino, te contaré sobre tus chakras y energías, y te daré recomendaciones."
             )
 
         if (
-            ("если" in q and "дат" in q and "введ" in q)
-            or ("что" in q and "узна" in q and "дат" in q)
-            or ("что будет" in q and "дат" in q)
-            or ("что получ" in q and "дат" in q)
+            ("si" in q and "fecha" in q and "introdu" in q)
+            or ("qué" in q and "sabr" in q and "fecha" in q)
+            or ("qué pasará" in q and "fecha" in q)
+            or ("qué obtengo" in q and "fecha" in q)
         ):
             return (
-                "Если вы введёте свою дату рождения, я рассчитаю вашу индивидуальную Матрицу Судьбы! "
-                "Вы узнаете значения своих энергий и чакр, получите персональные рекомендации и сможете глубже понять свои сильные стороны и жизненные задачи. "
-                "Попробуйте — это интересно и полезно!"
+                "Si introduces tu fecha de nacimiento, ¡calcularé tu Matriz del Destino individual! "
+                "Conocerás el significado de tus energías y chakras, recibirás recomendaciones y comprenderás mejor tus fortalezas y tareas de vida. "
+                "¡Pruébalo — es interesante y útil!"
             )
 
-        # Вопросы о стоимости
-        if "сколько стоит" in q or "цена" in q or "стоимость" in q:
+        # Precio
+        if "cuánto cuesta" in q or "precio" in q or "coste" in q or "costo" in q:
             return (
-                "Стоимость консультации указана на сайте рядом с калькулятором. "
-                "Если у вас есть вопросы по оплате — напишите, я помогу!"
+                "El precio de la consulta está indicado en el sitio junto a la calculadora. "
+                "Si tienes preguntas sobre el pago — ¡escríbeme y te ayudo!"
             )
-        # Вопросы об оплате
-        if "как оплатить" in q or "оплата" in q or "оплатить" in q:
+        # Pago
+        if "cómo pagar" in q or "pago" in q or "pagar" in q:
             return (
-                "Оплатить консультацию можно прямо на сайте после расчёта вашей Матрицы Судьбы. "
-                "Следуйте подсказкам калькулятора — всё просто и безопасно!"
+                "Puedes pagar la consulta directamente en el sitio después del cálculo de tu Matriz del Destino. "
+                "Sigue las indicaciones de la calculadora — ¡todo es simple y seguro!"
             )
-        # Вопросы о безопасности данных
-        if "безопасн" in q and ("данн" in q or "оплат" in q):
+        # Seguridad de datos
+        if "segurid" in q and ("datos" in q or "pago" in q):
             return (
-                "Ваши данные надёжно защищены и используются только для расчёта Матрицы Судьбы. "
-                "Оплата проходит через защищённый платёжный сервис."
+                "Tus datos están protegidos y se usan solo para el cálculo de la Matriz del Destino. "
+                "El pago se procesa mediante un servicio de pago seguro."
             )
-        # Вопросы о повторном расчёте или ошибках
-        if "ошиб" in q or "исправ" in q or "ещё раз" in q or "повтор" in q:
+        # Repetir cálculo / errores
+        if "error" in q or "correg" in q or "otra vez" in q or "repet" in q:
             return (
-                "Если вы ошиблись в дате или хотите рассчитать матрицу ещё раз — просто введите новую дату рождения в калькулятор!"
+                "Si te equivocaste en la fecha o quieres recalcular — ¡simplemente introduce una nueva fecha en la calculadora!"
             )
-        # Вопросы о времени получения результата
-        if "когда" in q and ("результат" in q or "ответ" in q or "консультац" in q):
-            return (
-                "Результат вы получите сразу после оплаты — он появится в чате и будет доступен для скачивания!"
-            )
-        # Вопросы о поддержке
-        if "поддержк" in q or "связаться" in q or "помощь" in q:
-            return (
-                "Если у вас возникли вопросы или сложности — напишите в поддержку через форму на сайте или в чат. Мы всегда готовы помочь!"
-            )
+        # Cuándo llega el resultado
+        if "cuándo" in q and ("resultado" in q or "respuesta" in q or "consulta" in q):
+            return "El resultado lo recibirás inmediatamente tras el pago — aparecerá en el chat y estará disponible para descargar."
+        # Soporte
+        if "soporte" in q or "contactar" in q or "ayuda" in q:
+            return "Si tienes dudas o dificultades — escribe al soporte mediante el formulario del sitio o en el chat. ¡Siempre estamos listos para ayudar!"
 
-        # Ответы на "да хочу", "расскажи", "хочу подробнее" после вопроса о чакрах
+        # Respuestas a “sí, quiero”, “cuenta”, “más detalles”
         if (
-            q in ["да хочу", "расскажи", "хочу подробнее", "да, хочу", "да, расскажи", "да", "расскажи подробнее"]
-            or ("хочу" in q and ("подробнее" in q or "узнать" in q))
+            q in ["sí quiero", "cuenta", "quiero más", "sí, quiero", "sí, cuéntame", "sí", "cuéntame más"]
+            or ("quiero" in q and ("más" in q or "saber" in q))
         ):
             return (
-                "Отлично! О какой чакре вы хотите узнать подробнее?\n"
-                "Могу рассказать про любую из 7 чакр — просто напишите её название, например: 'Анахата' или 'Манипура'.\n"
-                "Или введите вашу дату рождения — и я расскажу, как чакры проявляются именно у вас!"
+                "¡Genial! ¿Sobre qué chakra quieres saber más?\n"
+                "Puedo contarte sobre cualquiera de los 7 — escribe su nombre, por ejemplo: 'Anahata' o 'Manipura'.\n"
+                "O introduce tu fecha de nacimiento — ¡y te contaré cómo se manifiestan en ti!"
             )
 
-        # Обработка ввода даты рождения
+        # Detección simple de fecha
         if re.match(r"^\d{2}[\.\-/]?\d{2}[\.\-/]?\d{2,4}$", q):
             return (
-                f"Спасибо! Вы ввели дату рождения: {query}. "
-                "Чтобы получить индивидуальный разбор, воспользуйтесь калькулятором на сайте — это быстро и удобно!"
+                f"¡Gracias! Has introducido la fecha de nacimiento: {query}. "
+                "Para obtener un análisis individual, usa la calculadora del sitio — ¡es rápido y cómodo!"
             )
 
         allowed = [
-            "матрица", "энерг", "чакр", "дата", "судьб", "расчёт", "консультац",
-            "sahasrara", "сахасрара", "ajna", "аджна", "vishuddha", "вишудха",
-            "anahata", "анахата", "manipura", "манипура", "svadhisthana", "свадхистхана",
-            "muladhara", "муладхара"
+            "matriz", "energ", "chakr", "fecha", "destino", "cálculo", "consulta",
+            "sahasrara", "ajna", "vishuddha",
+            "anahata", "manipura", "svadhisthana",
+            "muladhara"
         ]
         if any(word in q for word in allowed):
             return await self.ask_gpt(query)
 
-        # Более дружелюбный fallback-ответ
+        # Respuesta fallback más amistosa
         return (
-            "Я консультант по Матрице Судьбы и с радостью помогу вам узнать больше о ваших энергиях, чакрах и жизненных задачах! "
-            "Пожалуйста, задайте вопрос по теме или введите вашу дату рождения для индивидуального разбора."
+            "Soy asesor de la Matriz del Destino y con gusto te ayudaré a saber más sobre tus energías, chakras y tareas de vida. "
+            "Por favor, haz una pregunta del tema o introduce tu fecha de nacimiento para un análisis individual."
         )
 
     async def consult_compatibility_full(self, partner1: dict, partner2: dict) -> str:
         """
-        Формирует текст для чат-бота по совместимости двух партнёров на основе COMPATIBILITY.json.
-        partner1, partner2 — dict с ключом 'chakras', где по каждой чакре массив из 3 значений.
+        Forma el texto para el chatbot sobre la compatibilidad de dos parejas basado en COMPATIBILITY.json.
+        partner1, partner2 — dict con clave 'chakras', donde por cada chakra hay un array de 3 valores.
         """
-        # 1. Загрузка COMPATIBILITY.json
+        # 1. Carga de COMPATIBILITY.json
         compat_path = os.path.join(BASE_API_DIR, 'base', 'COMPATIBILITY.json')
         async with aiofiles.open(compat_path, 'r', encoding='utf-8') as f:
             compat_data = json.loads(await f.read())
@@ -419,9 +411,9 @@ class Chunk:
         chakras_list = ["ajna", "anahata", "svadhisthana", "manipura", "muladhara", "sahasrara"]
         result_lines = []
 
-        # 2. custom_points (описания и трактовки по чакрам)
+        # 2. custom_points (descripciones e interpretaciones por chakras)
         for chakra in chakras_list:
-            # Найти блок custom_points для этой чакры
+            # Buscar bloque custom_points para este chakra
             block = None
             for item in compat_data.get("custom_points", []):
                 if item.get("chakra", "").lower() == chakra:
@@ -430,47 +422,48 @@ class Chunk:
             if not block:
                 continue
 
-            # Описание чакры
+            # Descripción del chakra
             result_lines.append(f"{chakra.capitalize()} — {block.get('description', '')}")
 
-            # Значения для партнёров
+            # Valores para las parejas
             val1 = partner1["chakras"].get(chakra, [None, None, None])[2]
             val2 = partner2["chakras"].get(chakra, [None, None, None])[2]
             val1_str = str(val1) if val1 is not None else "?"
             val2_str = str(val2) if val2 is not None else "?"
 
-            desc1 = block.get(val1_str, "(нет описания)")
-            desc2 = block.get(val2_str, "(нет описания)")
+            desc1 = block.get(val1_str, "(sin descripción)")
+            desc2 = block.get(val2_str, "(sin descripción)")
 
-            result_lines.append(f"Партнёр 1: {val1_str} — {desc1}")
-            result_lines.append(f"Партнёр 2: {val2_str} — {desc2}")
-            result_lines.append("")  # пустая строка для разделения
+            result_lines.append(f"Pareja 1: {val1_str} — {desc1}")
+            result_lines.append(f"Pareja 2: {val2_str} — {desc2}")
+            result_lines.append("")  # línea en blanco para separar
 
-        # 3. recommendations (по anahata, Emociones)
+        # 3. recommendations (para anahata, Emociones)
         rec_block = None
         for item in compat_data.get("recommendations", []):
             if item.get("chakra", "").lower() == "anahata" and item.get("aspect", "").lower() == "emociones":
                 rec_block = item
                 break
         if rec_block:
-            result_lines.append("Рекомендации:")
+            result_lines.append("Recomendaciones:")
             for i, partner in enumerate([partner1, partner2], 1):
                 val = partner["chakras"].get("anahata", [None, None, None])[2]
                 val_str = str(val) if val is not None else "?"
-                plus = rec_block.get(val_str, {}).get("плюсы", "(нет плюсов)")
-                minus = rec_block.get(val_str, {}).get("минусы", "(нет минусов)")
+                # Nota: si en tu JSON cambiaste 'плюсы'/'минусы' a 'pros'/'contras', ajusta estas claves:
+                plus = rec_block.get(val_str, {}).get("плюсы", "(sin pros)")
+                minus = rec_block.get(val_str, {}).get("минусы", "(sin contras)")
                 desc = rec_block.get("description", "")
-                result_lines.append(f"Партнёр {i}: {desc}\nПлюсы: {plus}\nМинусы: {minus}")
+                result_lines.append(f"Pareja {i}: {desc}\nPros: {plus}\nContras: {minus}")
             result_lines.append("")
 
-        # 4. compatibility (по anahata, Emociones)
+        # 4. compatibility (para anahata, Emociones)
         comp_block = None
         for item in compat_data.get("compatibility", []):
             if item.get("chakra", "").lower() == "anahata" and item.get("aspect", "").lower() == "emociones":
                 comp_block = item
                 break
         if comp_block:
-            result_lines.append("Совместимость по Anahata:")
+            result_lines.append("Compatibilidad por Anahata:")
             result_lines.append(comp_block.get("description", ""))
             v1 = partner1["chakras"].get("anahata", [None, None, None])[2]
             v2 = partner2["chakras"].get("anahata", [None, None, None])[2]
@@ -478,11 +471,12 @@ class Chunk:
             key2 = f"{v2}-{v1}"
             comp = comp_block.get(key1) or comp_block.get(key2)
             if comp:
-                result_lines.append(f"Пара {key1 if comp_block.get(key1) else key2}:")
-                result_lines.append(f"Совместимость: {comp.get('совместимость', '')}")
-                result_lines.append(f"Описание: {comp.get('описание', '')}")
+                result_lines.append(f"Pareja {key1 if comp_block.get(key1) else key2}:")
+                # Nota: si en tu JSON cambiaste 'совместимость'/'описание' a 'compatibilidad'/'descripcion', ajusta estas claves:
+                result_lines.append(f"Compatibilidad: {comp.get('совместимость', '')}")
+                result_lines.append(f"Descripción: {comp.get('описание', '')}")
             else:
-                result_lines.append(f"Нет точного описания для пары {v1}-{v2}.")
+                result_lines.append(f"No hay una descripción exacta para la pareja {v1}-{v2}.")
             result_lines.append("")
 
         return "\n".join(result_lines)

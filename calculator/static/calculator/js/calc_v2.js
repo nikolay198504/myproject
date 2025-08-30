@@ -274,7 +274,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     
       // Проверяем, введена ли дата
       if (!date1) {
-        alert("Введите дату рождения!");
+        alert("Introduce tu fecha de nacimiento!");
         return;
       }
     
@@ -285,13 +285,13 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       $('#panel1').show();
     
       // Первое сообщение в чат
-      openChatWindow("Я уже проанализировал твою Матрицу Судьбы и готов поделиться первыми результатами! ☺️");
+      openChatWindow("¡Ya he analizado tu Matriz del Destino y estoy listo para compartir los primeros resultados! ☺️");
     
       // После вызова calculate() получаем реальные значения для бесплатных точек
       let data = readTableData("0");
       console.log("data:", data);
       if (!data || !data.chakras) {
-        alert("Ошибка: данные не готовы. Попробуйте ещё раз!");
+        alert("Error: los datos no están listos. Inténtalo de nuevo.!");
         return;
       }
       let freePoints = [
@@ -316,7 +316,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     
             // Через 2 секунды предлагаем платный расчёт
             setTimeout(function () {
-              openChatWindow("Хочешь углублённый расчёт для PERSONAL (платно)?");
+              openChatWindow("✨ ¿Quieres acceder al análisis completo de tu matriz? (premium)?");
     
               // Создаём кнопки "Да" и "Нет"
               const chatArea = document.querySelector(".chat-area");
@@ -326,7 +326,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               buttonContainer.style.gap = "10px";
     
               const yesBtn = document.createElement("button");
-              yesBtn.textContent = "Да";
+              yesBtn.textContent = "Sí";
               yesBtn.style.padding = "8px 16px";
               yesBtn.style.borderRadius = "20px";
               yesBtn.style.border = "2px solid #fff";
@@ -335,7 +335,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               yesBtn.style.cursor = "pointer";
     
               const noBtn = document.createElement("button");
-              noBtn.textContent = "Нет";
+              noBtn.textContent = "No";
               noBtn.style.padding = "8px 16px";
               noBtn.style.borderRadius = "20px";
               noBtn.style.border = "2px solid #fff";
@@ -346,7 +346,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               // Обработчик для кнопки "Да"
               yesBtn.addEventListener("click", async function () {
                 chatArea.removeChild(buttonContainer);
-                openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
+                openChatWindow("¡Excelente! Ahora serás redirigido a la página de pago... Ingresa también tu número de teléfono!");
 
                 // Создаём форму для ввода email и телефона
                   const inputDiv = document.createElement("div");
@@ -357,20 +357,20 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 
                   const emailInput = document.createElement("input");
                   emailInput.type = "email";
-                  emailInput.placeholder = "Ваш email (необязательно)";
+                  emailInput.placeholder = "Introduce tu email";
                   emailInput.style.padding = "8px";
                   emailInput.style.borderRadius = "8px";
                   emailInput.style.border = "1px solid #ccc";
 
                   const phoneInput = document.createElement("input");
                   phoneInput.type = "tel";
-                  phoneInput.placeholder = "Ваш телефон (обязательно)";
+                  phoneInput.placeholder = "Introduce tu teléfono";
                   phoneInput.style.padding = "8px";
                   phoneInput.style.borderRadius = "8px";
                   phoneInput.style.border = "1px solid #ccc";
 
                   const continueBtn = document.createElement("button");
-                  continueBtn.textContent = "Продолжить";
+                  continueBtn.textContent = "Continuar";
                   continueBtn.style.padding = "8px 16px";
                   continueBtn.style.borderRadius = "20px";
                   continueBtn.style.border = "2px solid #fff";
@@ -388,7 +388,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                     const emailVal = emailInput.value.trim();
                     const phoneVal = phoneInput.value.trim();
                   if (!phoneVal) {
-                    addBotMessage("Пожалуйста, укажите телефон!");
+                    addBotMessage("Por favor, indique su teléfono!");
                       return;
                     }
                   const paidPoints = getPaidPoints();
@@ -406,7 +406,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                     const data = await response.json();
                     const orderId = data.order_id;
                   if (!orderId) {
-                    addBotMessage("Ошибка: не удалось получить номер заказа. Попробуйте позже.");
+                    addBotMessage("Error: no se pudo obtener el número de pedido. Inténtelo más tarde.");
                     return;
                   }
                   localStorage.setItem("orderId", orderId);
@@ -436,7 +436,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               // Обработчик для кнопки "Нет"
               noBtn.addEventListener("click", function () {
                 chatArea.removeChild(buttonContainer);
-                openChatWindow("Хорошо, продолжаем без платной части!");
+                openChatWindow("¡Bien, continuamos sin la parte de pago!");
               });
     
               // Добавляем кнопки в чат
@@ -447,12 +447,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
             }, 2000);
           } else {
             console.error("Поле 'message' отсутствует в ответе сервера.");
-            addBotMessage("Извините, произошла ошибка обработки данных.");
+            addBotMessage("Lo sentimos, se ha producido un error en el procesamiento de los datos.");
           }
         })
         .catch(error => {
           console.error("Ошибка при получении ответа:", error);
-          addBotMessage("Извините, произошла ошибка.");
+          addBotMessage("Lo sentimos, se ha producido un error.");
         });
 
       let paidPoints = getPaidPoints();
@@ -470,7 +470,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       var date2 = document.getElementById("inputDate2").value.trim();
       console.log("Дата из inputDate1:", date1, "Дата из inputDate2:", date2);
       if (!date1 || !date2) {
-        alert("Введите обе даты!");
+        alert("Introduce ambas fechas!");
         return;
       }
 
@@ -526,8 +526,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       .then(data => {
         openChatWindow(data.message);
 
-        // Показываем предложение об оплате совместимости
-        if (data.message === "Готов узнать о consult_compatibility (платно)?") {
+        // Всегда показываем предложение об оплате совместимости
+        // (не завися от точного текста ответа сервера)
           const chatArea = document.querySelector(".chat-area");
           const buttonContainer = document.createElement("div");
           buttonContainer.style.margin = "10px 0";
@@ -535,7 +535,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           buttonContainer.style.gap = "10px";
 
           const yesBtn = document.createElement("button");
-          yesBtn.textContent = "Да";
+          yesBtn.textContent = "Sí";
           yesBtn.style.padding = "8px 16px";
           yesBtn.style.borderRadius = "20px";
           yesBtn.style.border = "2px solid #fff";
@@ -544,7 +544,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
           yesBtn.style.cursor = "pointer";
 
           const noBtn = document.createElement("button");
-          noBtn.textContent = "Нет";
+          noBtn.textContent = "No";
           noBtn.style.padding = "8px 16px";
           noBtn.style.borderRadius = "20px";
           noBtn.style.border = "2px solid #fff";
@@ -554,7 +554,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 
           yesBtn.addEventListener("click", async function () {
             chatArea.removeChild(buttonContainer);
-            openChatWindow("Отлично! Сейчас вы будете перенаправлены на страницу оплаты...Введите номер телефона!");
+            openChatWindow("¡Perfecto! Ahora serás redirigido a la página de pago... ¡Introduce tu número de teléfono!");
 
             // Создаём форму для ввода email и телефона
               const inputDiv = document.createElement("div");
@@ -565,20 +565,20 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 
               const emailInput = document.createElement("input");
               emailInput.type = "email";
-              emailInput.placeholder = "Ваш email (необязательно)";
+              emailInput.placeholder = "Introduce tu email";
               emailInput.style.padding = "8px";
               emailInput.style.borderRadius = "8px";
               emailInput.style.border = "1px solid #ccc";
 
               const phoneInput = document.createElement("input");
               phoneInput.type = "tel";
-              phoneInput.placeholder = "Ваш телефон (обязательно)";
+              phoneInput.placeholder = "Introduce tu teléfono";
               phoneInput.style.padding = "8px";
               phoneInput.style.borderRadius = "8px";
               phoneInput.style.border = "1px solid #ccc";
 
               const continueBtn = document.createElement("button");
-              continueBtn.textContent = "Продолжить";
+              continueBtn.textContent = "Continuar";
               continueBtn.style.padding = "8px 16px";
               continueBtn.style.borderRadius = "20px";
               continueBtn.style.border = "2px solid #fff";
@@ -596,7 +596,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 const emailVal = emailInput.value.trim();
                 const phoneVal = phoneInput.value.trim();
               if (!phoneVal) {
-                addBotMessage("Пожалуйста, укажите телефон!");
+                addBotMessage("¡Por favor, indique su teléfono!");
                   return;
                 }
               var partner1 = readTableData("0");
@@ -618,7 +618,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 const data = await response.json();
                 const orderId = data.order_id;
               if (!orderId) {
-                addBotMessage("Ошибка: не удалось получить номер заказа. Попробуйте позже.");
+                addBotMessage("Error: no se pudo obtener el número de pedido. Inténtelo de nuevo más tarde.");
                 return;
               }
               localStorage.setItem("orderId", orderId);
@@ -647,18 +647,17 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 
           noBtn.addEventListener("click", function () {
             chatArea.removeChild(buttonContainer);
-            openChatWindow("Хорошо, продолжаем без платной части!");
+            openChatWindow("¡De acuerdo, continuamos sin la parte de pago!");
           });
 
           buttonContainer.appendChild(yesBtn);
           buttonContainer.appendChild(noBtn);
           chatArea.appendChild(buttonContainer);
           chatArea.scrollTop = chatArea.scrollHeight;
-        }
       })
       .catch(error => {
         console.error("Ошибка при получении ответа:", error);
-        addBotMessage("Извините, произошла ошибка.");
+        addBotMessage("Lo sentimos, ha ocurrido un error.");
       });
     }
 
@@ -755,12 +754,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               addBotMessage(data.message);
             } else {
               console.error("Поле 'message' отсутствует в ответе сервера.");
-              addBotMessage("Извините, произошла ошибка обработки данных.");
+              addBotMessage("Lo sentimos, se ha producido un error en el procesamiento de los datos.");
             }
           })
           .catch(error => {
             console.error("Ошибка при получении ответа:", error);
-            addBotMessage("Извините, произошла ошибка.");
+            addBotMessage("Lo sentimos, se ha producido un error.");
           });
         } else {
           const personalData = readTableData("0");
@@ -805,16 +804,16 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               addBotMessage(data.message);
             } else {
               console.error("Поле 'message' отсутствует в ответе сервера.");
-              addBotMessage("Извините, произошла ошибка обработки данных.");
+              addBotMessage("Lo sentimos, se ha producido un error en el procesamiento de los datos.");
             }
           })
           .catch(error => {
             console.error("Ошибка при получении ответа:", error);
-            addBotMessage("Извините, произошла ошибка.");
+            addBotMessage("Lo sentimos, se ha producido un error.");
           });
         }
       } else if (negatives.includes(lower)) {
-        addBotMessage("Понял, отменяем расчет.");
+        addBotMessage("Entendido, cancelamos el cálculo.");
       } else {
         // Пример запроса к некоему API
         fetch("/api/get_answer_async", {
@@ -828,7 +827,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         })
         .catch(error => {
           console.error("Ошибка при получении ответа:", error);
-          addBotMessage("Извините, произошла ошибка.");
+          addBotMessage("Lo sentimos, se ha producido un error.");
         });
       }
       resetIdleTimer();
@@ -855,12 +854,12 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
     // Показываем ошибку только если в URL есть параметры оплаты, но orderId не определён
     if (orderId) {
         document.getElementById("chatWindow").style.display = "block";
-        openChatWindow("Спасибо за оплату! Ваш результат будет показан ниже.");
+        openChatWindow("¡Gracias por el pago! Tu resultado se mostrará a continuación.");
     } else if (
         window.location.search.includes("order_id") ||
         window.location.search.includes("_payform_order_id")
     ) {
-        addBotMessage("Ошибка: не удалось определить номер заказа. Пожалуйста, попробуйте ещё раз или обратитесь в поддержку.");
+        addBotMessage("Error: no se pudo determinar el número de pedido. Por favor, inténtalo de nuevo o contacta con el soporte.");
     }
     // Если пользователь просто зашёл на сайт — ничего не показываем, чат-бот работает как обычно
 
@@ -915,7 +914,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         } else if (orderType === "personal") {
           pollPaidInterpretation(orderId, 120, 3000);
         } else {
-          addBotMessage("Не удалось определить тип заказа. Пожалуйста, попробуйте ещё раз или обратитесь в поддержку.");
+          addBotMessage("No se pudo determinar el tipo de pedido. Por favor, inténtalo de nuevo o contacta con el soporte.");
         }
       })();
     }
@@ -1498,24 +1497,24 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         .then(data => {
           if (data.message && !data.message.includes("не удалось") && !data.message.includes("Order not paid")) {
             updateWaitingMessage(""); // Удалить индикатор
-            addBotMessage("Спасибо за оплату! Вот твой результат по чакрам:\n" + data.message);
+            addBotMessage("¡Gracias por el pago! Aquí está tu resultado sobre los chakras:\n" + data.message);
           } else if (attempts < maxTries) {
             attempts++;
-            updateWaitingMessage("Ожидаем подтверждения оплаты..."); // Показываем только один раз
+            updateWaitingMessage("Esperando la confirmación del pago..."); // Показываем только один раз
             setTimeout(poll, interval);
           } else {
             updateWaitingMessage(""); // Удалить индикатор
-            addBotMessage("Не удалось получить результат по чакрам. Проверьте номер заказа или обратитесь в поддержку.");
+            addBotMessage("No se pudo obtener el resultado de los chakras. Verifique el número de pedido o póngase en contacto con el soporte técnico.");
           }
         })
         .catch(() => {
           if (attempts < maxTries) {
             attempts++;
-            updateWaitingMessage("Ожидаем подтверждения оплаты...");
+            updateWaitingMessage("En espera de la confirmación del pago...");
             setTimeout(poll, interval);
           } else {
             updateWaitingMessage("");
-            addBotMessage("Не удалось получить результат по чакрам. Проверьте номер заказа или обратитесь в поддержку.");
+            addBotMessage("No se pudo obtener el resultado de los chakras. Verifique el número de pedido o póngase en contacto con el soporte técnico.");
           }
         });
     }
@@ -1531,15 +1530,15 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 // Показываем результат в чат-боте
                 openChatWindow(data.result);
             } else if (data.message) {
-                openChatWindow("Результат ещё не готов. Пожалуйста, попробуйте позже.");
+                openChatWindow("El resultado aún no está listo. Por favor, inténtelo más tarde.");
             } else if (data.error) {
-                openChatWindow("Ошибка: " + data.error);
+                openChatWindow("Error: " + data.error);
             } else {
-                openChatWindow("Не удалось получить результат совместимости.");
+                openChatWindow("No se pudo obtener el resultado de la compatibilidad.");
             }
         })
         .catch(error => {
-            openChatWindow("Ошибка при получении результата: " + error);
+            openChatWindow("Error al obtener el resultado: " + error);
         });
   }
 
@@ -1551,15 +1550,15 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
             if (data.result) {
                 openChatWindow(data.result);
             } else if (data.message) {
-                openChatWindow("Результат ещё не готов. Пожалуйста, попробуйте позже.");
+                openChatWindow("El resultado aún no está listo. Por favor, inténtelo más tarde.");
             } else if (data.error) {
-                openChatWindow("Ошибка: " + data.error);
+                openChatWindow("Error: " + data.error);
             } else {
-                openChatWindow("Не удалось получить результат персонального анализа.");
+                openChatWindow("No se pudo obtener el resultado del análisis personal.");
             }
         })
         .catch(error => {
-            openChatWindow("Ошибка при получении результата: " + error);
+            openChatWindow("Error al obtener el resultado: " + error);
         });
   }
 
@@ -1592,21 +1591,21 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
             openChatWindow(data.result);
           } else if (attempts < maxTries) {
             attempts++;
-            updateWaitingMessage("Ожидаем подтверждения оплаты...");
+            updateWaitingMessage("Esperando la confirmación del pago...");
             setTimeout(poll, interval);
           } else {
             updateWaitingMessage("");
-            openChatWindow("Не удалось получить результат совместимости. Проверьте номер заказа или обратитесь в поддержку.");
+            openChatWindow("No se pudo obtener el resultado de la compatibilidad. Verifique el número de pedido o póngase en contacto con el soporte.");
           }
         })
         .catch(() => {
           if (attempts < maxTries) {
             attempts++;
-            updateWaitingMessage("Ожидаем подтверждения оплаты...");
+            updateWaitingMessage("En espera de la confirmación del pago...");
             setTimeout(poll, interval);
           } else {
             updateWaitingMessage("");
-            openChatWindow("Не удалось получить результат совместимости. Проверьте номер заказа или обратитесь в поддержку.");
+            openChatWindow("No se pudo obtener el resultado de la compatibilidad. Verifique el número de pedido o póngase en contacto con el soporte.");
           }
         });
     }

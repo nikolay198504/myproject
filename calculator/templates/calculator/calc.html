@@ -24,27 +24,36 @@
     <link href="{% static 'calculator/css/custom.css' %}" rel="stylesheet" type="text/css" />
 
 
+
 </head>
 
 
 
+<body>
+<div class="lock-portrait">
+
 <header class="text-left text-white" style="
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1)),
-              url('{% static 'calculator/images/watch2.jpg' %}') no-repeat center center;
+              url({% static 'calculator/images/watch2.jpg' %}) no-repeat center center;
   background-size: cover;
-  min-height: 900px; /* или больше, например 600px */
-">
-    <div class="d-flex p-4 justify-content-start">
-    <h1 class="main-title">
+  min-height: 320px;
+  display: flex;
+  align-items: flex-start; position: relative;">
+    <div class="d-flex justify-content-start">
+    <h1 class="main-title" style="position:absolute; top:0; left:0; margin:0; padding:0;">
       TU MATRIZ PERSONALIZADA
     </h1>
   </div>
-  <div class="d-block w-100">
-    <h1 class="main-title-mobile">
-      Para el análisis de la matriz,<br>por favor introduce tu fecha de nacimiento
-    </h1>
-  </div>
-</header>
+    <div class="d-block w-100">
+      <h1 class="main-title-mobile">
+        Para el análisis de la matriz,<br>por favor introduce tu fecha de nacimiento
+      </h1>
+    </div>
+    <!-- Desktop-only subtitle placed lower and slightly larger -->
+    <div class="d-block w-100">
+      <h2 class="main-subtitle-desktop">Para el análisis de la matriz, por favor introduce tu fecha de nacimiento</h2>
+    </div>
+  </header>
 
 
 
@@ -155,6 +164,43 @@
 	  background-color: #ffdf3f;
 	  transform: scale(0.95);
 	}
+
+    /* Desktop-only subtitle styling */
+    .main-subtitle-desktop {
+      display: none; /* hidden by default (mobile) */
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      margin-left: 16px;
+    }
+    @media (min-width: 992px) {
+      /* Show desktop subtitle, hide mobile title on desktops */
+      .main-subtitle-desktop {
+        display: block;
+        font-size: 2.2rem; /* larger on desktop */
+        margin-top: 280px;  /* push it lower on desktop */
+        font-weight: 700;
+      }
+      .main-title-mobile {
+        display: none;
+      }
+      /* Increase header height on desktop for spacing */
+      header.text-left.text-white {
+        min-height: 420px;
+      }
+      /* Desktop: make inputs/buttons a bit taller without stretching width */
+      .input-gold {
+        height: 64px;
+        padding: 16px 18px;
+        font-size: 21px;
+      }
+      .btn-custom {
+        height: 66px;
+        padding: 14px 24px;
+        font-size: 21px;
+        border-radius: 12px;
+        min-width: 220px;
+      }
+    }
   </style>
   
   
@@ -355,9 +401,7 @@
 
 </main>
 
-</div>
-
-
+ 
 <!-- footer section -->
 <footer class="footer_section">
 	<div class="container">
@@ -382,16 +426,16 @@
 			<a class="footer-logo">{% trans "REDES SOCIALES:" %}</a>
 			<p>{% trans "Instagram" %}</p>
 			<div class="social-icons">
-			  <a href="https://www.instagram.com/matriz_del.destino/" target="_blank">
+			  <a href="https://www.instagram.com/almas.esotericas?igsh=Zm14azRwODM0NWht&utm_source=qr" target="_blank">
 				<img src="{% static 'calculator/images/instagram.png' %}" alt="{% trans 'Instagram' %}">
 			  </a>
 			  <a href="https://wa.link/mjqka1" target="_blank">
 				<img src="{% static 'calculator/images/whatsapp.png' %}" alt="{% trans 'WhatsApp' %}">
 			  </a>
-			  <a href="https://www.youtube.com/@Armon%C3%ADa_en_la_vida/videos" target="_blank">
+			  <a href="https://youtube.com/@almas.esotericas?si=_51DShGraUh-Vr1T" target="_blank">
 				<img src="{% static 'calculator/images/youtube.png' %}" alt="{% trans 'YouTube' %}">
 			  </a>
-			  <a href="https://t.me/matriz_del_destino" target="_blank">
+			  <a href="https://t.me/+IqUif0YeMFJlZDJk" target="_blank">
 				<img src="{% static 'calculator/images/icons8-телеграм.png' %}" alt="{% trans 'Telegram' %}">
 			  </a>
 			</div>
@@ -432,12 +476,12 @@
 
     <!-- Подзаголовок -->
     <div class="chat-subtitle">
-		Привет! Я Библиотека знаний Татьяны 🔮.
+		¡Hola! Soy la Biblioteca de Conocimientos de Tatiana 🔮.
     </div>
 
 
 	<div class="chat-subtitle">
-		Введи дату рождения в калькулятор  — и я расскажу тебе о твоей судьбе!  
+		Introduce tu fecha de nacimiento en la calculadora y te contaré acerca de tu destino.  
     </div>
 
 
@@ -449,17 +493,19 @@
 
     <!-- Футер окна -->
     <div class="chat-footer">
-      <button id="startNewChat">Начать новый чат</button>
+      <button id="startNewChat">Iniciar nuevo chat</button>
     </div>
 
     <!-- Поле ввода + кнопка -->
     <div class="input-area">
-      <input type="text" placeholder="Введите сообщение..." />
-      <button id="sendBtn">Отправить</button>
+      <input type="text" placeholder="Escribe un mensaje..." />
+      <button id="sendBtn">Enviar</button>
     </div>
   </div>
 </div>
 
+
+</div>
 
 <script>
   window.ORDER_ID = "{{ order_id|default:'' }}";
@@ -469,7 +515,6 @@
 <script src="{% static 'calculator/jquery/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'calculator/js/calc_v2.js' %}"></script>
 
-
-
+</div>
 </body>
 </html>
