@@ -195,6 +195,39 @@ async def paid_interpretation(order_id: str):
     db.close()
     return {"message": paid_message}
 
+chunk = Chunk()
+
+def parse_order_id(order_id_str):
+    try:
+        return int(order_id_str.replace("ORD-", ""))
+    except Exception:
+        return None
+
+@router.get("/payments/paid-interpretation")
+async def paid_interpretation(order_id: str):
+    import json
+    print(f"[PAID-INTERPRETATION] Looking for order with ID: {order_id}")
+    db = SessionLocal()
+    id_int = parse_order_id(order_id)
+    print(f"[PAID-INTERPRETATION] Parsed id: {id_int}")
+    order = db.query(Order).filter(Order.id == id_int).first()
+    if not order:
+        print(f"[PAID-INTERPRETATION] Order {order_id} not found in database")
+        db.close()
+        raise HTTPException(status_code=404, detail="Order not found")
+    print(f"[PAID-INTERPRETATION] Found order: id={order.id}, order_id={order.order_id}, status={order.status}")
+    if order.status != "paid":
+        print(f"[PAID-INTERPRETATION] Order {order_id} is not paid (status: {order.status})")
+        db.close()
+        return {"error": "Order not paid"}
+    points = json.loads(order.points) if order.points else []
+    date = order.date
+    print(f"[PAID-INTERPRETATION] Generating interpretation for order {order_id} with points: {points}")
+    paid_message = await chunk.consult_paid(points=points, date=date)
+    print(f"[PAID-INTERPRETATION] Generated message for order {order_id}: {paid_message}")
+    db.close()
+    return {"message": paid_message}
+
 @router.post("/generate_pay_url")
 async def generate_pay_url(payment_request: PaymentRequest):
     # URL API Prodamus для создания счета
@@ -290,3 +323,127 @@ async def save_points(order_id: str = Body(...), points: list = Body(...)):
         return {"status": "success"}
     finally:
         db.close()
+
+# --- PDF endpoints (personal and compatibility) ---
+@router.get("/payments/paid-interpretation-pdf")
+async def paid_interpretation_pdf(order_id: str):
+    """
+    Возвращает PDF-файл с персональной интерпретацией по order_id.
+    Не меняет существующую логику: повторно считает текст так же, как текущий
+    /payments/paid-interpretation, и формирует PDF.
+    """
+    from io import BytesIO
+    try:
+        # Импорты локально, чтобы не менять глобальные зависимости
+        from fastapi.responses import StreamingResponse
+        from reportlab.lib.pagesizes import A4
+        from reportlab.lib.units import mm
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"PDF generation dependencies missing: {e}")
+
+    # Получаем текст так же, как в paid_interpretation
+    import json
+    db = SessionLocal()
+    try:
+        id_int = parse_order_id(order_id)
+        order = db.query(Order).filter(Order.id == id_int).first()
+        if not order:
+            raise HTTPException(status_code=404, detail="Order not found")
+        if order.status != "paid":
+            raise HTTPException(status_code=400, detail="Order not paid")
+        points = json.loads(order.points) if order.points else []
+        text = await chunk.consult_paid(points=points, date=order.date)
+    finally:
+        db.close()
+
+    # Генерация PDF с корректными переносами и автоматическими разрывами страниц
+    buffer = BytesIO()
+    margin = 15 * mm
+    doc = SimpleDocTemplate(buffer, pagesize=A4,
+                            leftMargin=margin, rightMargin=margin,
+                            topMargin=margin, bottomMargin=margin)
+    styles = getSampleStyleSheet()
+    body = styles["BodyText"]
+    title = styles["Heading3"]
+    story = []
+
+    story.append(Paragraph(f"Order: {order_id}", title))
+    story.append(Spacer(1, 8))
+
+    # Разбиваем по пустым строкам на абзацы для лучшего форматирования
+    paragraphs = str(text).split("\n\n")
+    for p in paragraphs:
+        # сохраняем разрывы строк внутри абзаца
+        p_html = "<br/>".join(p.splitlines())
+        story.append(Paragraph(p_html, body))
+        story.append(Spacer(1, 6))
+
+    doc.build(story)
+    buffer.seek(0)
+
+    headers = {
+        "Content-Disposition": f"attachment; filename={order_id}-personal.pdf"
+    }
+    return StreamingResponse(buffer, media_type="application/pdf", headers=headers)
+
+
+@router.get("/payments/compatibility-interpretation-pdf")
+async def compatibility_interpretation_pdf(order_id: str):
+    """
+    Возвращает PDF-файл с интерпретацией совместимости по order_id.
+    Берёт сохранённый compatibility_result из БД. Если результата нет — 202.
+    """
+    from io import BytesIO
+    try:
+        from fastapi.responses import StreamingResponse
+        from reportlab.lib.pagesizes import A4
+        from reportlab.lib.units import mm
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+        from reportlab.lib.styles import getSampleStyleSheet
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"PDF generation dependencies missing: {e}")
+
+    db = SessionLocal()
+    try:
+        id_int = parse_order_id(order_id)
+        order = db.query(Order).filter(Order.id == id_int).first()
+        if not order:
+            raise HTTPException(status_code=404, detail="Order not found")
+        if order.type != "compatibility":
+            raise HTTPException(status_code=400, detail="Order is not compatibility type")
+        if not order.compatibility_result:
+            # Результат ещё не готов
+            raise HTTPException(status_code=202, detail="Result not ready yet")
+        text = order.compatibility_result
+    finally:
+        db.close()
+
+    # Генерация PDF с переносами и пагинацией
+    buffer = BytesIO()
+    margin = 15 * mm
+    doc = SimpleDocTemplate(buffer, pagesize=A4,
+                            leftMargin=margin, rightMargin=margin,
+                            topMargin=margin, bottomMargin=margin)
+    styles = getSampleStyleSheet()
+    body = styles["BodyText"]
+    title = styles["Heading3"]
+    story = []
+
+    story.append(Paragraph(f"Order: {order_id}", title))
+    story.append(Spacer(1, 8))
+
+    paragraphs = str(text).split("\n\n")
+    for p in paragraphs:
+        p_html = "<br/>".join(p.splitlines())
+        story.append(Paragraph(p_html, body))
+        story.append(Spacer(1, 6))
+
+    doc.build(story)
+    buffer.seek(0)
+
+    headers = {
+        "Content-Disposition": f"attachment; filename={order_id}-compatibility.pdf"
+    }
+    return StreamingResponse(buffer, media_type="application/pdf", headers=headers)

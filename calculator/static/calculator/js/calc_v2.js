@@ -694,147 +694,140 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 
     function addBotMessage(text) {
       const chatArea = document.querySelector(".chat-area");
-      // Проверяем, был ли пользователь внизу чата
       const isAtBottom = chatArea.scrollHeight - chatArea.scrollTop - chatArea.clientHeight < 10;
       const botMsg = document.createElement("div");
       botMsg.classList.add("message", "bot-message");
       botMsg.textContent = "CHATBOT AI: " + text;
       chatArea.appendChild(botMsg);
       if (isAtBottom) {
-      chatArea.scrollTop = chatArea.scrollHeight;
+        chatArea.scrollTop = chatArea.scrollHeight;
       }
     }
 
+    // Минимальная реализация отправки сообщения из поля ввода
     function sendMessage() {
-      const inputEl = document.querySelector(".input-area input");
-      const msg = inputEl.value.trim();
+      const input = document.querySelector('.input-area input');
+      const msg = (input.value || '').trim();
       if (!msg) return;
-      inputEl.value = "";
-      const chatArea = document.querySelector(".chat-area");
-      const userDiv = document.createElement("div");
-      userDiv.classList.add("message", "user-message");
-      userDiv.textContent = "Вы: " + msg;
-      chatArea.appendChild(userDiv);
-      chatArea.scrollTop = chatArea.scrollHeight;
-      
-      const lower = msg.toLowerCase();
-      
-      if (positives.includes(lower)) {
-        let suffix = "0";
-        const date2Val = document.getElementById("inputDate2").value;
-        console.log("Значение inputDate2:", date2Val);
-        if (date2Val) {
-          suffix = "1";
-        }
-        console.log("Используем суффикс:", suffix);
+      const chatArea = document.querySelector('.chat-area');
+      const isAtBottom = chatArea.scrollHeight - chatArea.scrollTop - chatArea.clientHeight < 10;
 
-        if (suffix === "0") {
-          const data = readTableData("0");
-          var computed_data = "Línea del padre: " + data.paterna.join(", ") +
-                              " | Línea de la madre: " + data.materna.join(", ") +
-                              " | Chakras: " +
-                              "Sahasrara(" + data.chakras.sahasrara.join("/") + "), " +
-                              "Ajna(" + data.chakras.ajna.join("/") + "), " +
-                              "Vishuddha(" + data.chakras.vishuddha.join("/") + "), " +
-                              "Anahata(" + data.chakras.anahata.join("/") + "), " +
-                              "Manipura(" + data.chakras.manipura.join("/") + "), " +
-                              "Svadhisthana(" + data.chakras.svadhisthana.join("/") + "), " +
-                              "Muladhara(" + data.chakras.muladhara.join("/") + "), " +
-                              "Total(" + data.chakras.total.join("/") + ")" +
-                              " | Fecha: " + document.getElementById("inputDate1").value.trim();
-          console.log("Отправляем данные для PERSONAL:", computed_data);
-          fetch("/api/consult_personal", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ computed_data: computed_data })
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.message) {
-              addBotMessage(data.message);
-            } else {
-              console.error("Поле 'message' отсутствует в ответе сервера.");
-              addBotMessage("Lo sentimos, se ha producido un error en el procesamiento de los datos.");
-            }
-          })
-          .catch(error => {
-            console.error("Ошибка при получении ответа:", error);
-            addBotMessage("Lo sentimos, se ha producido un error.");
-          });
-        } else {
-          const personalData = readTableData("0");
-          const compatibilityData = readTableData("1");
-          var computed_personal = "Línea del padre: " + personalData.paterna.join(", ") +
-                                  " | Línea de la madre: " + personalData.materna.join(", ") +
-                                  " | Chakras: " +
-                                  "Sahasrara(" + personalData.chakras.sahasrara.join("/") + "), " +
-                                  "Ajna(" + personalData.chakras.ajna.join("/") + "), " +
-                                  "Vishuddha(" + personalData.chakras.vishuddha.join("/") + "), " +
-                                  "Anahata(" + personalData.chakras.anahata.join("/") + "), " +
-                                  "Manipura(" + personalData.chakras.manipura.join("/") + "), " +
-                                  "Svadhisthana(" + personalData.chakras.svadhisthana.join("/") + "), " +
-                                  "Muladhara(" + personalData.chakras.muladhara.join("/") + "), " +
-                                  "Total(" + personalData.chakras.total.join("/") + ")" +
-                                  " | Fecha: " + document.getElementById("inputDate1").value.trim();
-          var computed_compatibility = "Línea del padre: " + compatibilityData.paterna.join(", ") +
-                                       " | Línea de la madre: " + compatibilityData.materna.join(", ") +
-                                       " | Chakras: " +
-                                       "Sahasrara(" + compatibilityData.chakras.sahasrara.join("/") + "), " +
-                                       "Ajna(" + compatibilityData.chakras.ajna.join("/") + "), " +
-                                       "Vishuddha(" + compatibilityData.chakras.vishuddha.join("/") + "), " +
-                                       "Anahata(" + compatibilityData.chakras.anahata.join("/") + "), " +
-                                       "Manipura(" + compatibilityData.chakras.manipura.join("/") + "), " +
-                                       "Svadhisthana(" + compatibilityData.chakras.svadhisthana.join("/") + "), " +
-                                       "Muladhara(" + compatibilityData.chakras.muladhara.join("/") + "), " +
-                                       "Total(" + compatibilityData.chakras.total.join("/") + ")" +
-                                       " | Fecha: " + document.getElementById("inputDate2").value.trim();
-          console.log("Отправляем данные для PERSONAL:", computed_personal);
-          console.log("Отправляем данные для COMPATIBILITY:", computed_compatibility);
-          fetch("/api/consult_compatibility", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 
-              computed_personal: computed_personal,
-              computed_compatibility: computed_compatibility
-            })
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.message) {
-              addBotMessage(data.message);
-            } else {
-              console.error("Поле 'message' отсутствует в ответе сервера.");
-              addBotMessage("Lo sentimos, se ha producido un error en el procesamiento de los datos.");
-            }
-          })
-          .catch(error => {
-            console.error("Ошибка при получении ответа:", error);
-            addBotMessage("Lo sentimos, se ha producido un error.");
-          });
-        }
-      } else if (negatives.includes(lower)) {
-        addBotMessage("Entendido, cancelamos el cálculo.");
-      } else {
-        // Пример запроса к некоему API
-        fetch("/api/get_answer_async", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: msg })
-        })
-        .then(response => response.json())
-        .then(data => {
+      // Добавляем сообщение пользователя
+      const userMsg = document.createElement('div');
+      userMsg.classList.add('message', 'user-message');
+      userMsg.textContent = msg;
+      chatArea.appendChild(userMsg);
+      input.value = '';
+      if (isAtBottom) chatArea.scrollTop = chatArea.scrollHeight;
+
+      // Отправляем на бэкенд и показываем ответ
+      fetch('/api/get_answer_async', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: msg })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.message) {
           addBotMessage(data.message);
-        })
-        .catch(error => {
-          console.error("Ошибка при получении ответа:", error);
-          addBotMessage("Lo sentimos, se ha producido un error.");
-        });
-      }
-      resetIdleTimer();
+        } else {
+          addBotMessage('No tengo una respuesta en este momento.');
+        }
+      })
+      .catch(err => {
+        console.error('sendMessage error:', err);
+        addBotMessage('Lo sentimos, se ha producido un error.');
+      })
+      .finally(() => {
+        resetIdleTimer();
+      });
     }
-  
 
+    // Карточка со ссылкой на PDF после оплаты
+    function addPdfLink(orderId, type) {
+      const chatArea = document.querySelector('.chat-area');
+      const isAtBottom = chatArea.scrollHeight - chatArea.scrollTop - chatArea.clientHeight < 10;
 
+      const card = document.createElement('div');
+      // Убираем зелёную рамку
+      card.style.border = 'none';
+      card.style.borderRadius = '12px';
+      card.style.padding = '14px';
+      card.style.margin = '12px 0';
+      // Убираем зелёный фон
+      card.style.background = 'transparent';
+      card.style.color = '#eaffea';
+
+      const title = document.createElement('div');
+      title.style.display = 'flex';
+      title.style.alignItems = 'center';
+      title.style.gap = '8px';
+      const check = document.createElement('span');
+      check.textContent = '✔';
+      check.style.color = '#2ecc71';
+      const h = document.createElement('strong');
+      h.textContent = 'Archivo listo para descargar';
+      title.appendChild(check);
+      title.appendChild(h);
+
+      const sub = document.createElement('div');
+      sub.style.marginTop = '4px';
+      sub.textContent = 'El informe está preparado. ¡Puedes abrirlo ahora!';
+
+      const name = document.createElement('div');
+      name.style.marginTop = '8px';
+      name.style.fontStyle = 'italic';
+      // Добавляем иконку документа перед названием
+      name.textContent = (type === 'compatibility' ? '📄 Informe de compatibilidad.pdf' : '📄 Informe personal.pdf');
+
+      const btn = document.createElement('a');
+      // Кнопка: иконка стрелки в белом кружке слева + текст
+      const iconWrap = document.createElement('span');
+      iconWrap.textContent = '⬇';
+      iconWrap.style.display = 'inline-flex';
+      iconWrap.style.alignItems = 'center';
+      iconWrap.style.justifyContent = 'center';
+      iconWrap.style.width = '22px';
+      iconWrap.style.height = '22px';
+      iconWrap.style.borderRadius = '50%';
+      // Белая стрелка на тёмном фоне для читаемости
+      iconWrap.style.background = '#111';
+      iconWrap.style.color = '#fff';
+      iconWrap.style.marginRight = '8px';
+
+      const btnText = document.createElement('span');
+      btnText.textContent = 'Descargar archivo';
+      const pdfUrl = type === 'compatibility'
+        ? `/api/payments/compatibility-interpretation-pdf?order_id=${encodeURIComponent(orderId)}`
+        : `/api/payments/paid-interpretation-pdf?order_id=${encodeURIComponent(orderId)}`;
+      btn.href = pdfUrl;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.style.display = 'inline-flex';
+      btn.style.alignItems = 'center';
+      btn.style.marginTop = '10px';
+      btn.style.padding = '10px 16px';
+      // Белый фон кнопки
+      btn.style.background = '#ffffff';
+      btn.style.borderRadius = '20px';
+      btn.style.color = '#111';
+      btn.style.fontWeight = '600';
+      btn.style.textDecoration = 'none';
+
+      card.appendChild(title);
+      card.appendChild(sub);
+      card.appendChild(name);
+      btn.appendChild(iconWrap);
+      btn.appendChild(btnText);
+      card.appendChild(btn);
+
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('message', 'bot-message');
+      wrapper.appendChild(card);
+
+      chatArea.appendChild(wrapper);
+      if (isAtBottom) chatArea.scrollTop = chatArea.scrollHeight;
+    }
   // ================================================
   // Инициализация при загрузке страницы
   // ================================================
@@ -1497,7 +1490,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         .then(data => {
           if (data.message && !data.message.includes("не удалось") && !data.message.includes("Order not paid")) {
             updateWaitingMessage(""); // Удалить индикатор
-            addBotMessage("¡Gracias por el pago! Aquí está tu resultado sobre los chakras:\n" + data.message);
+            // Только ссылка PDF с подписью, без длинного текста интерпретации
+            addPdfLink(orderId, "personal");
           } else if (attempts < maxTries) {
             attempts++;
             updateWaitingMessage("Esperando la confirmación del pago..."); // Показываем только один раз
@@ -1527,8 +1521,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         .then(response => response.json())
         .then(data => {
             if (data.result) {
-                // Показываем результат в чат-боте
-                openChatWindow(data.result);
+                // Только ссылка PDF с подписью, без длинного текста
+                addPdfLink(orderId, "compatibility");
             } else if (data.message) {
                 openChatWindow("El resultado aún no está listo. Por favor, inténtelo más tarde.");
             } else if (data.error) {
@@ -1548,7 +1542,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         .then(response => response.json())
         .then(data => {
             if (data.result) {
-                openChatWindow(data.result);
+                // Только ссылка PDF с подписью, без длинного текста
+                addPdfLink(orderId, "personal");
             } else if (data.message) {
                 openChatWindow("El resultado aún no está listo. Por favor, inténtelo más tarde.");
             } else if (data.error) {
@@ -1588,7 +1583,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         .then(data => {
           if (data.result) {
             updateWaitingMessage("");
-            openChatWindow(data.result);
+            // Только ссылка PDF с подписью, без длинного текста
+            addPdfLink(orderId, "compatibility");
           } else if (attempts < maxTries) {
             attempts++;
             updateWaitingMessage("Esperando la confirmación del pago...");
