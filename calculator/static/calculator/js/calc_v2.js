@@ -2,6 +2,100 @@ console.log("calc_v2.js подключен!");
 console.log("calc.js версия 20240523-1");
 console.log("calc.js загружен, ORDER_ID:", window.ORDER_ID);
 
+// Huawei MateBook E 2023 heuristic detection (robust with resize/orientation)
+// Adds/removes 'matebook-e' on <html> so CSS targets only this device
+(function () {
+  const html = document.documentElement;
+  const ua = (navigator.userAgent || "");
+  const isWindows = /Windows/i.test(ua);
+  const isHuaweiUA = /HUAWEI|MateBook/i.test(ua);
+  const isEdge = /Edg\//i.test(ua);
+  const qs = new URLSearchParams(window.location.search || "");
+  // Persistent manual override using localStorage
+  // ?matebook=1 -> enable and persist; ?matebook=0 -> disable and persist
+  if (qs.get('matebook') === '1') {
+    try { localStorage.setItem('matebook-e', '1'); } catch (_) {}
+  } else if (qs.get('matebook') === '0') {
+    try { localStorage.setItem('matebook-e', '0'); } catch (_) {}
+  }
+  let persisted = null;
+  try { persisted = localStorage.getItem('matebook-e'); } catch (_) {}
+  const manualOverride = qs.has('matebook') || (persisted === '1' || persisted === '0');
+
+  function getViewport() {
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    const isLandscape = vw > vh;
+    return { vw, vh, isLandscape };
+  }
+
+  function looksLikeMateBookNow() {
+    const { vw } = getViewport();
+    const scrW = (window.screen && screen.width) ? screen.width : vw;
+    const hasTouch = (navigator.maxTouchPoints || 0) > 0;
+    // Require touch for auto mode so desktops aren't affected
+    return (
+      hasTouch && (
+        (isWindows && (isHuaweiUA || isEdge) && vw >= 992) ||
+        (isWindows && scrW >= 992 && scrW <= 2560 && isHuaweiUA)
+      )
+    );
+  }
+
+  let lastApplied = null; // true/false
+  function applyClass(shouldEnable) {
+    if (shouldEnable) {
+      if (!html.classList.contains('matebook-e')) {
+        html.classList.add('matebook-e');
+        const { vw, vh, isLandscape } = getViewport();
+        console.log('matebook-e mode enabled', { ua, vw, vh, isLandscape, touch: navigator.maxTouchPoints });
+      }
+    } else {
+      if (html.classList.contains('matebook-e')) {
+        html.classList.remove('matebook-e');
+        console.log('matebook-e mode disabled');
+      }
+    }
+    lastApplied = shouldEnable;
+  }
+
+  function detectMateBookE() {
+    try {
+      if (manualOverride) {
+        // Apply according to persisted value or query param
+        if (qs.get('matebook') === '1' || persisted === '1') {
+          console.log('matebook-e manual ON');
+          applyClass(true);
+          return;
+        }
+        if (qs.get('matebook') === '0' || persisted === '0') {
+          console.log('matebook-e manual OFF');
+          applyClass(false);
+          return;
+        }
+      }
+      const enable = looksLikeMateBookNow();
+      if (enable !== lastApplied) applyClass(enable);
+    } catch (e) {
+      console.warn('matebook-e detect failed', e);
+    }
+  }
+
+  // Debounce for resize/orientation changes
+  let t = null;
+  function debouncedDetect() {
+    clearTimeout(t);
+    t = setTimeout(detectMateBookE, 150);
+  }
+
+  // Initial detect
+  detectMateBookE();
+
+  // Re-evaluate on resize/orientation changes
+  window.addEventListener('resize', debouncedDetect, { passive: true });
+  window.addEventListener('orientationchange', debouncedDetect, { passive: true });
+})();
+
 const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$/;
 
     const svgNS = "http://www.w3.org/2000/svg";
@@ -607,7 +701,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                 body: JSON.stringify({
                   email: emailVal,
                   phone: phoneVal,
-                  birth_date: "", // или date1, если нужно
+                  birth_date: `${date1}|${date2}`,
                   type: "compatibility",
                   points: [
                     partner1,
@@ -675,6 +769,21 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
 		}
 	  }
 
+    // Скрыть вступительные подзаголовки в окне чата на мобильных,
+    // когда появляется первое содержательное сообщение бота
+    function collapseIntroForMobile() {
+      try {
+        const isDesktop = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) >= 992;
+        if (isDesktop) return; // только не-десктоп
+        const chatWindow = document.getElementById("chatWindow");
+        if (chatWindow && !chatWindow.classList.contains("intro-collapsed")) {
+          chatWindow.classList.add("intro-collapsed");
+        }
+      } catch (e) {
+        console.warn('collapseIntroForMobile failed', e);
+      }
+    }
+
     function openChatWindow(botMessage) {
       const chatWindow = document.getElementById("chatWindow");
       chatWindow.style.display = "block";
@@ -686,6 +795,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
         botMessageDiv.classList.add("message", "bot-message");
         botMessageDiv.textContent = "CHATBOT AI: " + botMessage;
         chatArea.appendChild(botMessageDiv);
+        // как только появилось первое содержательное сообщение — скрываем intro (мобильные)
+        collapseIntroForMobile();
       }
       if (isAtBottom) {
       chatArea.scrollTop = chatArea.scrollHeight;
@@ -699,6 +810,8 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
       botMsg.classList.add("message", "bot-message");
       botMsg.textContent = "CHATBOT AI: " + text;
       chatArea.appendChild(botMsg);
+      // любое сообщение бота — сворачиваем intro на мобильных
+      collapseIntroForMobile();
       if (isAtBottom) {
         chatArea.scrollTop = chatArea.scrollHeight;
       }

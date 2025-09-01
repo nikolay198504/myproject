@@ -222,7 +222,18 @@ async def payment_webhook(request: Request):
                 partner1 = points_data[0] if isinstance(points_data, list) and len(points_data) > 0 else None
                 partner2 = points_data[1] if isinstance(points_data, list) and len(points_data) > 1 else None
                 result = await chunk.consult_compatibility_full(partner1, partner2)
-                order.compatibility_result = result
+                # Prepend partner birth dates if provided in order.date as "date1|date2"
+                header = ""
+                if order.date and "|" in order.date:
+                    try:
+                        d1, d2 = order.date.split("|", 1)
+                        d1 = d1.strip()
+                        d2 = d2.strip()
+                        header = f"Fechas de nacimiento\nPareja 1: {d1}\nPareja 2: {d2}\n\n"
+                    except Exception:
+                        # If parsing fails, keep original result without header
+                        header = ""
+                order.compatibility_result = f"{header}{result}" if header else result
                 db.commit()
             except Exception as e:
                 print(f"Ошибка при расчёте совместимости: {e}")

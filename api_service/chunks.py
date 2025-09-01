@@ -302,27 +302,6 @@ class Chunk:
                 "Puedo calcular tu matriz, explicar el significado de tus energías y chakras y darte recomendaciones para armonizar tu vida."
             )
 
-        # “chakras es”, “qué son chakras”
-        if (
-            ("chakr" in q and ("es" in q or "significa" in q or "qué es" in q or "qué son")) 
-            or q.strip() == "chakras"
-        ):
-            return (
-                "Los chakras son centros energéticos que reflejan distintos aspectos de tu destino y energía. "
-                "En la Matriz del Destino analizamos 7 chakras. ¿Quieres saber cómo se manifiestan en ti? "
-                "Introduce tu fecha de nacimiento en la calculadora — ¡y obtendrás tu análisis!"
-            )
-        # “qué necesito”, “cómo obtener consulta”, “cómo saber mi matriz”
-        if (
-            "qué necesito" in q
-            or "cómo obtener consulta" in q
-            or "cómo saber mi matriz" in q
-            or ("necesito" in q and "para esto" in q)
-        ):
-            return (
-                "¡Muy simple! Introduce tu fecha de nacimiento en la calculadora del sitio — y enseguida calcularé tu Matriz del Destino, te contaré sobre tus chakras y energías, y te daré recomendaciones."
-            )
-
         if (
             ("si" in q and "fecha" in q and "introdu" in q)
             or ("qué" in q and "sabr" in q and "fecha" in q)
@@ -330,56 +309,7 @@ class Chunk:
             or ("qué obtengo" in q and "fecha" in q)
         ):
             return (
-                "Si introduces tu fecha de nacimiento, ¡calcularé tu Matriz del Destino individual! "
-                "Conocerás el significado de tus energías y chakras, recibirás recomendaciones y comprenderás mejor tus fortalezas y tareas de vida. "
-                "¡Pruébalo — es interesante y útil!"
-            )
-
-        # Precio
-        if "cuánto cuesta" in q or "precio" in q or "coste" in q or "costo" in q:
-            return (
-                "El precio de la consulta está indicado en el sitio junto a la calculadora. "
-                "Si tienes preguntas sobre el pago — ¡escríbeme y te ayudo!"
-            )
-        # Pago
-        if "cómo pagar" in q or "pago" in q or "pagar" in q:
-            return (
-                "Puedes pagar la consulta directamente en el sitio después del cálculo de tu Matriz del Destino. "
-                "Sigue las indicaciones de la calculadora — ¡todo es simple y seguro!"
-            )
-        # Seguridad de datos
-        if "segurid" in q and ("datos" in q or "pago" in q):
-            return (
-                "Tus datos están protegidos y se usan solo para el cálculo de la Matriz del Destino. "
-                "El pago se procesa mediante un servicio de pago seguro."
-            )
-        # Repetir cálculo / errores
-        if "error" in q or "correg" in q or "otra vez" in q or "repet" in q:
-            return (
-                "Si te equivocaste en la fecha o quieres recalcular — ¡simplemente introduce una nueva fecha en la calculadora!"
-            )
-        # Cuándo llega el resultado
-        if "cuándo" in q and ("resultado" in q or "respuesta" in q or "consulta" in q):
-            return "El resultado lo recibirás inmediatamente tras el pago — aparecerá en el chat y estará disponible para descargar."
-        # Soporte
-        if "soporte" in q or "contactar" in q or "ayuda" in q:
-            return "Si tienes dudas o dificultades — escribe al soporte mediante el formulario del sitio o en el chat. ¡Siempre estamos listos para ayudar!"
-
-        # Respuestas a “sí, quiero”, “cuenta”, “más detalles”
-        if (
-            q in ["sí quiero", "cuenta", "quiero más", "sí, quiero", "sí, cuéntame", "sí", "cuéntame más"]
-            or ("quiero" in q and ("más" in q or "saber" in q))
-        ):
-            return (
-                "¡Genial! ¿Sobre qué chakra quieres saber más?\n"
-                "Puedo contarte sobre cualquiera de los 7 — escribe su nombre, por ejemplo: 'Anahata' o 'Manipura'.\n"
-                "O introduce tu fecha de nacimiento — ¡y te contaré cómo se manifiestan en ti!"
-            )
-
-        # Detección simple de fecha
-        if re.match(r"^\d{2}[\.\-/]?\d{2}[\.\-/]?\d{2,4}$", q):
-            return (
-                f"¡Gracias! Has introducido la fecha de nacimiento: {query}. "
+                f"¡Gracias! Has introducido la fecha de nacimiento. "
                 "Para obtener un análisis individual, usa la calculadora del sitio — ¡es rápido y cómodo!"
             )
 
@@ -449,9 +379,9 @@ class Chunk:
             for i, partner in enumerate([partner1, partner2], 1):
                 val = partner["chakras"].get("anahata", [None, None, None])[2]
                 val_str = str(val) if val is not None else "?"
-                # Nota: si en tu JSON cambiaste 'плюсы'/'минусы' a 'pros'/'contras', ajusta estas claves:
-                plus = rec_block.get(val_str, {}).get("плюсы", "(sin pros)")
-                minus = rec_block.get(val_str, {}).get("минусы", "(sin contras)")
+                # Leer claves 'pros' y 'contras' según COMPATIBILITY.json
+                plus = rec_block.get(val_str, {}).get("pros", "(sin pros)")
+                minus = rec_block.get(val_str, {}).get("contras", "(sin contras)")
                 desc = rec_block.get("description", "")
                 result_lines.append(f"Pareja {i}: {desc}\nPros: {plus}\nContras: {minus}")
             result_lines.append("")

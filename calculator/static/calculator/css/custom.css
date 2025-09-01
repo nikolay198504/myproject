@@ -25,6 +25,10 @@ body {
   header.text-left.text-white .main-subtitle-desktop {
     display: none !important;
   }
+  /* Когда начался разговор: скрыть вступительные подзаголовки в окне чата */
+  #chatWindow.intro-collapsed .chat-subtitle {
+    display: none !important;
+  }
 }
 
 /* === Планшеты (iPad, 701–992px): центрируем заголовки/подписи в колонках, убираем большие сдвиги === */
@@ -1911,5 +1915,198 @@ table > thead > tr > th {
   /* Доп. «воздух» между первым блоком и заголовком совместимости */
   #button-addon3 {
     margin-bottom: 12px !important; /* reduce space before compatibility block */
+  }
+}
+
+/* =============================================================
+   Huawei MateBook E 2023 — точечные правки только при .matebook-e
+   Класс .matebook-e добавляется скриптом в <html> для этого устройства.
+   Не влияет на телефоны/планшеты без класса.
+============================================================= */
+@media (min-width: 992px) and (max-width: 1400px) {
+  html.matebook-e, html.matebook-e body {
+    -webkit-text-size-adjust: 100% !important;
+    touch-action: manipulation !important;
+    overscroll-behavior-y: none !important;
+  }
+
+  /* Шапка — компактнее заголовки/подзаголовок */
+  html.matebook-e header.text-left.text-white {
+    min-height: 360px !important;
+    background-attachment: scroll !important; /* избегаем рывков при скролле */
+  }
+  html.matebook-e .main-title {
+    font-size: 1.6rem !important;
+    line-height: 1.2 !important;
+  }
+  html.matebook-e .main-subtitle-desktop {
+    font-size: 1.6rem !important;
+    line-height: 1.25 !important;
+    margin-top: 220px !important;
+  }
+
+  /* Колонки/тексты — немного шире и с воздухом */
+  html.matebook-e .row.justify-content-center.g-5 {
+    gap: 16px !important;
+  }
+  html.matebook-e .row.justify-content-center.g-5 > .col-md-4 {
+    flex: 0 0 48% !important;
+    width: 48% !important;
+  }
+  html.matebook-e .text-matriz-personal,
+  html.matebook-e .text-matriz-compatibilidad {
+    max-width: 520px !important;
+    padding: 8px 12px !important;
+  }
+  html.matebook-e .text-matriz-personal .text-arrow,
+  html.matebook-e .text-matriz-compatibilidad .text-arrow {
+    font-size: 1.0rem !important;
+  }
+  html.matebook-e .text-matriz-personal p,
+  html.matebook-e .text-matriz-compatibilidad p {
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Инпуты/кнопки — 16px/44px, чтобы не было авто‑зума и промахов */
+  html.matebook-e .input-group.input-group-lg .form-control {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+  html.matebook-e .btn.btn-custom {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+
+  /* Чат — не перекрывает элементы, компактнее в высоту */
+  html.matebook-e #floatingBtn.floating-button {
+    right: 16px !important;
+    bottom: 96px !important;
+    z-index: 1000 !important;
+  }
+  html.matebook-e .chat-floating-window {
+    width: min(96vw, 480px) !important;
+    height: min(70vh, 560px) !important;
+    right: 16px !important;
+    bottom: 110px !important;
+    border-radius: 12px !important;
+  }
+  /* Десктоп (не MateBook E): слегка уже окно чата */
+  html:not(.matebook-e) .chat-floating-window {
+    width: min(98vw, 560px) !important;
+    right: 16px !important;
+  }
+  html.matebook-e .chat-area {
+    max-height: calc(70vh - 170px) !important;
+  }
+
+  /* Тап‑подсветка и SVG масштабирование */
+  html.matebook-e input,
+  html.matebook-e button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html.matebook-e svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* MateBook E — >=992px: растянуть шапку на всю ширину и отключить вертикальные заголовки */
+@media (min-width: 992px) {
+  html.matebook-e body {
+    overflow-x: hidden !important;
+  }
+  /* Отключаем возможный поворот на мобильных для MateBook E */
+  html.matebook-e .lock-portrait {
+    position: static !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform-origin: initial !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  html.matebook-e header.text-left.text-white {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 520px !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    width: 100vw !important; /* гарантированно на всю ширину окна */
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+  }
+  /* Сброс возможных поворотов/вертикальной записи у заголовков в шапке */
+  html.matebook-e header.text-left.text-white .main-title,
+  html.matebook-e header.text-left.text-white .main-subtitle-desktop,
+  html.matebook-e header.text-left.text-white h1,
+  html.matebook-e header.text-left.text-white .main-title-mobile {
+    writing-mode: horizontal-tb !important;
+    -webkit-writing-mode: horizontal-tb !important;
+    transform: none !important;
+    rotate: 0deg !important;
+    white-space: normal !important;
+  }
+  /* Полностью отключаем побочные эффекты правил блокировки поворота экрана
+     (которые активируются для телефонов при маленькой высоте). На MateBook E
+     в ландшафте высота окна может быть невысокой, поэтому явно возвращаем
+     нормальные значения для прокрутки и высоты документа. */
+  html.matebook-e,
+  html.matebook-e body {
+    overflow-x: clip !important;
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  /* На всякий случай: запретить поворот «портретных» картинок */
+  html.matebook-e img.keep-portrait {
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  /* На всякий случай — контейнер внутри шапки на всю ширину */
+  html.matebook-e header.text-left.text-white .container,
+  html.matebook-e header.text-left.text-white .container-fluid,
+  html.matebook-e header.text-left.text-white .row {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  /* Убрать ограничители ширины у контейнера в шапке */
+  html.matebook-e header.text-left.text-white .container,
+  html.matebook-e header.text-left.text-white .container-fluid {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  /* Обнулить бутстраповские гаттеры у .row внутри шапки */
+  html.matebook-e header.text-left.text-white .row {
+    --bs-gutter-x: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  /* Зажать ширину корня и убрать горизонтальный скролл */
+  html.matebook-e html,
+  html.matebook-e body {
+    width: 100% !important;
+    overflow-x: clip !important;
+  }
+  /* Картинки и SVG не должны давать переполнение */
+  html.matebook-e img,
+  html.matebook-e svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  /* Изменить размер окна чата */
+  html.matebook-e .chat-floating-window {
+    width: min(96vw, 480px) !important;
+  }
+  /* Согласовать ограничение ширины и для не MateBook на десктопе */
+  html:not(.matebook-e) .chat-floating-window {
+    width: min(98vw, 560px) !important;
   }
 }

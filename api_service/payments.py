@@ -87,7 +87,7 @@ async def create_payment_link(payment: PaymentRequest):
     amount = "1500" if order_type == "compatibility" else "1000"
     order = Order(
         status="pending",
-        date=payment.birth_date or datetime.date.today().isoformat(),
+        date=payment.birth_date or None,
         points=json.dumps(payment.points) if payment.points else json.dumps([]),
         amount=amount,
         customer_phone=payment.phone,

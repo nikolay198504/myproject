@@ -21,7 +21,7 @@
     <link href="{% static 'calculator/bootstrap-5.0.2/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'calculator/fa-5.15.4/css/all.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'calculator/css/style.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'calculator/css/custom.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'calculator/css/custom.css' %}?v=20250901-4" rel="stylesheet" type="text/css" />
 
 
 
@@ -478,10 +478,8 @@
     <div class="chat-subtitle">
 		¡Hola! Soy la Biblioteca de Conocimientos de Tatiana 🔮.
     </div>
-
-
-	<div class="chat-subtitle">
-		Introduce tu fecha de nacimiento en la calculadora y te contaré acerca de tu destino.  
+    <div class="chat-subtitle">
+      Introduce tu fecha de nacimiento en la calculadora que puedes encontrar en la web y te contaré acerca de tu destino analizando tu matriz según tu fecha de nacimiento.
     </div>
 
 
@@ -513,7 +511,7 @@
   window.CSRF_TOKEN = '{{ csrf_token }}';
 </script>
 <script src="{% static 'calculator/jquery/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'calculator/js/calc_v2.js' %}"></script>
+<script src="{% static 'calculator/js/calc_v2.js' %}?v=20250901-3"></script>
 
 </div>
 </body>
