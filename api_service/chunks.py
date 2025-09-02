@@ -8,7 +8,7 @@ import re
 
 # load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 BASE_API_DIR = os.getenv("API_BASE_DIR")
-if BASE_API_DIR is None:
+if not BASE_API_DIR:  # Гарантируем непустую строку для путей
     BASE_API_DIR = os.path.dirname(os.path.abspath(__file__))
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -57,13 +57,15 @@ class Chunk:
     def normalize(self, val):
         if not isinstance(val, str):
             return val
+        # Нормализация основных испанских акцентов и ñ/ü
         return (
-            val.replace("í", "i")
-               .replace("é", "e")
-               .replace("ó", "o")
-               .replace("Í", "I")
-               .replace("É", "E")
-               .replace("Ó", "O")
+            val.replace("á", "a").replace("Á", "A")
+               .replace("é", "e").replace("É", "E")
+               .replace("í", "i").replace("Í", "I")
+               .replace("ó", "o").replace("Ó", "O")
+               .replace("ú", "u").replace("Ú", "U")
+               .replace("ü", "u").replace("Ü", "U")
+               .replace("ñ", "n").replace("Ñ", "N")
         )
 
     async def consult_personal(self, free_points: List[Dict[str, Any]]) -> str:
@@ -74,8 +76,8 @@ class Chunk:
         rules = await self.get_rules_json()
         lines = []
         for point in free_points:
-            chakra = point.get("chakra")
-            aspect = self.normalize(point.get("aspect"))
+            chakra = str(point.get("chakra") or "")
+            aspect = self.normalize(str(point.get("aspect") or ""))
             val = point.get("value")
             val_str = str(val)
             point_name = self.CHAKRA_ASPECT_TO_POINT.get((chakra, aspect))
@@ -171,6 +173,7 @@ class Chunk:
         elif stage == "offer_paid":
             return "¿Quieres un cálculo profundo de compatibilidad (de pago)?\nSí\nNo"
         # a continuación: procesamiento del escenario de pago
+        return ""
 
     async def ask_gpt(self, user_text: str) -> str:
         """
@@ -199,6 +202,12 @@ class Chunk:
             "Si el usuario pregunta por el significado o el papel de cualquiera de estos chakras — responde brevemente con la descripción anterior.\n"
             "Si el usuario quiere saber más sobre sí mismo, su matriz o energías — sugiere usar la calculadora para el cálculo por fecha de nacimiento.\n"
         )
+        if not OPENAI_API_KEY:
+            return (
+                "El servicio de IA no está configurado en el servidor. "
+                "Puedo responder a preguntas generales sobre la Matriz del Destino, "
+                "pero para respuestas ampliadas usa la calculadora en la web."
+            )
         client = openai.OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -208,7 +217,8 @@ class Chunk:
             ],
             max_tokens=1200
         )
-        return response.choices[0].message.content.strip()
+        content = (response.choices[0].message.content or "")
+        return content.strip()
 
     async def get_answer_async(self, query: str) -> str:
         """
@@ -402,9 +412,11 @@ class Chunk:
             comp = comp_block.get(key1) or comp_block.get(key2)
             if comp:
                 result_lines.append(f"Pareja {key1 if comp_block.get(key1) else key2}:")
-                # Nota: si en tu JSON cambiaste 'совместимость'/'описание' a 'compatibilidad'/'descripcion', ajusta estas claves:
-                result_lines.append(f"Compatibilidad: {comp.get('совместимость', '')}")
-                result_lines.append(f"Descripción: {comp.get('описание', '')}")
+                # Leer claves en español con fallback a ruso
+                compat_text = comp.get('compatibilidad') or comp.get('совместимость') or ''
+                descr_text = comp.get('descripcion') or comp.get('описание') or ''
+                result_lines.append(f"Compatibilidad: {compat_text}")
+                result_lines.append(f"Descripción: {descr_text}")
             else:
                 result_lines.append(f"No hay una descripción exacta para la pareja {v1}-{v2}.")
             result_lines.append("")

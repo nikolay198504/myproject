@@ -29,6 +29,51 @@ body {
   #chatWindow.intro-collapsed .chat-subtitle {
     display: none !important;
   }
+  /* Круглые рамки и отступы для вступительных подзаголовков чата как у карточек */
+  #chatWindow .chat-subtitle {
+    border: 2px solid #ffffff !important;
+    border-radius: 24px !important;
+    padding: 10px 14px !important;
+    margin: 10px 0 !important;
+    background: transparent !important;
+    line-height: 1.28 !important;
+  }
+  /* Круглые "чипсы" для сообщений бота в чате (только не‑десктоп) */
+  #chatWindow .chat-area .bot-message {
+    border: 2px solid #ffffff !important;
+    border-radius: 24px !important; /* эффект круглых карточек */
+    padding: 10px 14px !important;
+    margin: 10px 0 !important;
+    background: transparent !important; /* как у вступительных текстов */
+    line-height: 1.28 !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+  /* Заголовок чата "CHATBOT AI" как чипса на мобильных */
+  #chatWindow .chat-floating-header h2 {
+    display: block !important;          /* на всю строку */
+    width: 100% !important;             /* полная ширина контейнера */
+    box-sizing: border-box !important;  /* чтобы бордер и паддинги учитывались в ширине */
+    text-align: center !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 9999px !important;   /* длинный овал */
+    padding: 10px 14px !important;      /* как у .chat-subtitle/.bot-message */
+    margin: 8px 0 14px 0 !important;
+    background: transparent !important;
+    line-height: 1.2 !important;
+  }
+  /* Убрать внешнее тонкое кольцо вокруг шапки на мобильных */
+  #chatWindow .chat-floating-header {
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  #chatWindow .chat-floating-header::before,
+  #chatWindow .chat-floating-header::after {
+    display: none !important;
+    content: none !important;
+  }
 }
 
 /* === Планшеты (iPad, 701–992px): центрируем заголовки/подписи в колонках, убираем большие сдвиги === */
