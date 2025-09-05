@@ -286,21 +286,74 @@
       "compatibilidad": "baja",
       "descripcion": "Los estilos emocionales son muy diferentes. Posibles conflictos en la expresión de los sentimientos."
     },
+    "1-5": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-6": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-7": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-8": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "1-9": {
       "compatibilidad": "media",
       "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
     },
+    "1-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-12": {
+    "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+
     "1-14": {
       "compatibilidad": "media",
       "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "1-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "1-17": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
     },
+    "1-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "1-19": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "1-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "1-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "1-22": {
       "compatibilidad": "media",
@@ -310,6 +363,18 @@
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
     },
+    "2-3": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-4": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-5": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "2-6": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
@@ -318,14 +383,59 @@
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
     },
+    "2-8": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "2-9": {
       "compatibilidad": "media",
       "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+    },
+    "2-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "2-14": {
       "compatibilidad": "media",
       "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
     },
+    "2-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "2-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+
     "2-21": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
@@ -338,21 +448,77 @@
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
     },
+    "3-4": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-5": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-6": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-7": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-8": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "3-9": {
       "compatibilidad": "media",
       "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+    },
+    "3-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "3-14": {
       "compatibilidad": "media",
       "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
     },
+    "3-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "3-17": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
     },
+    "3-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "3-19": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+    },
+    "3-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "3-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "3-22": {
       "compatibilidad": "media",
@@ -362,282 +528,763 @@
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
     },
+    "4-5": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-6": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-7": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "4-8": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
     },
+    "4-9": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
     "4-20": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'controladores y contenidos', con estilos emocionales cercanos."
+    },
+    "4-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "4-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "5-5": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "5-6": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "5-7": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "5-8": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "5-9": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "5-10": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "5-11": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "5-12": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "5-13": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "5-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "5-15": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "5-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "5-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "5-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "5-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "5-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "5-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "5-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "6-6": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'profundos y confiados', con estilos emocionales cercanos."
     },
     "6-7": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'profundos y confiados', con estilos emocionales cercanos."
+    },
+    "6-8": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "6-9": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
+    },
+    "6-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "6-14": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
+    },
+    "6-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "6-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "6-21": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'profundos y confiados', con estilos emocionales cercanos."
     },
     "6-22": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
     },
+
     "7-7": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'profundos y confiados', con estilos emocionales cercanos."
+    },
+    "7-8": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "7-9": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
+    },
+    "7-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "7-14": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
+    },
+    "7-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "7-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "7-21": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'profundos y confiados', con estilos emocionales cercanos."
     },
     "7-22": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
     },
     "8-8": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'controladores y contenidos', con estilos emocionales cercanos."
+    },
+    "8-9": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "8-20": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'controladores y contenidos', con estilos emocionales cercanos."
+    },
+    "8-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "8-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "9-9": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'espirituales y compasivos', con estilos emocionales cercanos."
+    },
+    "9-10": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "9-11": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "9-12": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "9-13": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "9-14": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'espirituales y compasivos', con estilos emocionales cercanos."
+    },
+    "9-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "9-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "9-17": {
       "compatibilidad": "media",
-      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+      "descripción": "Uno inspira y el otro se conecta a nivel del alma. Es posible un vínculo intenso, aunque no siempre estable."
+    },
+    "9-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "9-19": {
       "compatibilidad": "media",
-      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+      "descripción": "Uno inspira y el otro se conecta a nivel del alma. Es posible un vínculo intenso, aunque no siempre estable."
+    },
+    "9-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "9-21": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
     },
     "9-22": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'espirituales y compasivos', con estilos emocionales cercanos."
     },
     "10-10": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "10-11": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "10-12": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "10-13": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "10-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "10-15": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "10-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "10-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "10-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
+    "10-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "10-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "10-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "10-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+
     "11-11": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "11-12": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "11-13": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "11-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "11-15": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "11-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "11-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "11-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "11-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "11-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "11-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "11-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "12-12": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "12-13": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "12-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "12-15": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "12-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "12-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "12-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
+    "12-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "12-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "12-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "12-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+
     "13-13": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "13-14": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "13-15": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "13-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "13-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "13-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "13-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "13-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "13-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "13-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "14-14": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'espirituales y compasivos', con estilos emocionales cercanos."
+    },
+    "14-15": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "14-16": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "14-17": {
       "compatibilidad": "media",
-      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+      "descripción": "Uno inspira y el otro se conecta a nivel del alma. Es posible un vínculo intenso, aunque no siempre estable."
+    },
+    "14-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "14-19": {
       "compatibilidad": "media",
-      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+      "descripción": "Uno inspira y el otro se conecta a nivel del alma. Es posible un vínculo intenso, aunque no siempre estable."
+    },
+    "14-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "14-21": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
     },
     "14-22": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'espirituales y compasivos', con estilos emocionales cercanos."
     },
+
     "15-15": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
     },
     "15-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "15-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "15-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "15-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "15-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "15-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "15-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "16-16": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "16-17": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "16-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "16-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "16-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "16-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "16-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "17-17": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'abiertos y ligeros', con estilos emocionales cercanos."
+    },
+    "17-18": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "17-19": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'abiertos y ligeros', con estilos emocionales cercanos."
+    },
+    "17-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "17-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "17-22": {
+      "compatibilidad": "media",
+      "descripción": "Uno inspira y el otro se conecta a nivel del alma. Es posible un vínculo intenso, aunque no siempre estable."
     },
     "18-18": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'inestables y sacrificados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'inestables y sacrificados', con estilos emocionales cercanos."
+    },
+    "18-19": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "18-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "18-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "18-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "19-19": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'abiertos y ligeros' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'abiertos y ligeros', con estilos emocionales cercanos."
+    },
+    "19-20": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "19-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "19-22": {
       "compatibilidad": "media",
-      "descripcion": "Uno inspira, el otro se conecta a nivel del alma. Posible vínculo intenso, pero no siempre estable."
+      "descripción": "Uno inspira y el otro se conecta a nivel del alma. Es posible un vínculo intenso, aunque no siempre estable."
     },
     "20-20": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'controladores y contenidos' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'controladores y contenidos', con estilos emocionales cercanos."
+    },
+    "20-21": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
+    },
+    "20-22": {
+      "compatibilidad": "baja",
+      "descripción": "Los estilos emocionales son muy diferentes. Pueden surgir conflictos en la expresión de los sentimientos."
     },
     "21-21": {
       "compatibilidad": "alta",
-      "descripcion": "Ambos socios del grupo 'profundos y confiados' — estilos emocionales cercanos."
+      "descripción": "Ambos socios pertenecen al grupo 'profundos y confiados', con estilos emocionales cercanos."
     },
     "21-22": {
       "compatibilidad": "media",
-      "descripcion": "Valores profundos compartidos — posible vínculo emocional suave."
+      "descripción": "Valores profundos en común: es posible un vínculo emocional suave."
     },
+
     "22-22": {
       "compatibilidad": "alta",
       "descripcion": "Ambos socios del grupo 'espirituales y compasivos' — estilos emocionales cercanos."

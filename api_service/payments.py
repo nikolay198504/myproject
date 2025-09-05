@@ -84,7 +84,8 @@ async def create_payment_link(payment: PaymentRequest):
     db = SessionLocal()
     # Получаем тип заказа, если передан, иначе personal
     order_type = getattr(payment, "type", "personal")
-    amount = "1500" if order_type == "compatibility" else "1000"
+    # Суммы в рублях (RUB)
+    amount = "2669" if order_type == "compatibility" else "2383"
     order = Order(
         status="pending",
         date=payment.birth_date or None,
@@ -238,7 +239,7 @@ async def generate_pay_url(payment_request: PaymentRequest):
     
     # Формируем данные для запроса
     payload = {
-        "amount": "1000.00",  # Фиксированная сумма
+        "amount": "2383.00",  # Фиксированная сумма (RUB)
         "order_id": order_num,
         "description": f"Заказ №{order_num}. Анализ чакр.",
         "customer_phone": payment_request.phone,

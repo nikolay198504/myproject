@@ -509,7 +509,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
                   if (data.payment_url) {
                     window.location.href = data.payment_url;
                   } else {
-                    const amount = 1000;
+                    const amount = 2383;
                     const productName = "Персональный анализ";
                     let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=${amount}&products[0][quantity]=1&products[0][name]=${encodeURIComponent(productName)}&order_id=${orderId}&do=pay`;
                     if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
@@ -721,7 +721,7 @@ const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\.](0?[1-9]|1[012])[\/\.]\d{4}$
               if (data.payment_url) {
                 window.location.href = data.payment_url;
               } else {
-                const amount = 1500;
+                const amount = 2669;
                 const productName = "Совместимость";
                 let payUrl = `https://relacionesarmoniosas.payform.ru/?products[0][price]=${amount}&products[0][quantity]=1&products[0][name]=${encodeURIComponent(productName)}&order_id=${orderId}&do=pay`;
                 if (emailVal) payUrl += `&customer_email=${encodeURIComponent(emailVal)}`;
