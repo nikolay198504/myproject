@@ -19,6 +19,20 @@ body {
   flex-direction: column;
 }
 
+/* --------------------------------------------------------------
+   ДЕКОРАТИВНЫЕ ЭФФЕКТЫ ОТКЛЮЧЕНЫ ОСОЗНАННО
+   - Мерцание звёзд в шапке (.star-layer/.star + @keyframes twinkle)
+   - Нижняя виньетка (body::after)
+
+   Как включить снова (коротко):
+   1) Верните CSS блоки для .star-layer/.star и @keyframes twinkle
+      и/или используйте JS-вставку стилей из calc_v2.js (см. комментарий там).
+   2) Верните блок body::after с градиентом для виньетки (при необходимости).
+   3) Обновите версии статики в шаблоне calc.html, чтобы пробить кэш.
+
+   Если потребуется — подскажу точные значения и аккуратные пресеты.
+-------------------------------------------------------------- */
+
 
 /* === Mobile: hide desktop subtitle === */
 @media (max-width: 991.98px) {
@@ -73,6 +87,80 @@ body {
   #chatWindow .chat-floating-header::after {
     display: none !important;
     content: none !important;
+  }
+
+  /* Правый блок (MATRIZ DE COMPATIBILIDAD): зеркалим стрелку, чтобы смотрела к инпуту слева-наверх */
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad img.arrow,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow-down,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow-up {
+    transform: scaleX(-1) !important;              /* зеркалим по горизонтали */
+    margin-top: 8px !important;                    /* чуть ниже текста */
+    margin-bottom: 8px !important;                 /* ближе к инпуту */
+  }
+}
+
+/* ===================================================================
+   Десктоп ≥ 992px: увеличить стрелки, поля ввода и кнопки в 2 раза
+   Сильные переопределения с !important, чтобы перебить ранние правила
+=================================================================== */
+@media (min-width: 992px) {
+  /* Точное попадание по DOM-структуре колонок: 
+     1-я колонка (PERSONAL) и 2-я колонка (COMPATIBILIDAD) */
+  body .row.justify-content-center.g-5 > div:nth-child(1) .arrow-container > img {
+    position: relative !important;
+    left: -40px !important;
+    top: -6px !important;
+    transform: rotate(-12deg) !important;
+    z-index: 5 !important;
+  }
+  body .row.justify-content-center.g-5 > div:nth-child(2) .arrow-container > img {
+    position: relative !important;
+    left: 40px !important;
+    top: -6px !important;
+    transform: scaleX(-1) rotate(-12deg) !important;
+    z-index: 5 !important;
+  }
+  /* Стрелки в 2 раза больше */
+  .row.justify-content-center.g-5 .arrow-container { 
+    width: 160px !important; 
+    height: 160px !important; 
+  }
+  .row.justify-content-center.g-5 .arrow,
+  .row.justify-content-center.g-5 .arrow-up,
+  .row.justify-content-center.g-5 .arrow-down {
+    width: 160px !important;   /* было ~80 */
+    height: 160px !important;  /* было ~80 */
+    max-height: 160px !important;
+    display: block !important;
+    position: static !important;
+    transform: none !important;
+    margin: 10px auto 18px auto !important;
+  }
+
+  /* Поля ввода дат — в 2 раза выше/крупнее шрифт */
+  .row.justify-content-center.g-5 .input-group.input-group-lg { 
+    max-width: 600px !important; 
+    width: 100% !important;
+  }
+  .row.justify-content-center.g-5 .input-group.input-group-lg .form-control {
+    height: 88px !important;          /* было ~44 */
+    font-size: 28px !important;       /* было ~14 */
+    padding: 16px 22px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Кнопка Calcular — в 2 раза выше/крупнее */
+  .row.justify-content-center.g-5 .btn.btn-custom {
+    min-width: 420px !important;
+    max-width: 600px !important;
+    height: 88px !important;          /* было ~44 */
+    font-size: 28px !important;       /* было ~14-16 */
+    padding: 16px 28px !important;
+    border-radius: 14px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
@@ -2153,5 +2241,134 @@ table > thead > tr > th {
   /* Согласовать ограничение ширины и для не MateBook на десктопе */
   html:not(.matebook-e) .chat-floating-window {
     width: min(98vw, 560px) !important;
+  }
+}
+
+/* ===================================================================
+   Десктоп ≥ 992px — финальные переопределения (самые сильные)
+   Размещены в самом конце файла, с высокой специфичностью и !important
+   чтобы перебить все более ранние правила (в т.ч. 34px !important)
+=================================================================== */
+@media (min-width: 992px) {
+  /* Стрелки: x2 и без ограничений по высоте */
+  body .row.justify-content-center.g-5 .text-matriz-personal img.arrow,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad img.arrow,
+  body .row.justify-content-center.g-5 .text-matriz-personal .arrow,
+  body .row.justify-content-center.g-5 .text-matriz-personal .arrow-up,
+  body .row.justify-content-center.g-5 .text-matriz-personal .arrow-down,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow-up,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow-down {
+    width: 120px !important;
+    height: 120px !important;
+    max-height: none !important;
+    display: block !important;
+    position: static !important;
+    margin: 6px auto 12px auto !important; /* ближе к полям */
+    transform: none !important;
+    }
+  body .row.justify-content-center.g-5 .arrow-container {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  /* Поля ввода: x2 высота/шрифт */
+  body .row.justify-content-center.g-5 .text-matriz-personal .input-group.input-group-lg .form-control,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .input-group.input-group-lg .form-control {
+    height: 64px !important;         /* ~1.5x */
+    font-size: 22px !important;
+    padding: 12px 18px !important;
+    border-radius: 10px !important;
+    line-height: 1.2 !important;
+  }
+  /* Увеличить доступную ширину групп */
+  body .row.justify-content-center.g-5 .text-matriz-personal .input-group.input-group-lg,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .input-group.input-group-lg {
+    max-width: 480px !important;
+    width: 100% !important;
+  }
+
+  /* Кнопка: x2 высота/шрифт */
+  body .row.justify-content-center.g-5 .text-matriz-personal .btn.btn-custom,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .btn.btn-custom {
+    height: 66px !important;
+    font-size: 22px !important;
+    padding: 12px 22px !important;
+    min-width: 320px !important;
+    max-width: 480px !important;
+    border-radius: 12px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Жёсткие ID-оверрайды — на случай любых конфликтов */
+  #inputDate1,
+  #inputDate2 {
+    height: 64px !important;
+    font-size: 22px !important;
+    padding: 12px 18px !important;
+    border-radius: 10px !important;
+  }
+  #button-addon3,
+  #button-addon4 {
+    height: 66px !important;
+    font-size: 22px !important;
+    padding: 12px 22px !important;
+    min-width: 320px !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* ===== Desktop final directional fix for right arrow (must be last) ===== */
+@media (min-width: 992px) {
+  /* Правая (compatibilidad): зеркалим + лёгкий сдвиг вправо и вверх */
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad img.arrow,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow-up,
+  body .row.justify-content-center.g-5 .text-matriz-compatibilidad .arrow-down {
+    position: relative !important;
+    left: 40px !important;
+    top: -6px !important;
+    transform: scaleX(-1) rotate(-12deg) !important;
+  }
+  /* Левая (personal): сдвиг влево и вверх */
+  body .row.justify-content-center.g-5 .text-matriz-personal img.arrow,
+  body .row.justify-content-center.g-5 .text-matriz-personal .arrow {
+    position: relative !important;
+    left: -40px !important;
+    top: -6px !important;
+    transform: rotate(-12deg) !important;
+  }
+}
+
+/* ===== Mobile & Tablet reset (<=991.98px): вернуть исходное поведение стрелок ===== */
+@media (max-width: 991.98px) {
+  .text-matriz-personal img.arrow,
+  .text-matriz-personal .arrow,
+  .text-matriz-compatibilidad img.arrow,
+  .text-matriz-compatibilidad .arrow,
+  .text-matriz-compatibilidad .arrow-up,
+  .text-matriz-compatibilidad .arrow-down,
+  .text-matriz-personal .arrow-up,
+  .text-matriz-personal .arrow-down {
+    position: absolute !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* Phones only: make the compatibility arrow point down (override reset above) */
+@media (max-width: 767.98px) {
+  /* Сильное переопределение: правая колонка (2-я) — стрелка вниз */
+  body .row.justify-content-center.g-5 > div:nth-child(2) .arrow-container > img,
+  body .row.justify-content-center.g-5 > div:nth-child(2) .arrow-container > .arrow,
+  body .text-matriz-compatibilidad .arrow-container > img.arrow,
+  body .text-matriz-compatibilidad .arrow-container > .arrow {
+    transform: rotate(180deg) !important;
   }
 }

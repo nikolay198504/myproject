@@ -21,7 +21,70 @@
     <link href="{% static 'calculator/bootstrap-5.0.2/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'calculator/fa-5.15.4/css/all.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'calculator/css/style.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'calculator/css/custom.css' %}?v=20250901-4" rel="stylesheet" type="text/css" />
+    <link href="{% static 'calculator/css/custom.css' %}?v=20250906-2" rel="stylesheet" type="text/css" />
+
+    <!-- Desktop-only final arrow calibration to override any conflicting styles -->
+    <style>
+      @media (min-width: 992px) {
+        /* Единый размер для стрелок на десктопе */
+        body .row.justify-content-center.g-5 .arrow-container > img {
+          width: 140px !important;
+          height: 150px !important;
+        }
+        /* Левая (1 колонка): чуть левее и выше, немного сильнее наклон */
+        body .row.justify-content-center.g-5 > div:nth-child(1) .arrow-container > img {
+          position: relative !important;
+          left: -285px !important;
+          top: 15px !important;
+          transform: rotate(-15deg) !important;
+          z-index: 5 !important;
+        }
+        /* Правая (2 колонка): зеркально вправо и чуть выше, тот же наклон */
+        body .row.justify-content-center.g-5 > div:nth-child(2) .arrow-container > img {
+          position: relative !important;
+          left: 268px !important;
+          top: -28px !important;
+          transform: scaleX(-1) rotate(-15deg) !important;
+          z-index: 5 !important;
+        }
+
+        /* Сместить влево текстовый блок левой колонки (MATRIZ PERSONAL) */
+        body .row.justify-content-center.g-5 > div:nth-child(1) .text-matriz-personal {
+          position: relative !important;
+          left: -350px !important;   /* настройте при необходимости */
+          text-align: left !important;
+        }
+
+        /* Сместить вправо текстовый блок правой колонки (MATRIZ DE COMPATIBILIDAD) */
+        body .row.justify-content-center.g-5 > div:nth-child(2) .text-matriz-compatibilidad {
+          position: relative !important;
+          left: 340px !important;   /* настройте при необходимости */
+          text-align: right !important;
+        }
+      }
+
+      /* Tablet-only reset: 768px–991.98px. Возвращаем нейтральное положение стрелок и текстов */
+      @media (min-width: 768px) and (max-width: 991.98px) {
+        /* Стрелки без сильных сдвигов и поворотов */
+        body .row.justify-content-center.g-5 > div:nth-child(1) .arrow-container > img,
+        body .row.justify-content-center.g-5 > div:nth-child(2) .arrow-container > img {
+          position: static !important;
+          left: auto !important;
+          top: auto !important;
+          transform: none !important;
+          width: 90px !important;
+          height: 90px !important;
+        }
+
+        /* Тексты — без больших сдвигов, по центру (можете поменять на left/right) */
+        body .row.justify-content-center.g-5 > div:nth-child(1) .text-matriz-personal,
+        body .row.justify-content-center.g-5 > div:nth-child(2) .text-matriz-compatibilidad {
+          position: static !important;
+          left: auto !important;
+          text-align: center !important;
+        }
+      }
+    </style>
 
 
 
@@ -95,8 +158,8 @@
 		  </div>
 		  <!-- Контейнер для стрелки вверх -->
 		  <div class="arrow-container">
-			<img src="{% static 'calculator/images/стрелка вверх.png' %}" alt="Arrow Up" class="arrow arrow-up">
-		  </div>
+            <img src="{% static 'calculator/images/стрелка вверх.png' %}" alt="Arrow Up" class="arrow arrow-up">
+          </div>
 		  <!-- Поле ввода -->
 		  <div class="input-group input-group-lg mb-3 inputs-offset" style="max-width: 300px; margin: 0 auto;">
 			<input type="text" maxlength="10" class="form-control input-gold" pattern="[0-9.]" id="inputDate1" placeholder="dd.mm.yyyy" aria-label="dd.mm.yyyy" onkeydown="handleEnter(event, calc_1);">
@@ -116,8 +179,8 @@
 		  </div>
 		  <!-- Контейнер для стрелки вниз -->
 		  <div class="arrow-container">
-			<img src="{% static 'calculator/images/стрелка вниз.png' %}" alt="Arrow Down" class="arrow arrow-down">
-		  </div>
+            <img src="{% static 'calculator/images/стрелка вверх.png' %}" alt="Arrow" class="arrow arrow-right">
+          </div>
 		  <!-- Поле ввода -->
 		  <div class="input-group input-group-lg mb-3 inputs-offset" style="max-width: 300px; margin: 0 auto;">
 
@@ -187,19 +250,21 @@
       header.text-left.text-white {
         min-height: 420px;
       }
-      /* Desktop: make inputs/buttons a bit taller without stretching width */
+      /* Desktop: double size of inputs/buttons */
       .input-gold {
-        height: 64px;
-        padding: 16px 18px;
-        font-size: 21px;
+        height: 128px;
+        padding: 28px 30px; /* больше внутренний отступ */
+        font-size: 32px;
       }
       .btn-custom {
-        height: 66px;
-        padding: 14px 24px;
-        font-size: 21px;
-        border-radius: 12px;
-        min-width: 220px;
+        height: 132px;
+        padding: 26px 40px;
+        font-size: 32px;
+        border-radius: 16px;
+        min-width: 440px;
       }
+      /* Переопределяем inline max-width у контейнера полей ввода */
+      .input-group.inputs-offset { max-width: 600px !important; }
     }
   </style>
   
