@@ -21,11 +21,11 @@
     <link href="{% static 'calculator/bootstrap-5.0.2/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'calculator/fa-5.15.4/css/all.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'calculator/css/style.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'calculator/css/custom.css' %}?v=20250906-2" rel="stylesheet" type="text/css" />
+    <link href="{% static 'calculator/css/custom.css' %}?v=20250910-5" rel="stylesheet" type="text/css" />
 
     <!-- Desktop-only final arrow calibration to override any conflicting styles -->
     <style>
-      @media (min-width: 992px) {
+      @media (min-width: 992px) and (hover: hover) and (pointer: fine) {
         /* Единый размер для стрелок на десктопе */
         body .row.justify-content-center.g-5 .arrow-container > img {
           width: 140px !important;
@@ -63,6 +63,16 @@
         }
       }
 
+      /* Tablets landscape 993–1368px: уменьшить .main-subtitle-desktop (вводную строку) */
+      @media (min-width: 993px) and (max-width: 1368px) {
+        header.text-left.text-white .main-subtitle-desktop {
+          font-size: 2.0rem !important;  /* ещё крупнее, чтобы не было мелко */
+          line-height: 1.22 !important;
+          margin-top: 180px !important;
+          font-weight: 700 !important;
+        }
+      }
+
       /* Tablet-only reset: 768px–991.98px. Возвращаем нейтральное положение стрелок и текстов */
       @media (min-width: 768px) and (max-width: 991.98px) {
         /* Стрелки без сильных сдвигов и поворотов */
@@ -84,6 +94,36 @@
           text-align: center !important;
         }
       }
+
+      /* Tablets landscape: force chat controls above title (independent override) */
+      @media (min-width: 701px) and (max-width: 1368px) and (orientation: landscape) {
+        #chatWindow.chat-floating-window { position: fixed !important; }
+        #chatWindow .chat-controls {
+          position: absolute !important;
+          right: 12px !important;
+          top: 6px !important;
+          left: auto !important;
+          z-index: 5000 !important;
+          display: flex !important;
+          gap: 10px !important;
+          pointer-events: auto !important;
+        }
+        #chatWindow .chat-floating-header {
+          padding-right: 48px !important;
+          position: relative !important;
+          z-index: 1 !important;
+          pointer-events: none !important;
+        }
+        #chatWindow .chat-floating-content {
+          padding-top: 96px !important;
+          position: relative !important;
+        }
+      }
+    </style>
+    <!-- Hard override: hide intro subtitles when chat starts -->
+    <style>
+      /* Глобально и безусловно: когда на окне есть intro-collapsed — скрыть вступительные блоки */
+      #chatWindow.intro-collapsed .chat-subtitle { display: none !important; }
     </style>
 
 
@@ -265,6 +305,13 @@
       }
       /* Переопределяем inline max-width у контейнера полей ввода */
       .input-group.inputs-offset { max-width: 600px !important; }
+    }
+    /* Force tablets landscape subtitle lower */
+    @media (min-width: 993px) and (max-width: 1368px) {
+      header.text-left.text-white .main-subtitle-desktop {
+        margin-top: 320px !important;
+      }
+      header.text-left.text-white .main-title-mobile { display: none !important; }
     }
   </style>
   
@@ -527,12 +574,12 @@
 <!-- Окно чата (ранее .modal) -->
 <div id="chatWindow" class="chat-floating-window">
   <!-- Кнопки управления вне шапки -->
-  <div class="chat-controls">
+  <div class="chat-controls" style="position:absolute; right:12px; top:6px; left:auto; z-index:6000; display:flex; gap:10px;">
     <span class="chat-minimize">&ndash;</span>
     <span class="chat-close">&times;</span>
   </div>
   
-  <div class="chat-floating-content">
+  <div class="chat-floating-content" style="padding-top:36px; position:relative;">
     <!-- Шапка окна без кнопок -->
     <div class="chat-floating-header">
       <div class="chatbot-logo"></div>
@@ -543,7 +590,7 @@
     <div class="chat-subtitle">
 		¡Hola! Soy la Biblioteca de Conocimientos de Tatiana 🔮.
     </div>
-    <div class="chat-subtitle">
+    <div class="chat-subtitle" id="introLong">
       Introduce tu fecha de nacimiento en la calculadora que puedes encontrar en la web y te contaré acerca de tu destino analizando tu matriz según tu fecha de nacimiento.
     </div>
 
@@ -575,9 +622,141 @@
   console.log("ORDER_ID из шаблона:", window.ORDER_ID);
   window.CSRF_TOKEN = '{{ csrf_token }}';
 </script>
-<script src="{% static 'calculator/jquery/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'calculator/js/calc_v2.js' %}?v=20250901-3"></script>
+	<script src="{% static 'calculator/jquery/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'calculator/js/calc_v2.js' %}?v=20250901-3"></script>
+	<script>
+	    // Collapse chat intro subtitles once chat starts (tablets/desktop/mobile)
+	    (function() {
+	      function collapseIntro() {
+	        var win = document.getElementById('chatWindow');
+	        if (win && !win.classList.contains('intro-collapsed')) {
+	          win.classList.add('intro-collapsed');
+	        }
+	        // Прячем длинный блок по id на всякий случай
+	        var longIntro = document.getElementById('introLong');
+	        if (longIntro) longIntro.style.display = 'none';
+	      }
+	      document.addEventListener('DOMContentLoaded', function() {
+	        var startBtn = document.getElementById('startNewChat');
+	        var sendBtn = document.getElementById('sendBtn');
+	        var input = document.querySelector('#chatWindow .input-area input');
+	        if (startBtn) startBtn.addEventListener('click', collapseIntro);
+	        if (sendBtn) sendBtn.addEventListener('click', collapseIntro);
+	        if (input) {
+	          input.addEventListener('keydown', function(e){
+	            if (e.key === 'Enter') collapseIntro();
+	          });
+	          input.addEventListener('input', function(){
+	            // If user starts typing, collapse intro as well
+	            if (this.value && this.value.trim().length > 0) collapseIntro();
+	          });
+	        }
 
-</div>
-</body>
+	        // Дополнительно: как только появляются сообщения бота/пользователя — сворачиваем вводные
+	        var chatArea = document.querySelector('#chatWindow .chat-area');
+	        if (chatArea && 'MutationObserver' in window) {
+	          var observer = new MutationObserver(function(mutations){
+	            for (var m of mutations) {
+	              if (m.addedNodes && m.addedNodes.length) {
+	                collapseIntro();
+	                break;
+	              }
+	            }
+	          });
+	          observer.observe(chatArea, { childList: true, subtree: true });
+	        }
+	      });
+	    })();
+  </script>
+
+  <!-- Orientation lock overlay: shown only on phones/tablets in landscape (handled via CSS+JS) -->
+  <div id="orientationLockOverlay" aria-hidden="true">
+    <div class="orientation-content">
+      <div class="rotate-icon">⤾</div>
+      <div class="orientation-title">Gire el dispositivo</div>
+      <div class="orientation-text">Esta sección está disponible solo en orientación vertical.</div>
+    </div>
+  </div>
+
+  
+
+  <script>
+    // Orientation lock logic
+    (function(){
+      function isSmallTabletOrPhone(){
+        // phones + tablets by width (не требуем тач, чтобы эмуляторы тоже ловились)
+        return window.innerWidth <= 1368;
+      }
+      function isLandscape(){
+        // Some emulators/iPadOS may not update the MQ reliably; fallback to dimensions
+        return window.matchMedia('(orientation: landscape)').matches || (window.innerWidth > window.innerHeight);
+      }
+      function isMatebookE(){
+        return document.documentElement.classList.contains('matebook-e');
+      }
+      function updateOrientationLock(){
+        var html = document.documentElement;
+        var overlay = document.getElementById('orientationLockOverlay');
+        if (!overlay) {
+          try {
+            // Автосоздание оверлея, если он отсутствует в DOM
+            overlay = document.createElement('div');
+            overlay.id = 'orientationLockOverlay';
+            overlay.setAttribute('aria-hidden','true');
+            overlay.innerHTML = '<div class="orientation-content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;max-width:720px;color:#fff">\
+              <div class="rotate-icon" style="font-size:72px;line-height:1;color:#fff">⤾</div>\
+              <div class="orientation-title" style="font-weight:800;font-size:32px;letter-spacing:.5px;color:#fff">Gire el dispositivo</div>\
+              <div class="orientation-text" style="font-size:19px;opacity:1;color:#fff">Esta sección está disponible solo en orientación vertical.</div>\
+            </div>';
+            document.body.appendChild(overlay);
+          } catch(e) { console.warn('no overlay and failed to create', e); }
+        }
+        // Нормальная логика: только в landscape и при ширине <= 1368
+        var shouldLock = isLandscape() && isSmallTabletOrPhone();
+        if (shouldLock){
+          html.classList.add('landscape-locked');
+          if (overlay) {
+            // Переносим оверлей в конец <body>, чтобы он был самым верхним в DOM
+            try { if (overlay.parentNode !== document.body || overlay !== document.body.lastElementChild) document.body.appendChild(overlay); } catch(_) {}
+            // Принудительно задаём ключевые стили инлайном
+            overlay.style.position = 'fixed';
+            overlay.style.left = '0';
+            overlay.style.top = '0';
+            overlay.style.right = '0';
+            overlay.style.bottom = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.background = 'rgba(0,0,0,0.95)';
+            overlay.style.color = '#fff';
+            overlay.style.zIndex = '2147483647';
+            overlay.style.display = 'flex';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.textAlign = 'center';
+            overlay.style.padding = '24px';
+            overlay.style.pointerEvents = 'all';
+            // страховка: повторно зададим видимые стили для текста
+            const t = overlay.querySelector('.orientation-title');
+            const p = overlay.querySelector('.orientation-text');
+            if (t) { t.style.color = '#fff'; t.style.opacity = '1'; t.style.visibility = 'visible'; }
+            if (p) { p.style.color = '#fff'; p.style.opacity = '1'; p.style.visibility = 'visible'; }
+          }
+        } else {
+          html.classList.remove('landscape-locked');
+          if (overlay) overlay.style.display = 'none';
+        }
+        // Debug badge removed
+      }
+      window.addEventListener('resize', updateOrientationLock);
+      window.addEventListener('orientationchange', updateOrientationLock);
+      document.addEventListener('DOMContentLoaded', updateOrientationLock);
+      window.addEventListener('load', updateOrientationLock);
+      // Small delayed check to catch late layout settle on iPad/emulators
+      setTimeout(updateOrientationLock, 300);
+    })();
+  </script>
+
+  </div>
+  </body>
+  </html>
 </html>
